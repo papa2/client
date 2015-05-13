@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- action monitor -->
+	<bean id="actionMonitorService" class="com.papa2.client.monitor.service.impl.ActionMonitorServiceImpl">
+		<property name="actionMonitorDao" ref="actionMonitorDao" />
+	</bean>
+	<bean id="actionMonitorDao" class="com.papa2.client.monitor.dao.impl.ActionMonitorDaoImpl" parent="baseDao" />
+	
+	<!-- cache monitor -->
+	<bean id="cacheMonitorService" class="com.papa2.client.monitor.service.impl.CacheMonitorServiceImpl">
+		<property name="cacheMonitorDao" ref="cacheMonitorDao" />
+	</bean>
+	<bean id="cacheMonitorDao" class="com.papa2.client.monitor.dao.impl.CacheMonitorDaoImpl" parent="baseDao"></bean>
+	
+	<!-- log monitor -->
+	<bean id="logMonitorService" class="com.papa2.client.monitor.service.impl.LogMonitorServiceImpl">
+		<property name="logMonitorDao" ref="logMonitorDao" />
+	</bean>
+	<bean id="logMonitorDao" class="com.papa2.client.monitor.dao.impl.LogMonitorDaoImpl" parent="baseDao">
+	</bean>
+	
+	<!-- method monitor -->
+	<bean id="methodMonitorService" class="com.papa2.client.monitor.service.impl.MethodMonitorServiceImpl">
+		<property name="methodMonitorDao" ref="methodMonitorDao" />
+	</bean>
+	<bean id="methodMonitorDao" class="com.papa2.client.monitor.dao.impl.MethodMonitorDaoImpl" parent="baseDao"></bean>
+	
+</beans>

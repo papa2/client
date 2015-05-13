@@ -1,0 +1,4 @@
+<script>
+var successResult = '$!esc.html($!successMessage)';
+var failResult = '$!esc.html($!failMessage)';
+</script>

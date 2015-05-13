@@ -1,0 +1,11 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="{http://client}client$error"
+		extends="{http://client}client$framework" namespace="/error">
+		
+		<action name="errorAction" class="errorAction" >
+			<result name="403">/client/framework/error/403.vm</result>
+			<result name="404">/client/framework/error/404.vm</result>
+		</action>
+	</package>
+</xwork>

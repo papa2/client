@@ -1,0 +1,12 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="{http://client}client$portal"
+		extends="{http://client}client$framework" namespace="/">
+
+		<!-- 登陆首页 -->
+		<action name="index" class="portalAction" method="index">
+			<result name="success">/client/portal/index.vm</result>
+		</action>
+		
+	</package>
+</xwork>
