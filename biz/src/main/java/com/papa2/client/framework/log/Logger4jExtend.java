@@ -151,26 +151,26 @@ public class Logger4jExtend {
 		}
 	}
 
-	static {
-		try {
-			Properties proobj = PropertiesUtil.loadProperties("env.properties");
-
-			MemcachedClientBuilder builder =
-				new XMemcachedClientBuilder(AddrUtil.getAddresses((String) proobj.get("xmemcached.memcached.servers")));
-
-			builder.setConnectionPoolSize(2);
-			builder.setCommandFactory(new BinaryCommandFactory());
-			builder.setSessionLocator(new KetamaMemcachedSessionLocator());
-			builder.setTranscoder(new SerializingTranscoder());
-
-			MemcachedClient client = builder.build();
-
-			memcachedCacheService = new MemcachedCacheServiceImpl();
-			memcachedCacheService.setMemcachedClient(client);
-
-		} catch (IOException e) {
-			Logger4jCollection.getLogger(Logger4jExtend.class).error(e);
-		}
-	}
+//	static {
+//		try {
+//			Properties proobj = PropertiesUtil.loadProperties("env.properties");
+//
+//			MemcachedClientBuilder builder =
+//				new XMemcachedClientBuilder(AddrUtil.getAddresses((String) proobj.get("xmemcached.memcached.servers")));
+//
+//			builder.setConnectionPoolSize(2);
+//			builder.setCommandFactory(new BinaryCommandFactory());
+//			builder.setSessionLocator(new KetamaMemcachedSessionLocator());
+//			builder.setTranscoder(new SerializingTranscoder());
+//
+//			MemcachedClient client = builder.build();
+//
+//			memcachedCacheService = new MemcachedCacheServiceImpl();
+//			memcachedCacheService.setMemcachedClient(client);
+//
+//		} catch (IOException e) {
+//			Logger4jCollection.getLogger(Logger4jExtend.class).error(e);
+//		}
+//	}
 
 }

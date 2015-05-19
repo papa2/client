@@ -37,7 +37,7 @@
 
 			<interceptor name="decodeParams" class="com.papa2.client.framework.webwork.interceptor.DecodeParametersInterceptor" />
 
-			<interceptor name="actionMonitor" class="actionMonitorInterceptor" />
+			<!-- interceptor name="actionMonitor" class="actionMonitorInterceptor" / -->
 
 			<interceptor-stack name="defaultStack">
 				<interceptor-ref name="exception" />
@@ -60,7 +60,7 @@
 			<interceptor-stack name="authenticationStack">
 				<interceptor-ref name="defaultStack" />
 				<!-- 操作日志 -->
-				<interceptor-ref name="actionMonitor" />
+				<!-- interceptor-ref name="actionMonitor" / -->
 			</interceptor-stack>
 			
 			<interceptor-stack name="fileUploadStack">
