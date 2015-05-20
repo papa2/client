@@ -1,0 +1,12 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="{http://client}client$promotion"
+		extends="{http://client}client$framework" namespace="/promotion">
+
+		<!-- 优惠首页 -->
+		<action name="index" class="promotionAction" method="index">
+			<result name="success">/client/promotion/index.vm</result>
+		</action>
+		
+	</package>
+</xwork>

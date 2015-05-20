@@ -13,6 +13,16 @@ function help() {
 	top.location.href = appUrl + "/help/index.htm";
 }
 
+function recommend() {
+	loading();
+	top.location.href = appUrl + "/recommend/index.htm";
+}
+
+function promotion() {
+	loading();
+	top.location.href = appUrl + "/promotion/index.htm";
+}
+
 function loading() {
 	new Spinner({
 				top : '500%'

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>帮助中心</title>
+		#ICON()
+        #CSSM(["font-awesome", "bootstrap"])
+		<style>
+		body { padding-top: 70px; background-color: #f5f5f5; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand fa fa-chevron-left" href="javascript:goBack();"></a>
+			<div class="navbar-brand pull-right">趴趴兔来帮助</div>
+        </nav>
+		
+		<div class="input-group" >
+            <input type="text" class="form-control" id="search" value="$!{search}" placeholder="Search for..."></input>
+			<div class="input-group-btn">
+				<a class="btn btn-default" href="javascript:search();"><i class="fa fa-search"></i></a>
+            </div>
+        </div>
+		
+		<div class="list-group" style="margin-top: 10px;">
+			<a href="#" class="list-group-item list-group-item-success">
+				<h4 class="list-group-item-heading">趴趴兔收费吗?</h4>
+				<p class="list-group-item-text">永久免费</p>
+			</a>
+			<a href="#" class="list-group-item list-group-item-info">
+				<h4 class="list-group-item-heading">趴趴兔真的免费吗?</h4>
+				<p class="list-group-item-text">真的</p>
+			</a>
+			<a href="#" class="list-group-item list-group-item-warning">
+				<h4 class="list-group-item-heading">趴趴兔真的永久免费吗?</h4>
+				<p class="list-group-item-text">真的真的</p>
+			</a>
+        </div>
+		
+		<footer class="navbar navbar-fixed-bottom text-center">
+            <p>&copy; 2015 papa2-inc.com 版权所有</p>
+        </footer>
+		
+		#JSM(["jquery", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript" src="$!{env.imgUrl}/js/help/index.js"></script>
+    </body>
+</html>

@@ -64,7 +64,7 @@
     		</div>
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="#">
+					<a class="fa-links" href="javascript:recommend();">
                         <p>我要推荐</p>
 						<i class="fa fa-3x fa-share-alt"></i>
             		</a>
@@ -72,7 +72,7 @@
     		</div>
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="#">
+					<a class="fa-links" href="javascript:promotion();">
                         <p>我的优惠</p>
 						<i class="fa fa-3x fa-gift"></i>
             		</a>

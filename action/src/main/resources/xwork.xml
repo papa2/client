@@ -6,5 +6,7 @@
 	<include file="webwork/webwork-help.xml" />
 	<include file="webwork/webwork-pay.xml" />
 	<include file="webwork/webwork-portal.xml" />
+	<include file="webwork/webwork-promotion.xml" />
+	<include file="webwork/webwork-recommend.xml" />
 	<include file="webwork/webwork-trade.xml" />
 </xwork>
