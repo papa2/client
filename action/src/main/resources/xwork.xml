@@ -3,5 +3,6 @@
 	<include file="webwork-default.xml" />
 	<include file="webwork/webwork-framework.xml" />
 	<include file="webwork/webwork-error.xml" />
+	<include file="webwork/webwork-help.xml" />
 	<include file="webwork/webwork-portal.xml" />
 </xwork>

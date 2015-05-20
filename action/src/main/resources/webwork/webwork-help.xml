@@ -1,0 +1,12 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="{http://client}client$help"
+		extends="{http://client}client$framework" namespace="/help">
+
+		<!-- 登陆首页 -->
+		<action name="index" class="helpAction" method="index">
+			<result name="success">/client/help/index.vm</result>
+		</action>
+		
+	</package>
+</xwork>
