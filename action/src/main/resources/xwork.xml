@@ -4,5 +4,7 @@
 	<include file="webwork/webwork-framework.xml" />
 	<include file="webwork/webwork-error.xml" />
 	<include file="webwork/webwork-help.xml" />
+	<include file="webwork/webwork-pay.xml" />
 	<include file="webwork/webwork-portal.xml" />
+	<include file="webwork/webwork-trade.xml" />
 </xwork>

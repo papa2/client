@@ -6,10 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>帮助中心</title>
 		#ICON()
-		<link rel="stylesheet" href="$!{env.imgUrl}/css/bootstrap.tile.css" />
         #CSSM(["font-awesome", "bootstrap"])
 		<style>
-		body { padding-top: 70px; }
+		body { padding-top: 70px; background-color: #f5f5f5; }
 		</style>
 		#UA()
 	</head>
@@ -19,30 +18,26 @@
 			<div class="navbar-brand pull-right">趴趴兔来帮助</div>
         </nav>
 		
-		<div class="container">
-			<div class="input-group" >
-                <input type="text" class="form-control" id="search" value="$!{search}" placeholder="Search for..."></input>
-				<div class="input-group-btn">
-					<a class="btn btn-default" href="javascript:search();"><i class="fa fa-search"></i></a>
-                </div>
+		<div class="input-group" >
+            <input type="text" class="form-control" id="search" value="$!{search}" placeholder="Search for..."></input>
+			<div class="input-group-btn">
+				<a class="btn btn-default" href="javascript:search();"><i class="fa fa-search"></i></a>
             </div>
-			
-			<div class="panel panel-default" style="margin-top: 10px;">
-    			<div class="list-group">
-    				<a href="#" class="list-group-item list-group-item-success">
-    					<h4 class="list-group-item-heading">趴趴兔收费吗?</h4>
-    					<p class="list-group-item-text">永久免费</p>
-    				</a>
-    				<a href="#" class="list-group-item list-group-item-info">
-    					<h4 class="list-group-item-heading">趴趴兔真的免费吗?</h4>
-    					<p class="list-group-item-text">真的</p>
-    				</a>
-    				<a href="#" class="list-group-item list-group-item-warning">
-    					<h4 class="list-group-item-heading">趴趴兔真的永久免费吗?</h4>
-    					<p class="list-group-item-text">真的真的</p>
-    				</a>
-                </div>
-            </div>
+        </div>
+		
+		<div class="list-group" style="margin-top: 10px;">
+			<a href="#" class="list-group-item list-group-item-success">
+				<h4 class="list-group-item-heading">趴趴兔收费吗?</h4>
+				<p class="list-group-item-text">永久免费</p>
+			</a>
+			<a href="#" class="list-group-item list-group-item-info">
+				<h4 class="list-group-item-heading">趴趴兔真的免费吗?</h4>
+				<p class="list-group-item-text">真的</p>
+			</a>
+			<a href="#" class="list-group-item list-group-item-warning">
+				<h4 class="list-group-item-heading">趴趴兔真的永久免费吗?</h4>
+				<p class="list-group-item-text">真的真的</p>
+			</a>
         </div>
 		
 		<footer class="navbar navbar-fixed-bottom text-center">

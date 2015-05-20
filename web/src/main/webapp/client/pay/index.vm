@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>我要支付</title>
+		#ICON()
+        #CSSM(["font-awesome", "bootstrap"])
+		<style>
+		body { padding-top: 70px; background-color: #f5f5f5; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand fa fa-chevron-left" href="javascript:goBack();"></a>
+			<div class="navbar-brand pull-right">我要支付</div>
+        </nav>
+		
+		<div class="panel panel-info" style="margin-top: -20px;">
+			<div class="panel-heading">黄龙停车场 账单</div>
+			<div class="panel-body">
+                <p>开始时间 2015-5-20 12:00:00</p>
+				<p>结束时间 2015-5-20 13:00:00</p>
+				<p>停车时间 1 小时</p>
+				<p>需要缴费 10 元</p>
+				<p>优惠 0 元</p>
+            </div>
+			<div class="panel-footer">
+				<a class="btn btn-primary" href="#" role="button">确认缴费</a>
+				<a class="btn btn-danger" href="#" role="button">暂不缴费</a>
+			</div>
+		</div>
+		
+		<footer class="navbar navbar-fixed-bottom text-center">
+            <p>&copy; 2015 papa2-inc.com 版权所有</p>
+        </footer>
+		
+		#JSM(["jquery", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript" src="$!{env.imgUrl}/js/pay/index.js"></script>
+    </body>
+</html>

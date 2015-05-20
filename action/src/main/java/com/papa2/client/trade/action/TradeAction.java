@@ -1,16 +1,16 @@
-package com.papa2.client.help.action;
+package com.papa2.client.trade.action;
 
 import com.papa2.client.framework.action.BaseAction;
 
 /**
- * 帮助中心.
+ * 我的账单.
  * 
  * @author xujiakun
  * 
  */
-public class HelpAction extends BaseAction {
+public class TradeAction extends BaseAction {
 
-	private static final long serialVersionUID = 6712740179692413801L;
+	private static final long serialVersionUID = 3172508458518842227L;
 
 	/**
 	 * 首页.

@@ -40,7 +40,7 @@
     		</div>
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="#">
+					<a class="fa-links" href="javascript:pay();">
                         <p>我要支付</p>
 						<i class="fa fa-3x fa-credit-card"></i>
             		</a>
@@ -48,7 +48,7 @@
     		</div>
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="#">
+					<a class="fa-links" href="javascript:trade();">
                         <p>我的账单</p>
 						<i class="fa fa-3x fa-list-alt"></i>
             		</a>
