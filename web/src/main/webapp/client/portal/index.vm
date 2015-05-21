@@ -88,9 +88,7 @@
     		</div>
         </div>
 		
-		<footer class="navbar navbar-fixed-bottom text-center">
-            <p>&copy; 2015 papa2-inc.com 版权所有</p>
-        </footer>
+		#parse("/client/framework/footer.vm")
 		
 		#JSM(["jquery", "iosbadge", "spin"])
 		#JS_ENV_VAL()

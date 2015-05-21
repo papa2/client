@@ -100,9 +100,7 @@
 			<a class="list-group-item text-center" href="javascript:more();" id="more"><i class="fa fa-spinner" id="spinner"></i> 更 多</a>
         </div>
 		
-		<footer class="navbar navbar-fixed-bottom text-center">
-            <p>&copy; 2015 papa2-inc.com 版权所有</p>
-        </footer>
+		#parse("/client/framework/footer.vm")
 		
 		#JSM(["jquery", "spin"])
 		#JS_ENV_VAL()
