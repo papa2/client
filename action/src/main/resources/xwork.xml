@@ -10,5 +10,6 @@
 	<include file="webwork/webwork-portal.xml" />
 	<include file="webwork/webwork-promotion.xml" />
 	<include file="webwork/webwork-recommend.xml" />
+	<include file="webwork/webwork-reserve.xml" />
 	<include file="webwork/webwork-trade.xml" />
 </xwork>

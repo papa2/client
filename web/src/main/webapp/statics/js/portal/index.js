@@ -3,6 +3,11 @@ function navigate() {
 	top.location.href = appUrl + "/navigate/index.htm";
 }
 
+function reserve() {
+	loading();
+	top.location.href = appUrl + "/reserve/index.htm";
+}
+
 function pay() {
 	loading();
 	top.location.href = appUrl + "/pay/index.htm";
