@@ -8,7 +8,7 @@
 		#ICON()
         #CSSM(["font-awesome", "bootstrap"])
 		<style>
-		body { padding-top: 70px; background-color: #f5f5f5; }
+		body { padding-top: 70px; padding-bottom: 70px; background-color: #f5f5f5; }
 		.title-overflow { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: inline-block; width: 180px; }
 		</style>
 		#UA()
