@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="col-xs-4">
             	<div class="thumbnail tile tile-medium tile-blue">
-                    <a class="fa-links" href="#">
+                    <a class="fa-links" href="javascript:navigate();">
                         <p>我要停车</p>
 						<i class="fa fa-3x fa-car"></i>
             		</a>
