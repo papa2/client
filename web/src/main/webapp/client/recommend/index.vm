@@ -18,12 +18,23 @@
 			<div class="navbar-brand pull-right">趴趴兔等你来推荐</div>
         </nav>
 		
-		<div class="list-group" style="margin-top: 10px;">
-			<a href="#" class="list-group-item list-group-item-success">
+		<ul class="list-group" style="margin-top: 10px;">
+			<li class="list-group-item list-group-item-success">
 				<h4 class="list-group-item-heading">推荐好友，有机会获得免费停车喔</h4>
 				<p class="list-group-item-text">成功推荐好友</p>
-			</a>
-        </div>
+			</li>
+        </ul>
+		
+		<ul class="list-group" style="margin-top: 10px;">
+			<div class="alert alert-info text-center" role="alert">
+				<a class="fa fa-facebook" style="font-size: 24px;"></a>&nbsp;
+				<a class="fa fa-qq" style="font-size: 24px;"></a>&nbsp;
+				<a class="fa fa-tencent-weibo" style="font-size: 24px;"></a>&nbsp;
+				<a class="fa fa-twitter" style="font-size: 24px;"></a>&nbsp;
+				<a class="fa fa-weibo" style="font-size: 24px;"></a>&nbsp;
+				<a class="fa fa-weixin" style="font-size: 24px;"></a>
+			</div>
+        </ul>
 		
 		#parse("/client/framework/footer.vm")
 		

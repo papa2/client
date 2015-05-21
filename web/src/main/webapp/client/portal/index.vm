@@ -17,7 +17,7 @@
 	</head>
 	<body style="background-image: url('$!{env.imgUrl}/image/portal/map.png');">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
-			<i class="navbar-brand fa fa-user" style="font-size: 24px;"></i>
+			<i class="navbar-brand fa fa-street-view" style="font-size: 24px;"></i>
 			<div class="navbar-brand pull-right">我的趴趴兔</div>
         </nav>
 		
