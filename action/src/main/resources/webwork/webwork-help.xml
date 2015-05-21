@@ -3,7 +3,7 @@
 	<package name="{http://client}client$help"
 		extends="{http://client}client$framework" namespace="/help">
 
-		<!-- 登陆首页 -->
+		<!-- 帮助首页 -->
 		<action name="index" class="helpAction" method="index">
 			<result name="success">/client/help/index.vm</result>
 		</action>

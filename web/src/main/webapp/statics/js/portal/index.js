@@ -23,6 +23,11 @@ function promotion() {
 	top.location.href = appUrl + "/promotion/index.htm";
 }
 
+function about() {
+	loading();
+	top.location.href = appUrl + "/about/index.htm";
+}
+
 function loading() {
 	new Spinner({
 				top : '500%'
