@@ -8,5 +8,10 @@
 			<result name="success">/client/trade/index.vm</result>
 		</action>
 		
+		<!-- 账单明细 -->
+		<action name="detail" class="tradeAction" method="detail">
+			<result name="success">/client/trade/detail.vm</result>
+		</action>
+		
 	</package>
 </xwork>

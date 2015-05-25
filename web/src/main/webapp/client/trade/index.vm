@@ -27,73 +27,73 @@
         </div>
 
 		<div class="list-group" style="margin-top: 10px;">
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>
-			<a class="list-group-item" href="#">
-				<span class="fa fa-chevron-right pull-right"></span>
+			<a class="list-group-item" href="javascript:detail();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
                 <span class="pull-left">2015-5-20 10:10:10</span>
                 <span class="title-overflow"> 黄龙停车场</span>
 			</a>

@@ -21,4 +21,13 @@ public class TradeAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 账单明细.
+	 * 
+	 * @return
+	 */
+	public String detail() {
+		return SUCCESS;
+	}
+
 }
