@@ -8,9 +8,9 @@ function reserve() {
 	top.location.href = appUrl + "/reserve/index.htm";
 }
 
-function pay() {
+function car() {
 	loading();
-	top.location.href = appUrl + "/pay/index.htm";
+	top.location.href = appUrl + "/car/index.htm";
 }
 
 function trade() {

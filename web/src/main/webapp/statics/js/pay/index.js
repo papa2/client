@@ -1,6 +1,6 @@
 function goBack() {
 	loading();
-	top.location.href = appUrl + "/index.htm";
+	top.location.href = appUrl + "/car/index.htm";
 }
 
 function loading() {
