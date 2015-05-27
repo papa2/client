@@ -27,34 +27,34 @@
 
 		<div class="list-group" style="margin-top: 10px;">
 			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 5px; "></span>
-                <i class="fa fa-location-arrow"></i> 黄龙停车场
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
                 <span class="pull-right"><i class="fa fa-clock-o"></i> 13:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-jpy"></i> 10.00</strong>
+                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
 			</a>
 			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 5px; "></span>
-                <i class="fa fa-location-arrow"></i> 黄龙停车场
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
                 <span class="pull-right"><i class="fa fa-clock-o"></i> 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-jpy"></i> 10.00</strong>
+                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
 			</a>
 			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 5px; "></span>
-                <i class="fa fa-location-arrow"></i> 黄龙停车场
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
                 <span class="pull-right"><i class="fa fa-clock-o"></i> 5-20 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-jpy"></i> 10.00</strong>
+                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
 			</a>
 			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 5px; "></span>
-                <i class="fa fa-location-arrow"></i> 黄龙停车场
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
                 <span class="pull-right"><i class="fa fa-clock-o"></i> 5-20 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-jpy"></i> 10.00</strong>
+                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
 			</a>
 			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 5px; "></span>
-                <i class="fa fa-location-arrow"></i> 黄龙停车场
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
                 <span class="pull-right"><i class="fa fa-clock-o"></i> 5-20 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-jpy"></i> 10.00</strong>
+                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
 			</a>
 			<a class="list-group-item text-center" style="margin-top: 10px;" href="javascript:more();" id="more"><i class="fa fa-spinner" id="spinner"></i> 更 多</a>
         </div>

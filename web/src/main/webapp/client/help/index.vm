@@ -27,16 +27,16 @@
 		
 		<div class="list-group" style="margin-top: 10px;">
 			<a href="#" class="list-group-item list-group-item-success">
-				<h4 class="list-group-item-heading">趴趴兔收费吗?</h4>
-				<p class="list-group-item-text">永久免费</p>
+				<h4 class="list-group-item-heading">Q：趴趴兔收费吗?</h4>
+				<p class="list-group-item-text">A：永久免费</p>
 			</a>
 			<a href="#" class="list-group-item list-group-item-info">
-				<h4 class="list-group-item-heading">趴趴兔真的免费吗?</h4>
-				<p class="list-group-item-text">真的</p>
+				<h4 class="list-group-item-heading">Q：趴趴兔真的免费吗?</h4>
+				<p class="list-group-item-text">A：真的</p>
 			</a>
 			<a href="#" class="list-group-item list-group-item-warning">
-				<h4 class="list-group-item-heading">趴趴兔真的永久免费吗?</h4>
-				<p class="list-group-item-text">真的真的</p>
+				<h4 class="list-group-item-heading">Q：趴趴兔真的永久免费吗?</h4>
+				<p class="list-group-item-text">A：真的真的</p>
 			</a>
         </div>
 		

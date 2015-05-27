@@ -38,15 +38,18 @@
 					</tr>
 					<tr>
 						<td class="text-center"><i class="fa fa-credit-card"></i> 计时缴费</td>
-						<td><i class="fa fa-jpy"></i> 10.00</td>
+						<td><i class="fa fa-cny"></i> 10.00</td>
 					</tr>
 					<tr>
-						<td class="text-center">优惠</td>
-						<td><i class="fa fa-jpy"></i> -0.00</td>
+						<td class="text-center"><i class="fa fa-tags"></i> 优惠</td>
+						<td>
+							<i class="fa fa-cny"></i> -0.00
+							<a class="fa fa-plus fa-fw pull-right" style="margin: 3px 50px 0 0;" href="javascript:promotion();"></a>
+						</td>
 					</tr>
 					<tr class="warning">
 						<th class="text-center">合计需要缴费</th>
-						<th><i class="fa fa-jpy"></i> 10.00</th>
+						<th><i class="fa fa-cny"></i> 10.00</th>
 					</tr>
 				</tbody>
 			</table>

@@ -20,16 +20,13 @@
 		
 		<div class="list-group" style="margin-top: -20px;">
 			<a href="#" class="list-group-item list-group-item-success">
-				<h4 class="list-group-item-heading">Q：趴趴兔是兔子吗？</h4>
-				<p class="list-group-item-text">A：趴趴兔不是兔子</p>
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>Like us on Facebook
 			</a>
 			<a href="#" class="list-group-item list-group-item-info">
-				<h4 class="list-group-item-heading">Q：趴趴兔能做什么？</h4>
-				<p class="list-group-item-text">A：趴趴兔能帮你找车位，“抢”车位</p>
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>Legal
 			</a>
 			<a href="#" class="list-group-item list-group-item-warning">
-				<h4 class="list-group-item-heading">Q：趴趴兔还能做什么？</h4>
-				<p class="list-group-item-text">A：趴趴兔能帮你在线缴费</p>
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>papa2-inc.com
 			</a>
         </div>
 		

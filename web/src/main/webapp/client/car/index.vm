@@ -19,27 +19,30 @@
 			<div class="navbar-brand pull-right">我的车辆</div>
         </nav>
 		
-		<div class="list-group" style="margin-top: -20px;">
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-                <i class="fa fa-car"></i> 浙A 10000
-                <span class="pull-right"> 暂无需要缴费</span>
-			</a>
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-                <i class="fa fa-car"></i> 浙A 10001
-                <span class="pull-right"> 暂无需要缴费</span>
-			</a>
+		<ul class="list-group" style="margin-top: -20px;">
+			<li class="list-group-item list-group-item-info">
+				<a class="fa fa-times pull-right" style="margin: 3px 0 0 15px;" herf="#"></a>
+                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10000</strong>
+                <small class="text-success" style="margin-left: 10px;"> 暂无需要缴费</small>
+			</li>
+			<li class="list-group-item list-group-item-info">
+				<a class="fa fa-times pull-right" style="margin: 3px 0 0 15px;" herf="#"></a>
+                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10001</strong>
+                <small class="text-success" style="margin-left: 10px;"> 暂无需要缴费</small>
+			</li>
 			
 			<a href="javascript:pay();" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 5px;"></span>
-                <i class="fa fa-car"></i> 浙A 10002
-                <span class="pull-right"> 需要缴费喔</span>
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10002</strong>
+                <small class="text-warning" style="margin-left: 10px;"> 预计需要缴费 <i class="fa fa-cny"></i> 10.00</small>
 			</a>
 			
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-                <i class="fa fa-car"></i> 浙A 10003
-                <span class="pull-right"> 暂无需要缴费</span>
-			</a>
-        </div>
+			<li class="list-group-item list-group-item-info">
+				<a class="fa fa-times pull-right" style="margin: 3px 0 0 15px;" herf="#"></a>
+                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10003</strong>
+                <small class="text-success" style="margin-left: 10px;"> 暂无需要缴费</small>
+			</li>
+        </ul>
 		
 		<div class="container">
 			<div class="modal-body">

@@ -20,19 +20,20 @@
 		
 		<ul class="list-group" style="margin-top: -20px;">
 			<li class="list-group-item list-group-item-success">
-				<h4 class="list-group-item-heading">推荐好友，有机会获得免费停车喔</h4>
-				<p class="list-group-item-text">成功推荐好友</p>
+				<h4 class="list-group-item-heading">
+					<i class="fa fa-bullhorn"></i> 推荐好友，有机会获得免费停车喔
+				</h4>
 			</li>
         </ul>
 		
 		<ul class="list-group" style="margin-top: 10px;">
 			<div class="alert alert-info text-center" role="alert">
-				<a class="fa fa-facebook" style="font-size: 24px;"></a>&nbsp;
-				<a class="fa fa-qq" style="font-size: 24px;"></a>&nbsp;
-				<a class="fa fa-tencent-weibo" style="font-size: 24px;"></a>&nbsp;
-				<a class="fa fa-twitter" style="font-size: 24px;"></a>&nbsp;
-				<a class="fa fa-weibo" style="font-size: 24px;"></a>&nbsp;
-				<a class="fa fa-weixin" style="font-size: 24px;"></a>
+				<a class="fa fa-facebook" style="font-size: 24px; margin: 0 10px 0 10px;"></a>
+				<a class="fa fa-qq" style="font-size: 24px; margin: 0 10px 0 10px;"></a>
+				<a class="fa fa-tencent-weibo" style="font-size: 24px; margin: 0 10px 0 10px;"></a>
+				<a class="fa fa-twitter" style="font-size: 24px; margin: 0 10px 0 10px;"></a>
+				<a class="fa fa-weibo" style="font-size: 24px; margin: 0 10px 0 10px;"></a>
+				<a class="fa fa-weixin" style="font-size: 24px; margin: 0 10px 0 10px;"></a>
 			</div>
         </ul>
 		
