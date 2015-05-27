@@ -19,22 +19,25 @@
 			<div class="navbar-brand pull-right">我的车辆</div>
         </nav>
 		
-		<div class="list-group" style="margin-top: 10px;">
-			<a href="#" class="list-group-item list-group-item-info">
-				<span class="fa fa-car pull-left" style="margin-top: 5px;"></span>
-                <span class="pull-left">浙A 10000</span>
-                <span class="title-overflow"> 暂无需要缴费</span>
+		<div class="list-group" style="margin-top: -20px;">
+			<a class="list-group-item list-group-item-info" href="javascript:detail();">
+                <i class="fa fa-car"></i> 浙A 10000
+                <span class="pull-right"> 暂无需要缴费</span>
 			</a>
-			<a href="#" class="list-group-item list-group-item-info">
-				<span class="fa fa-car pull-left" style="margin-top: 5px;"></span>
-                <span class="pull-left">浙A 10001</span>
-                <span class="title-overflow"> 暂无需要缴费</span>
+			<a class="list-group-item list-group-item-info" href="javascript:detail();">
+                <i class="fa fa-car"></i> 浙A 10001
+                <span class="pull-right"> 暂无需要缴费</span>
 			</a>
-			<a href="javascript:pay();" class="list-group-item list-group-item-success">
-				<span class="fa fa-car pull-left" style="margin-top: 5px;"></span>
-				<span class="fa fa-chevron-right pull-right" style="margin-top: 5px;"></span>
-                <span class="pull-left">浙A 10002</span>
-                <span class="title-overflow"> 需要缴费喔</span>
+			
+			<a href="javascript:pay();" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 5px;"></span>
+                <i class="fa fa-car"></i> 浙A 10002
+                <span class="pull-right"> 需要缴费喔</span>
+			</a>
+			
+			<a class="list-group-item list-group-item-info" href="javascript:detail();">
+                <i class="fa fa-car"></i> 浙A 10003
+                <span class="pull-right"> 暂无需要缴费</span>
 			</a>
         </div>
 		

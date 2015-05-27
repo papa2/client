@@ -18,12 +18,25 @@
 			<div class="navbar-brand pull-right">我的优惠</div>
         </nav>
 		
-		<div class="list-group" style="margin-top: 10px;">
-			<a href="#" class="list-group-item list-group-item-success">
+		<div class="input-group" >
+            <input type="text" class="form-control" id="" placeholder="请输入优惠码..."></input>
+			<div class="input-group-btn">
+				<a class="btn btn-default" href="javascript:search();">
+					<i class="fa fa-smile-o" style="font-size: 18px;"></i>
+				</a>
+            </div>
+        </div>
+		
+		<ul class="list-group" style="margin-top: 10px;">
+			<li class="list-group-item list-group-item-success">
 				<h4 class="list-group-item-heading">免费停车喔</h4>
 				<p class="list-group-item-text">从 2015-5-20 起，签到就能免费停车了</p>
-			</a>
-        </div>
+			</li>
+			<li class="list-group-item list-group-item-info">
+				<h4 class="list-group-item-heading">免费停车喔</h4>
+				<p class="list-group-item-text">从 2015-5-20 起，输入[papa2]就能免费停车了</p>
+			</li>
+        </ul>
 		
 		#parse("/client/framework/footer.vm")
 		
