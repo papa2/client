@@ -33,7 +33,7 @@
 						<td>2015-5-20 13:00:00</td>
 					</tr>
 					<tr>
-						<td class="text-center"><i class="fa fa-clock-o"></i> 停车时间</td>
+						<td class="text-center"><i class="fa fa-tachometer"></i> 停车时间</td>
 						<td>1 小时</td>
 					</tr>
 					<tr>
