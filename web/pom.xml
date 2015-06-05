@@ -22,6 +22,13 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<!-- module pay -->
+		<dependency>
+			<groupId>com.papa2</groupId>
+			<artifactId>client-pay</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- module task -->
 		<dependency>
 			<groupId>com.papa2</groupId>

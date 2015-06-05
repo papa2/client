@@ -12,11 +12,12 @@
 		<java.encoding>UTF-8</java.encoding>
 
 		<cglib.version>2.2.2</cglib.version>
+		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		<commons-codec.version>1.9</commons-codec.version>
 		<commons-collections.version>3.2.1</commons-collections.version>
-		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		<commons-digester.version>1.5</commons-digester.version>
 		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<commons-httpclient.version>3.0.1</commons-httpclient.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<curator.version>1.3.3</curator.version>
 		<dom4j.version>1.6.1</dom4j.version>
@@ -63,6 +64,7 @@
 		<module>action</module>
 		<module>api</module>
 		<module>biz</module>
+		<module>pay</module>
 		<module>task</module>
 		<module>util</module>
 		<module>web</module>
@@ -86,6 +88,12 @@
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
 				<version>${commons-fileupload.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons-httpclient.version}</version>
 			</dependency>
 
 			<dependency>
