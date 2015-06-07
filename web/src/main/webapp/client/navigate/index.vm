@@ -32,7 +32,6 @@
 		
 		#JSM(["jquery", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=57GsXSutGfXcANaX3GfW1FqZ&v=1.0"></script>
 		<script type="text/javascript" src="$!{env.imgUrl}/js/navigate/index.js"></script>
     </body>
 </html>
