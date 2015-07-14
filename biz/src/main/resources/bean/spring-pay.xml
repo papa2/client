@@ -5,6 +5,11 @@
 
 	<!-- 支付 -->
 	<bean id="payAction" class="com.papa2.client.pay.action.PayAction" parent="baseAction" scope="request">
+		<property name="payService" ref="payService" />
+	</bean>
+	
+	<bean id="payService" class="com.papa2.client.pay.service.impl.PayServiceImpl">
+		<property name="recordService" ref="recordService" />
 	</bean>
 
 </beans>

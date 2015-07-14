@@ -3,13 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<!-- 车辆 -->
-	<bean id="carAction" class="com.papa2.client.car.action.CarAction" parent="baseAction" scope="request">
-		<property name="carService" ref="carService" />
+	<bean id="recordService" class="com.papa2.client.record.service.impl.RecordServiceImpl">
+		<property name="recordDao" ref="recordDao" />
 	</bean>
 	
-	<bean id="carService" class="com.papa2.client.car.service.impl.CarServiceImpl">
-		<property name="recordService" ref="recordService" />
-	</bean>
-
+	<bean id="recordDao" class="com.papa2.client.record.dao.impl.RecordDaoImpl" parent="baseDao" />
+	
 </beans>

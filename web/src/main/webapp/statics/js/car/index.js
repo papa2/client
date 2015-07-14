@@ -3,9 +3,9 @@ function goBack() {
 	top.location.href = appUrl + "/index.htm";
 }
 
-function pay() {
+function pay(id) {
 	loading();
-	top.location.href = appUrl + "/pay/index.htm";
+	top.location.href = appUrl + "/pay/index.htm?id=" + id;
 }
 
 function loading() {

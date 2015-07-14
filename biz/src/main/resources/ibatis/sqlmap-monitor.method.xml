@@ -55,16 +55,10 @@
 	</select>
 	
 	<insert id="createMethodMonitor" parameterClass="methodMonitor">
-		<selectKey resultClass="java.lang.String" keyProperty="id">
-		<![CDATA[
-			SELECT BASIS.BASIS_SEQ_MONITOR_METHOD.nextval FROM dual
-		]]>
-		</selectKey>
 	<![CDATA[
 		INSERT
-		INTO BASIS.BASIS_TB_MONITOR_METHOD
+		INTO BASIS_TB_MONITOR_METHOD
 		  (
-			ID,
 			CLASS_NAME,
 			METHOD_NAME,
 			COST,
@@ -72,13 +66,17 @@
 		  )
 		  VALUES
 		  (
-			#id:VARCHAR#,
 			#className:VARCHAR#,
 			#methodName:VARCHAR#,
 			#cost:NUMBER#,
-			sysdate
+			NOW()
 		  )
 	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
 	</insert>
 
 </sqlMap>

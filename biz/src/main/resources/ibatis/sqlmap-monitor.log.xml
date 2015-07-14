@@ -45,30 +45,32 @@
 	</select>
 	
 	<insert id="createLogMonitor" parameterClass="logMonitor">
-		<selectKey resultClass="java.lang.String" keyProperty="id">
+	<![CDATA[
+		INSERT
+		INTO BASIS.BASIS_TB_MONITOR_LOG
+		  (
+			CLASS_NAME,
+			METHOD_NAME,
+			LINE_NUMBER,
+			MESSAGE,
+			E,
+			CREATE_DATE
+		  )
+		  VALUES
+		  (
+			#className:VARCHAR#,
+			#methodName:VARCHAR#,
+			#lineNumber:VARCHAR#,
+			#message:VARCHAR#,
+			#e:VARCHAR#,
+			STR_TO_DATE(#createDate#, '%Y-%m-%d %T')
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
 		<![CDATA[
-			SELECT BASIS.BASIS_SEQ_MONITOR_LOG.nextval FROM dual
+			SELECT LAST_INSERT_ID()
 		]]>
 		</selectKey>
-	<![CDATA[
-		insert into BASIS.BASIS_TB_MONITOR_LOG
-		  (ID,
-		   CLASS_NAME,
-		   METHOD_NAME,
-		   LINE_NUMBER,
-		   MESSAGE,
-		   E,
-		   CREATE_DATE)
-		values
-		  (#id:VARCHAR#,
-		   #className:VARCHAR#,
-		   #methodName:VARCHAR#,
-		   #lineNumber:VARCHAR#,
-		   #message:VARCHAR#,
-		   #e:VARCHAR#,
-		   TO_DATE(#createDate#,'yyyy-mm-dd hh24:mi:ss')
-		   )
-	]]>
 	</insert>
 	
 	<select id="getLogMonitorList4SendEmail" resultClass="logMonitor">

@@ -14,7 +14,7 @@
 	<!-- 系统自身数据源 -->
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName">
-			<value>${oracle.jdbc.jndiName}</value>
+			<value>${mysql.jdbc.jndiName}</value>
 		</property>
 	</bean>
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="record">
+	
+	<typeAlias alias="record" type="com.papa2.client.api.record.bo.Record" />
+	
+	<select id="getRecordList" parameterClass="record" resultClass="record">
+	<![CDATA[
+		SELECT t.id,
+		  DATE_FORMAT(t.start_time, '%Y-%m-%d %T') AS startTime,
+		  DATE_FORMAT(t.end_time, '%Y-%m-%d %T')   AS endTime
+		FROM boss_tb_park_record t
+		WHERE t.state= 'U'
+		AND t.car_no = #carNo#
+		ORDER BY t.start_time ASC
+	]]>
+	</select>
+	
+	<select id="getRecord" parameterClass="record" resultClass="record">
+	<![CDATA[
+		SELECT t.id,
+		  DATE_FORMAT(t.start_time, '%Y-%m-%d %T') AS startTime,
+		  DATE_FORMAT(t.end_time, '%Y-%m-%d %T')   AS endTime
+		FROM boss_tb_park_record t
+		WHERE t.state= 'U'
+		AND t.id     = #id#
+	]]>
+	</select>
+	
+</sqlMap>

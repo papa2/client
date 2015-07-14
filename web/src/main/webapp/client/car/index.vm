@@ -25,17 +25,14 @@
                 <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10000</strong>
                 <small class="text-success" style="margin-left: 10px;"> 暂无需要缴费</small>
 			</li>
-			<li class="list-group-item list-group-item-info">
-				<a class="fa fa-times pull-right" style="margin: 3px 0 0 15px;" herf="#"></a>
-                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10001</strong>
-                <small class="text-success" style="margin-left: 10px;"> 暂无需要缴费</small>
-			</li>
 			
-			<a href="javascript:pay();" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
+			#foreach($record in $recordList)
+			<a href="javascript:pay('$!{record.id}');" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
 				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
                 <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10002</strong>
                 <small class="text-warning" style="margin-left: 10px;"> 预计需要缴费 <i class="fa fa-cny"></i> 10.00</small>
 			</a>
+			#end
 			
 			<li class="list-group-item list-group-item-info">
 				<a class="fa fa-times pull-right" style="margin: 3px 0 0 15px;" herf="#"></a>
@@ -88,6 +85,6 @@
 		
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/car/index.js"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/car/index.js?t=20150714"></script>
     </body>
 </html>

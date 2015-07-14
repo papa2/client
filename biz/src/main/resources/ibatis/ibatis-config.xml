@@ -34,5 +34,6 @@
 	<sqlMap resource="ibatis/sqlmap-monitor.cache.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.log.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.method.xml" />
+	<sqlMap resource="ibatis/sqlmap-record.xml" />
     
 </sqlMapConfig>

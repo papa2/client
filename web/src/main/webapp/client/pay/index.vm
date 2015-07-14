@@ -26,11 +26,11 @@
                 <tbody>
 					<tr>
 						<td class="text-center"><i class="fa fa-clock-o"></i> 开始时间</td>
-						<td>2015-5-20 12:00:00</td>
+						<td>$!{record.startTime}</td>
 					</tr>
 					<tr>
 						<td class="text-center"><i class="fa fa-clock-o"></i> 结束时间</td>
-						<td>2015-5-20 13:00:00</td>
+						<td>$!{record.endTime}</td>
 					</tr>
 					<tr>
 						<td class="text-center"><i class="fa fa-tachometer"></i> 停车时间</td>

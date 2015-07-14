@@ -7,16 +7,10 @@
 	<typeAlias alias="actionMonitor" type="com.papa2.client.api.monitor.bo.ActionMonitor" />
 	
 	<insert id="createActionMonitor" parameterClass="actionMonitor">
-		<selectKey resultClass="java.lang.String" keyProperty="id">
-		<![CDATA[
-			SELECT BASIS.BASIS_SEQ_MONITOR_ACTION.nextval FROM dual
-		]]>
-		</selectKey>
 	<![CDATA[
 		INSERT
-		INTO BASIS.BASIS_TB_MONITOR_ACTION
+		INTO BASIS_TB_MONITOR_ACTION
 		  (
-			ID,
 			USER_ID,
 			ACTION_NAME,
 			CREATE_DATE,
@@ -24,13 +18,17 @@
 		  )
 		  VALUES
 		  (
-			#id:VARCHAR#,
 			#userId:VARCHAR#,
 			#actionName:VARCHAR#,
-			TO_DATE(#createDate#,'yyyy-mm-dd hh24:mi:ss'),
+			STR_TO_DATE(#createDate#, '%Y-%m-%d %T'),
 			#ip:VARCHAR#
 		  )
 	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
 	</insert>
 	
 	<select id="getActionMonitorCount" parameterClass="actionMonitor" resultClass="java.lang.Integer">
