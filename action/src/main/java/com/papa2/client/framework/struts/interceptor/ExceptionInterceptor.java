@@ -1,12 +1,13 @@
-package com.papa2.client.framework.webwork.interceptor;
+package com.papa2.client.framework.struts.interceptor;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-
-import com.opensymphony.xwork.interceptor.ExceptionMappingInterceptor;
+import com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor;
+import com.opensymphony.xwork2.util.logging.Logger;
+import com.papa2.client.framework.log.Logger4jCollection;
+import com.papa2.client.framework.log.Logger4jExtend;
 
 /**
  * 
@@ -16,6 +17,8 @@ import com.opensymphony.xwork.interceptor.ExceptionMappingInterceptor;
 public class ExceptionInterceptor extends ExceptionMappingInterceptor {
 
 	private static final long serialVersionUID = -3070785537755358876L;
+
+	private static Logger4jExtend log = Logger4jCollection.getLogger(ExceptionInterceptor.class);
 
 	@SuppressWarnings("rawtypes")
 	private final Set<Class> ignoreExceptions = new HashSet<Class>();
@@ -36,7 +39,7 @@ public class ExceptionInterceptor extends ExceptionMappingInterceptor {
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected void doLog(Log logger, Exception e) {
+	protected void doLog(Logger logger, Exception e) {
 		for (Iterator<Class> i = ignoreExceptions.iterator(); i.hasNext();) {
 			Class clazz = i.next();
 			if (clazz.isInstance(e)) {

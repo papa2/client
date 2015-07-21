@@ -54,10 +54,10 @@
 			<artifactId>json</artifactId>
 		</dependency>
 
-		<!-- webwork -->
+		<!-- struts -->
 		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>webwork</artifactId>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
 		</dependency>
 
 		<!-- log4j -->

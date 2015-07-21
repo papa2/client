@@ -7,13 +7,11 @@ import java.io.InputStream;
 
 import javax.servlet.ServletContext;
 
+import org.apache.struts2.views.velocity.VelocityManager;
 import org.apache.velocity.tools.view.ToolboxManager;
 import org.apache.velocity.tools.view.XMLToolboxManager;
 import org.springframework.util.ResourceUtils;
 
-import com.opensymphony.webwork.WebWorkConstants;
-import com.opensymphony.webwork.config.Configuration;
-import com.opensymphony.webwork.views.velocity.VelocityManager;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
 
@@ -27,10 +25,7 @@ public class VelocityManagerEx extends VelocityManager {
 	private Logger4jExtend log = Logger4jCollection.getLogger(VelocityManagerEx.class);
 
 	public VelocityManagerEx() {
-		String toolboxLocation = "toolbox.xml";
-		if (Configuration.isSet(WebWorkConstants.WEBWORK_VELOCITY_TOOLBOXLOCATION)) {
-			toolboxLocation = Configuration.get(WebWorkConstants.WEBWORK_VELOCITY_TOOLBOXLOCATION).toString();
-		}
+		String toolboxLocation = "classpath:toolbox.xml";
 
 		XMLToolboxManager mgr = new XMLToolboxManager();
 

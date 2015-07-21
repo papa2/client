@@ -1,17 +1,17 @@
-package com.papa2.client.framework.webwork.interceptor;
+package com.papa2.client.framework.struts.interceptor;
 
 import java.lang.reflect.Field;
 import java.net.URLDecoder;
 import java.util.Map;
+
+import org.apache.struts2.ServletActionContext;
 
 import ognl.ObjectPropertyAccessor;
 import ognl.OgnlException;
 import ognl.OgnlRuntime;
 import ognl.PropertyAccessor;
 
-import com.opensymphony.webwork.ServletActionContext;
-import com.opensymphony.xwork.ActionInvocation;
-import com.opensymphony.xwork.interceptor.AroundInterceptor;
+import com.opensymphony.xwork2.ActionInvocation;
 import com.papa2.client.framework.annotation.Decode;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
@@ -47,7 +47,7 @@ public class DecodeParametersInterceptor extends AroundInterceptor {
 	}
 
 	protected void before(ActionInvocation invocation) throws Exception {
-		setEncoded("XMLHttpRequest".equalsIgnoreCase(ServletActionContext.getRequest().getHeader("x-requested-with")));
+
 	}
 
 	private static PropertyAccessor getObjectAccessor() {
@@ -56,6 +56,8 @@ public class DecodeParametersInterceptor extends AroundInterceptor {
 			@SuppressWarnings("rawtypes")
 			@Override
 			public void setProperty(Map context, Object target, Object oname, Object value) throws OgnlException {
+				setEncoded("XMLHttpRequest".equalsIgnoreCase(ServletActionContext.getRequest().getHeader(
+					"x-requested-with")));
 				if (DecodeParametersInterceptor.isEncoded()) {
 					try {
 						boolean decode = target.getClass().isAnnotationPresent(Decode.class);

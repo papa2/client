@@ -25,10 +25,14 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- webwork -->
+		<!-- struts -->
 		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>webwork</artifactId>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
 		</dependency>
 
 		<!-- velocity -->

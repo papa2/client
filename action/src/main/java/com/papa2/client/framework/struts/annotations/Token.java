@@ -1,4 +1,4 @@
-package com.papa2.client.framework.webwork.annotations;
+package com.papa2.client.framework.struts.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

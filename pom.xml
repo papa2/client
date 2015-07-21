@@ -49,9 +49,9 @@
 		<slf4j.version>1.7.5</slf4j.version>
 		<spring.version>2.5.6.SEC03</spring.version>
 		<stax2-api.version>3.1.1</stax2-api.version>
+		<struts.version>2.3.24</struts.version>
 		<velocity.version>1.7</velocity.version>
-		<velocity-tools.version>1.1</velocity-tools.version>
-		<webwork.version>2.2.5</webwork.version>
+		<velocity-tools.version>1.4</velocity-tools.version>
 		<woodstox-core-asl.version>4.2.0</woodstox-core-asl.version>
 		<wsdl4j.version>1.6.3</wsdl4j.version>
 		<xmemcached.version>2.0.0</xmemcached.version>
@@ -132,11 +132,16 @@
 				<version>${velocity-tools.version}</version>
 			</dependency>
 
-			<!-- webwork -->
+			<!-- struts -->
 			<dependency>
-				<groupId>opensymphony</groupId>
-				<artifactId>webwork</artifactId>
-				<version>${webwork.version}</version>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-core</artifactId>
+				<version>${struts.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-spring-plugin</artifactId>
+				<version>${struts.version}</version>
 			</dependency>
 
 			<!-- spring -->
