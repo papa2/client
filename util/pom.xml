@@ -30,10 +30,16 @@
 			<artifactId>commons-lang</artifactId>
 		</dependency>
 
-		<!-- httpclient -->
+		<!-- joda -->
 		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+		<!-- json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
 		</dependency>
 
 		<!-- jxl -->
@@ -42,16 +48,16 @@
 			<artifactId>jxl</artifactId>
 		</dependency>
 
+		<!-- httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
 		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-		</dependency>
-
-		<!-- json -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 
 		<!-- struts -->
