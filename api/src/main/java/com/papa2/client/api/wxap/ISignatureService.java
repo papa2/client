@@ -1,6 +1,7 @@
 package com.papa2.client.api.wxap;
 
 /**
+ * 签名.
  * 
  * @author xujiakun
  * 
