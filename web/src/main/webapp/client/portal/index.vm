@@ -86,12 +86,20 @@
             		</a>
     			</div>
     		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:scan();">
+                        <p>扫一扫</p>
+						<i class="fa fa-3x fa-qrcode"></i>
+            		</a>
+    			</div>
+    		</div>
         </div>
 		
 		#parse("/client/framework/footer.vm")
 		
 		#JSM(["jquery", "iosbadge", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/index.js"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/index.js?t=20150804"></script>
     </body>
 </html>

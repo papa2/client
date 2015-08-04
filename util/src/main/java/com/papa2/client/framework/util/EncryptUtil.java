@@ -80,7 +80,7 @@ public final class EncryptUtil {
 			if (hex.length() == 1) {
 				sign.append("0");
 			}
-			sign.append(hex.toUpperCase());
+			sign.append(hex);
 		}
 
 		return sign.toString();

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<bean id="scanAction" class="com.papa2.client.wxap.action.ScanAction" parent="baseAction" scope="request">
+		<property name="signatureService" ref="signatureService" />
+		<property name="appUrl">
+			<value>${appUrl}</value>
+		</property>
+		<property name="appId">
+			<value>${wxap.appId}</value>
+		</property>
+	</bean>
+	
+	<bean id="accessTokenService" class="com.papa2.client.wxap.service.impl.AccessTokenServiceImpl">
+		<property name="memcachedCacheService" ref="memcachedCacheService" />
+	</bean>
+	
+	<bean id="jsapiTicketService" class="com.papa2.client.wxap.service.impl.JsapiTicketServiceImpl">
+		<property name="memcachedCacheService" ref="memcachedCacheService" />
+	</bean>
+	
+	<bean id="signatureService" class="com.papa2.client.wxap.service.impl.SignatureServiceImpl">
+		<property name="accessTokenService" ref="accessTokenService" />
+		<property name="jsapiTicketService" ref="jsapiTicketService" />
+		<property name="appId">
+			<value>${wxap.appId}</value>
+		</property>
+		<property name="appSecret">
+			<value>${wxap.appSecret}</value>
+		</property>
+	</bean>
+
+</beans>

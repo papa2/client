@@ -38,6 +38,11 @@ function about() {
 	top.location.href = appUrl + "/about/index.htm";
 }
 
+function scan() {
+	loading();
+	top.location.href = appUrl + "/wxap/scan.htm";
+}
+
 function loading() {
 	new Spinner({
 				top : '500%'
