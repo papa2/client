@@ -64,11 +64,13 @@ public class JsapiTicketServiceImpl implements IJsapiTicketService {
 
 		ticket = jsapiTicket.getTicket();
 
-		try {
-			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_WX_ACCESS_TOKEN + key, ticket,
-				jsapiTicket.getExpiresIn());
-		} catch (ServiceException e) {
-			logger.error(IMemcachedCacheService.CACHE_KEY_WX_ACCESS_TOKEN + key, e);
+		if (StringUtils.isNotBlank(ticket)) {
+			try {
+				memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_WX_ACCESS_TOKEN + key, ticket,
+					jsapiTicket.getExpiresIn());
+			} catch (ServiceException e) {
+				logger.error(IMemcachedCacheService.CACHE_KEY_WX_ACCESS_TOKEN + key, e);
+			}
 		}
 
 		return ticket;

@@ -65,10 +65,13 @@ public class AccessTokenServiceImpl implements IAccessTokenService {
 
 		token = accessToken.getAccessToken();
 
-		try {
-			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_WX_APP + key, token, accessToken.getExpiresIn());
-		} catch (ServiceException e) {
-			logger.error(IMemcachedCacheService.CACHE_KEY_WX_APP + key, e);
+		if (StringUtils.isNotBlank(token)) {
+			try {
+				memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_WX_APP + key, token,
+					accessToken.getExpiresIn());
+			} catch (ServiceException e) {
+				logger.error(IMemcachedCacheService.CACHE_KEY_WX_APP + key, e);
+			}
 		}
 
 		return token;
