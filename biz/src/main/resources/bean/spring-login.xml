@@ -5,19 +5,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<!-- 操作日志 -->
-	<bean id="actionMonitorInterceptor" class="com.papa2.client.framework.struts.interceptor.ActionMonitorInterceptor">
+	<!-- 登录 -->
+	<bean id="loginAction" class="com.papa2.client.login.action.LoginAction" parent="baseAction" scope="request">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
-	</bean>
-	
-	<!-- 操作权限 -->
-	<bean id="bossAuthInterceptor" class="com.papa2.client.framework.struts.interceptor.BossAuthInterceptor">
 		<property name="caService" ref="caService" />
 	</bean>
-	
-	<!-- 操作权限 -->
-	<bean id="clientAuthInterceptor" class="com.papa2.client.framework.struts.interceptor.ClientAuthInterceptor">
-		<property name="caService" ref="caService" />
-	</bean>
-	
+
 </beans>

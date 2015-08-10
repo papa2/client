@@ -10,5 +10,15 @@
 			<result name="success">/client/portal/index.vm</result>
 		</action>
 		
+		<action name="boss" class="portalAction" method="boss">
+			<interceptor-ref name="bossAuthStack" />
+			<result name="success">/xplatform/portal/home.vm</result>
+		</action>
+		
+		<action name="client" class="portalAction" method="client">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/xplatform/portal/home.vm</result>
+		</action>
+		
 	</package>
 </struts>

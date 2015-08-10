@@ -50,7 +50,12 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 	/**
 	 * passport.
 	 */
-	String CACHE_KEY_PASSPORT = "key_passport_";
+	String CACHE_KEY_BOSS_PASSPORT = "key_boss_passport_";
+
+	/**
+	 * passport.
+	 */
+	String CACHE_KEY_CLIENT_PASSPORT = "key_client_passport_";
 
 	// >>>>>>>>>>以下是监控相关<<<<<<<<<<
 

@@ -1,50 +1,42 @@
-function navigate() {
-	loading();
-	top.location.href = appUrl + "/navigate/index.htm";
+var __last_login_passport__ = "__last_login_passport__";
+
+function setPassport() {
+	var lastuser = $.cookie(__last_login_passport__);
+
+	if (lastuser != "null" && lastuser != null && lastuser != "") {
+		$("#passport").val(lastuser);
+		$("#password").focus();
+	} else {
+		$("#passport").focus();
+		$("#passport").select();
+	}
 }
 
-function reserve() {
-	loading();
-	top.location.href = appUrl + "/reserve/index.htm";
+function setPassportCookies() {
+	$.cookie(__last_login_passport__, null);
+
+	var passport = $("#passport").val();
+
+	$.cookie(__last_login_passport__, passport, {
+				expires : 30,
+				path : '/' + appName + '/',
+				domain : domain
+			});
 }
 
-function car() {
-	loading();
-	top.location.href = appUrl + "/car/index.htm";
+function submit() {
+	$('#btn').button('loading');
+
+	setPassportCookies();
+	window.document.forms[0].submit();
 }
 
-function trade() {
-	loading();
-	top.location.href = appUrl + "/trade/index.htm";
+function register() {
+	top.location.href = appUrl + "/register/index.htm?goto="
+			+ encodeURIComponent($("#goto").val());
 }
 
-function help() {
-	loading();
-	top.location.href = appUrl + "/help/index.htm";
-}
-
-function recommend() {
-	loading();
-	top.location.href = appUrl + "/recommend/index.htm";
-}
-
-function promotion() {
-	loading();
-	top.location.href = appUrl + "/promotion/index.htm";
-}
-
-function about() {
-	loading();
-	top.location.href = appUrl + "/about/index.htm";
-}
-
-function scan() {
-	loading();
-	top.location.href = appUrl + "/wxap/scan.htm";
-}
-
-function loading() {
-	new Spinner({
-				top : '500%'
-			}).spin($("#foo")[0]);
+function forgetPassword() {
+	top.location.href = appUrl + "/account/forgetPassword.htm?goto="
+			+ encodeURIComponent($("#goto").val());
 }

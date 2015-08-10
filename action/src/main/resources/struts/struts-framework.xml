@@ -18,11 +18,22 @@
 
 			<interceptor name="decodeParams" class="com.papa2.client.framework.struts.interceptor.DecodeParametersInterceptor" />
 
+			<interceptor name="bossAuth" class="bossAuthInterceptor" />
+			<interceptor name="clientAuth" class="clientAuthInterceptor" />
 			<!-- interceptor name="actionMonitor" class="actionMonitorInterceptor" / -->
 
-			<interceptor-stack name="authenticationStack">
+			<interceptor-stack name="bossAuthStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="decodeParams" />
+				<interceptor-ref name="bossAuth" />
+				<!-- 操作日志 -->
+				<!-- interceptor-ref name="actionMonitor" / -->
+			</interceptor-stack>
+			
+			<interceptor-stack name="clientAuthStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="decodeParams" />
+				<interceptor-ref name="clientAuth" />
 				<!-- 操作日志 -->
 				<!-- interceptor-ref name="actionMonitor" / -->
 			</interceptor-stack>

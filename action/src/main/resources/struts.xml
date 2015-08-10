@@ -8,6 +8,7 @@
 	<include file="struts/struts-car.xml" />
 	<include file="struts/struts-error.xml" />
 	<include file="struts/struts-help.xml" />
+	<include file="struts/struts-login.xml" />
 	<include file="struts/struts-navigate.xml" />
 	<include file="struts/struts-pay.xml" />
 	<include file="struts/struts-portal.xml" />

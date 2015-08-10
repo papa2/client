@@ -6,100 +6,64 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>趴趴兔</title>
 		#ICON()
-		<link rel="stylesheet" href="$!{env.imgUrl}/css/bootstrap.tile.css" />
-        #CSSM(["iosbadge", "font-awesome", "bootstrap"])
-		<style>
-		body { padding-top: 70px; padding-bottom: 70px; }
-		.col-xs-4 { padding-right: 5px; padding-left: 5px; }
-		a p { margin-top: 5px; }
-		</style>
+        #CSSM(["bootstrap"])
 		#UA()
 	</head>
-	<body style="background-image: url('$!{env.imgUrl}/image/portal/map.png');">
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
-			<i class="navbar-brand fa fa-street-view" style="font-size: 24px;"></i>
-			<div class="navbar-brand pull-right">我的趴趴兔</div>
-        </nav>
-		
+	<body style="background-image: url('$!{env.imgUrl}/image/portal/map.png');" onload="setPassport();">
 		<div class="container">
-			<div class="col-xs-4">
-            	<div class="thumbnail tile tile-medium tile-blue">
-                    <a class="fa-links" href="javascript:navigate();">
-                        <p>我要停车</p>
-						<i class="fa fa-3x fa-car"></i>
-            		</a>
-                </div>
+			<div class="page-header text-center">
+				<h1>我们都爱趴趴兔</h1>
             </div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:reserve();">
-                        <p>预约停车</p>
-						<i class="fa fa-3x fa-bullhorn"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:car();">
-                        <p>我要支付</p>
-						<i class="fa fa-3x fa-credit-card"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:trade();">
-                        <p>我的账单</p>
-						<i class="fa fa-3x fa-list-alt"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:help();">
-                        <p>HELP</p>
-						<i class="fa fa-3x fa-life-ring"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:recommend();">
-                        <p>我要推荐</p>
-						<i class="fa fa-3x fa-share-alt"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:promotion();">
-                        <p>我的优惠</p>
-						<i class="fa fa-3x fa-gift"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:about();">
-                        <p>关于趴趴兔</p>
-						<i class="fa fa-3x fa-info-circle"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:scan();">
-                        <p>扫一扫</p>
-						<i class="fa fa-3x fa-qrcode"></i>
-            		</a>
-    			</div>
-    		</div>
-        </div>
+			<div class="modal-body">
+  				<form class="form-horizontal" role="form" action="$!{env.appUrl}/login.htm" method="post">
+					<input type="hidden" id="goto" name="goto" value="$!{goto}" />
+					#if($!stringUtil.isNotEmpty($!{failMessage}))
+					<div class="form-group" style="margin-bottom: 0;">
+        				<div class="alert alert-danger alert-dismissible" style="padding: 5px 28px 5px 15px;" role="alert">
+    						<button type="button" class="close" data-dismiss="alert">
+    							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+    						</button>
+    						$!{failMessage}
+    					</div>
+                    </div>
+					#end
+					<div class="form-group form-group-lg">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="glyphicon glyphicon-user"></i>
+							</div>
+							<input type="passport" class="form-control" id="passport" name='passport' autocomplete="on" placeholder="账户名" />
+                        </div>
+					</div>
+					<div class="form-group form-group-lg">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="glyphicon glyphicon-lock"></i>
+                            </div>
+							<input type="password" class="form-control" id="password" name='password' autocomplete="off" placeholder="登录密码" />
+						</div>
+					</div>
+					<div class="form-group" style="margin-bottom: 0;">
+						<p class="pull-right">
+							<a class="textlink forgot" style="font-size:12px" href="javascript:forgetPassword();">忘记登录密码？</a>
+						</p>
+					</div>
+					<div class="form-group">
+						<a class="btn btn-primary btn-block" id="btn" data-loading-text="正在登录..." href="javascript:submit();">登  录</a>
+                    </div>
+					<p class="pull-right">
+    					<a class="textlink" style="font-size:12px" href="javascript:register();">免费注册</a>
+    				</p>
+      			</form>
+            </div>
+		</div>
 		
-		#parse("/client/framework/footer.vm")
-		
-		#JSM(["jquery", "iosbadge", "spin"])
-		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/index.js?t=20150804"></script>
+		#JSM(["jquery", "jquery.cookie", "bootstrap"])
+		<script>
+		var appUrl = '$!{env.appUrl}';
+    	var appName = '$!{env.appName}';
+		var domain = '$!{env.domain}';
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/index.js?t=20150810"></script>
     </body>
 </html>

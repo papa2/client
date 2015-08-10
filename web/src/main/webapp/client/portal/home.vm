@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>趴趴兔</title>
+		#ICON()
+		<link rel="stylesheet" href="$!{env.imgUrl}/css/bootstrap.tile.css" />
+        #CSSM(["iosbadge", "font-awesome", "bootstrap"])
+		<style>
+		body { padding-top: 70px; padding-bottom: 70px; }
+		.col-xs-4 { padding-right: 5px; padding-left: 5px; }
+		a p { margin-top: 5px; }
+		</style>
+		#UA()
+	</head>
+	<body style="background-image: url('$!{env.imgUrl}/image/portal/map.png');">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<i class="navbar-brand fa fa-street-view" style="font-size: 24px;"></i>
+			<div class="navbar-brand pull-right">我的趴趴兔</div>
+        </nav>
+		
+		<div class="container">
+			<div class="col-xs-4">
+            	<div class="thumbnail tile tile-medium tile-blue">
+                    <a class="fa-links" href="javascript:navigate();">
+                        <p>我要停车</p>
+						<i class="fa fa-3x fa-car"></i>
+            		</a>
+                </div>
+            </div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:reserve();">
+                        <p>预约停车</p>
+						<i class="fa fa-3x fa-bullhorn"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:car();">
+                        <p>我要支付</p>
+						<i class="fa fa-3x fa-credit-card"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:trade();">
+                        <p>我的账单</p>
+						<i class="fa fa-3x fa-list-alt"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:help();">
+                        <p>HELP</p>
+						<i class="fa fa-3x fa-life-ring"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:recommend();">
+                        <p>我要推荐</p>
+						<i class="fa fa-3x fa-share-alt"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:promotion();">
+                        <p>我的优惠</p>
+						<i class="fa fa-3x fa-gift"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:about();">
+                        <p>关于趴趴兔</p>
+						<i class="fa fa-3x fa-info-circle"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:scan();">
+                        <p>扫一扫</p>
+						<i class="fa fa-3x fa-qrcode"></i>
+            		</a>
+    			</div>
+    		</div>
+        </div>
+		
+		#parse("/client/framework/footer.vm")
+		
+		#JSM(["jquery", "iosbadge", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150804"></script>
+    </body>
+</html>

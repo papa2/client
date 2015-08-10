@@ -1,0 +1,80 @@
+package com.papa2.client.api.user;
+
+import com.papa2.client.api.user.bo.User;
+import com.papa2.client.framework.bo.BooleanResult;
+
+/**
+ * 管理用户.
+ * 
+ * @author xujiakun
+ * 
+ */
+public interface IBossUserService {
+
+	String SUCCESS = "success";
+
+	String ERROR = "error";
+
+	String ERROR_MESSAGE = "操作失败！";
+
+	String ERROR_INPUT_MESSAGE = "操作失败，输入有误！";
+
+	String ERROR_NULL_MESSAGE = "操作失败，不存在！";
+
+	String ERROR_EXIST_MESSAGE = "操作失败，已存在！";
+
+	/**
+	 * 根据登陆帐号获取用户信息(存在缓存).
+	 * 
+	 * @param passport
+	 * @return
+	 */
+	User getUserByPassport(String passport);
+
+	/**
+	 * 根据登陆帐号获取用户信息(不存在缓存).
+	 * 
+	 * @param passport
+	 * @return
+	 */
+	User getUser4Validate(String passport);
+
+	/**
+	 * 修改用户信息.
+	 * 
+	 * @param user
+	 * @param userId
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult updateUser(User user, String userId, String modifyUser);
+
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	User getUser(String userId);
+
+	/**
+	 * 用户重置密码.
+	 * 
+	 * @param passport
+	 * @param password
+	 * @param oldPassword
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult resetPassword(String passport, String password, String oldPassword, String modifyUser);
+
+	/**
+	 * 修改密码.
+	 * 
+	 * @param passport
+	 * @param password
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult setPassword(String passport, String password, String modifyUser);
+
+}

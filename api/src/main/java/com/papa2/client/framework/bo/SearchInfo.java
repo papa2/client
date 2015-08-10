@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-
 import org.apache.commons.lang.StringUtils;
 
 import com.papa2.client.framework.annotation.Decode;
@@ -17,7 +14,6 @@ import com.papa2.client.framework.annotation.Decode;
  * @author xujiakun
  * 
  */
-@XmlAccessorType(XmlAccessType.NONE)
 public class SearchInfo implements Serializable {
 
 	public static final String DIR_DESC = "DESC";
