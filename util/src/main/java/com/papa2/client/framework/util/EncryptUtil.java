@@ -66,7 +66,7 @@ public final class EncryptUtil {
 		byte[] bytes = null;
 
 		try {
-			SecretKey secretKey = new SecretKeySpec(secret.getBytes(CHARSET_UTF8), "HmacMD5");
+			SecretKey secretKey = new SecretKeySpec(secret.getBytes(CHARSET_UTF8), "HmacSHA1");
 			Mac mac = Mac.getInstance(secretKey.getAlgorithm());
 			mac.init(secretKey);
 			bytes = mac.doFinal(data.getBytes(CHARSET_UTF8));
