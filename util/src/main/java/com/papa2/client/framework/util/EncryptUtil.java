@@ -24,6 +24,8 @@ public final class EncryptUtil {
 
 	private static final String CHARSET_UTF8 = "UTF-8";
 
+	private static final String SECRET_KEY = "papa2-inc";
+
 	private EncryptUtil() {
 
 	}
@@ -54,6 +56,10 @@ public final class EncryptUtil {
 		}
 
 		return byte2hex(bytes);
+	}
+
+	public static String encryptHMAC(String data) throws IOException {
+		return encryptHMAC(data, SECRET_KEY);
 	}
 
 	public static String encryptHMAC(String data, String secret) throws IOException {

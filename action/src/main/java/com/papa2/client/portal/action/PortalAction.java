@@ -20,4 +20,22 @@ public class PortalAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	/**
+	 * 首页.
+	 * 
+	 * @return
+	 */
+	public String boss() {
+		return SUCCESS;
+	}
+
+	/**
+	 * 首页.
+	 * 
+	 * @return
+	 */
+	public String client() {
+		return SUCCESS;
+	}
+
 }

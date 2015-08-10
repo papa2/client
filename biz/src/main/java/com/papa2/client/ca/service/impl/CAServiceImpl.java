@@ -58,7 +58,7 @@ public class CAServiceImpl implements ICAService {
 		}
 
 		try {
-			if (EncryptUtil.encryptHMAC(password, "papa2").equals(user.getPassword())) {
+			if (EncryptUtil.encryptHMAC(password).equals(user.getPassword())) {
 				return setSuccessResult(result, user);
 			}
 		} catch (Exception e) {

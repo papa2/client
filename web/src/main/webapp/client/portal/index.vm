@@ -11,11 +11,11 @@
 	</head>
 	<body style="background-image: url('$!{env.imgUrl}/image/portal/map.png');" onload="setPassport();">
 		<div class="container">
-			<div class="page-header text-center">
+			<div class="page-header text-center text-success">
 				<h1>我们都爱趴趴兔</h1>
             </div>
 			<div class="modal-body">
-  				<form class="form-horizontal" role="form" action="$!{env.appUrl}/login.htm" method="post">
+  				<form class="form-horizontal" role="form" action="$!{env.appUrl}/login.htm?type=CLIENT" method="post">
 					<input type="hidden" id="goto" name="goto" value="$!{goto}" />
 					#if($!stringUtil.isNotEmpty($!{failMessage}))
 					<div class="form-group" style="margin-bottom: 0;">
@@ -27,7 +27,7 @@
     					</div>
                     </div>
 					#end
-					<div class="form-group form-group-lg">
+					<div class="form-group form-group-lg has-success">
 						<div class="input-group">
 							<div class="input-group-addon">
 								<i class="glyphicon glyphicon-user"></i>
@@ -35,7 +35,7 @@
 							<input type="passport" class="form-control" id="passport" name='passport' autocomplete="on" placeholder="账户名" />
                         </div>
 					</div>
-					<div class="form-group form-group-lg">
+					<div class="form-group form-group-lg has-success">
 						<div class="input-group">
 							<div class="input-group-addon">
 								<i class="glyphicon glyphicon-lock"></i>
@@ -49,7 +49,7 @@
 						</p>
 					</div>
 					<div class="form-group">
-						<a class="btn btn-primary btn-block" id="btn" data-loading-text="正在登录..." href="javascript:submit();">登  录</a>
+						<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在登录..." href="javascript:submit();">登  录</a>
                     </div>
 					<p class="pull-right">
     					<a class="textlink" style="font-size:12px" href="javascript:register();">免费注册</a>

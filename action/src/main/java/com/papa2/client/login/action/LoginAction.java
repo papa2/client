@@ -38,9 +38,12 @@ public class LoginAction extends BaseAction {
 
 	private String password;
 
-	private String url;
-
+	/**
+	 * BOSS or CLIENT.
+	 */
 	private String type;
+
+	private String url;
 
 	/**
 	 * 登录验证.
@@ -78,6 +81,12 @@ public class LoginAction extends BaseAction {
 		}
 
 		setAttribute(session);
+
+		if ("BOSS".equals(type)) {
+			return "boss";
+		} else if ("CLIENT".equals(type)) {
+			return "client";
+		}
 
 		return SUCCESS;
 	}
@@ -167,6 +176,14 @@ public class LoginAction extends BaseAction {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getUrl() {
