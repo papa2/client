@@ -33,14 +33,6 @@
     		</div>
 			#elseif($!{user.type} == "CLIENT")
 			<div class="col-xs-4">
-            	<div class="thumbnail tile tile-medium tile-blue">
-                    <a class="fa-links" href="javascript:navigate();">
-                        <p>我要停车</p>
-						<i class="fa fa-3x fa-car"></i>
-            		</a>
-                </div>
-            </div>
-			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
 					<a class="fa-links" href="javascript:reserve();">
                         <p>预约停车</p>

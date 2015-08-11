@@ -1,8 +1,3 @@
-function navigate() {
-	loading();
-	top.location.href = appUrl + "/navigate/index.htm";
-}
-
 function reserve() {
 	loading();
 	top.location.href = appUrl + "/reserve/index.htm";
