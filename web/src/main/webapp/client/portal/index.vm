@@ -18,12 +18,13 @@
   				<form class="form-horizontal" role="form" action="$!{env.appUrl}/login.htm?type=CLIENT" method="post">
 					<input type="hidden" id="goto" name="goto" value="$!{goto}" />
 					#if($!stringUtil.isNotEmpty($!{failMessage}))
-					<div class="form-group" style="margin-bottom: 0;">
-        				<div class="alert alert-danger alert-dismissible" style="padding: 5px 28px 5px 15px;" role="alert">
+					<div class="form-group">
+        				<div class="alert alert-danger alert-dismissible" role="alert">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							$!{failMessage}
     						<button type="button" class="close" data-dismiss="alert">
     							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
     						</button>
-    						$!{failMessage}
     					</div>
                     </div>
 					#end
