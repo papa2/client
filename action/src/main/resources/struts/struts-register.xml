@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+ <struts>
+	<package name="{http://client}client$register"
+		extends="{http://client}client$framework" namespace="/register">
+
+		<!-- 客户端注册 -->
+		<action name="index" class="registerAction" method="index">
+			<result name="success">/client/register/index.vm</result>
+			<result name="recommend">/client/register/recommend.vm</result>
+		</action>
+		
+	</package>
+</struts>

@@ -12,7 +12,7 @@
 				<param name="actionName">boss</param>
 			</result>
 			<result name="client" type="redirectAction">
-				<param name="actionName">client</param>
+				<param name="actionName">home</param>
 			</result>
 			<result name="goto" type="redirect">${url}</result>
 			<result name="setPassword" type="redirect">account/setExpirePassword.htm</result>

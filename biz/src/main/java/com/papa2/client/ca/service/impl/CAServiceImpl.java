@@ -51,6 +51,8 @@ public class CAServiceImpl implements ICAService {
 			return result;
 		}
 
+		user.setType(type);
+
 		// 2. 判斷登陸用戶是否已被禁用
 		if ("F".equals(user.getState())) {
 			result.setMessage(ICAService.INCORRECT_DISABLED);

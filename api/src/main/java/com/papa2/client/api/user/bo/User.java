@@ -34,6 +34,13 @@ public class User extends SearchInfo {
 	 */
 	private String state;
 
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	/**
+	 * client or boss.
+	 */
+	private String type;
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -72,6 +79,14 @@ public class User extends SearchInfo {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

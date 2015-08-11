@@ -1,0 +1,26 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+ <struts>
+	<package name="{http://client}client$account"
+		extends="{http://client}client$framework" namespace="/account">
+
+		<!-- 忘记密码 -->
+		<action name="forgetPassword" class="accountAction" method="forgetPassword">
+			<result name="success">/client/account/forgetPassword.vm</result>
+		</action>
+		
+		<!-- 发送短信 -->
+		<action name="sendCheckCode" class="accountAction" method="sendCheckCode" />
+		
+		<!-- 重置密码 -->
+		<action name="setPassword" class="accountAction" method="setPassword" />
+		
+		<!-- 修改密码 -->
+		<action name="resetPassword" class="accountAction" method="resetPassword">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/account/resetPassword.vm</result>
+		</action>
+		
+	</package>
+</struts>

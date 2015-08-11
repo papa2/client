@@ -12,9 +12,25 @@
 	<body style="background-image: url('$!{env.imgUrl}/image/portal/map.png');" onload="setPassport();">
 		<div class="container">
 			<div class="page-header text-center text-success">
-				<h1>我们都爱趴趴兔</h1>
+				<h1>趴趴兔欢迎您回来</h1>
             </div>
 			<div class="modal-body">
+				#if($!{user})
+				<form role="form" method="post">
+					#if($!{user.type} == "BOSS")
+					<div style="margin-top: 30px;">
+						<a class="btn btn-success btn-lg btn-block" href="$!{env.appUrl}/boss.htm" target="_self" >登录我的账户</a>
+					</div>
+					#elseif($!{user.type} == "CLIENT")
+					<div style="margin-top: 30px;">
+						<a class="btn btn-success btn-lg btn-block" href="$!{env.appUrl}/home.htm" target="_self" >登录我的账户</a>
+					</div>
+					#end
+					<div style="margin-top: 30px;">
+						<a class="btn btn-default btn-lg btn-block" href="$!{env.appUrl}/logout.htm">退  出</a>
+					</div>
+                </form>
+				#else
   				<form class="form-horizontal" role="form" action="$!{env.appUrl}/login.htm?type=CLIENT" method="post">
 					<input type="hidden" id="goto" name="goto" value="$!{goto}" />
 					#if($!stringUtil.isNotEmpty($!{failMessage}))
@@ -56,6 +72,7 @@
     					<a class="textlink" style="font-size:12px" href="javascript:register();">免费注册</a>
     				</p>
       			</form>
+				#end
             </div>
 		</div>
 		

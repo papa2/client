@@ -11,39 +11,40 @@ import com.papa2.client.framework.bo.BooleanResult;
 public interface IAccountService {
 
 	/**
-	 * 邮件找回密码.
+	 * 生成 6 位数字.
 	 * 
-	 * @param passport
+	 * @param mobile
 	 * @return
 	 */
-	BooleanResult generateCheckCode4Mail(String passport);
+	BooleanResult generateCheckCode(String mobile);
+
+	/**
+	 * 生成 6 位数字.
+	 * 
+	 * @param mobile
+	 * @param type
+	 *            是否需要验证mobile是否存在.
+	 * @return
+	 */
+	BooleanResult generateCheckCode(String mobile, boolean type);
 
 	/**
 	 * 忘记密码.
 	 * 
+	 * @param password
 	 * @param checkCode
-	 * @param password
 	 * @return
 	 */
-	BooleanResult setPassword(String checkCode, String password);
-
-	/**
-	 * 修改过期密码.
-	 * 
-	 * @param passport
-	 * @param password
-	 * @return
-	 */
-	BooleanResult setExpirePassword(String passport, String password);
+	BooleanResult setPassword(String password, String checkCode);
 
 	/**
 	 * 修改密码.
 	 * 
-	 * @param passport
+	 * @param userId
 	 * @param password
 	 * @param oldPassword
 	 * @return
 	 */
-	BooleanResult resetPassword(String passport, String password, String oldPassword);
+	BooleanResult resetPassword(Long userId, String password, String oldPassword);
 
 }

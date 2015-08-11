@@ -15,7 +15,7 @@
 			<result name="success">/client/portal/home.vm</result>
 		</action>
 		
-		<action name="client" class="portalAction" method="client">
+		<action name="home" class="portalAction" method="client">
 			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/portal/home.vm</result>
 		</action>

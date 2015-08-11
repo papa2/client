@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>注册趴趴兔</title>
+		#ICON()
+        #CSSM(["bootstrap"])
+		<style>
+		body { padding-top: 70px; }
+		.col-xs-3, .col-xs-4, .col-xs-5, .col-xs-9 { padding-right: 5px; padding-left: 5px; }
+		.col-xs-3 { padding-top: 6px; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="$!{env.appUrl}/index.htm?goto=$!esc.url($!{goto})"></a>
+			<div class="navbar-brand pull-right">注册趴趴兔</div>
+        </nav>
+		
+		<div class="container">
+			<div class="modal-body">
+  				<form class="form-horizontal" role="form" method="post">
+					<input type="hidden" id="goto" name="goto" value="$!{goto}" />
+					<div class="form-group has-success">
+						<label class="col-xs-3 control-label text-center">手机号码</label>
+    					<div class="col-xs-9">
+    						<input type="text" class="form-control" id="passport" name="passport" placeholder="必填" />
+                        </div>
+                    </div>
+					<div class="form-group has-success">
+						<label class="col-xs-3 control-label text-center">密码</label>
+    					<div class="col-xs-9">
+    						<input type="password" class="form-control" id="password" name="password" placeholder="密码长度在6~20个字符" />
+                        </div>
+                    </div>
+					<div class="form-group has-success">
+						<label class="col-xs-3 control-label"></label>
+    					<div class="col-xs-5">
+    						<input type="text" class="form-control" id="txtAuth" name="checkCode" placeholder="短信校验码" />
+                        </div>
+						<div class="col-xs-4">
+    						<a class="btn btn-default btn-block" id="sendBtn" href="javascript:sendCheckCode();">点击获取</a>
+                        </div>
+                    </div>
+    				<div class="form-group has-success text-center">
+    					<label class="col-xs-3 control-label">昵称</label>
+    					<div class="col-xs-9">
+    						<input type="text" class="form-control" id="userName" name="userName" placeholder="" />
+                        </div>
+					</div>
+					<div class="form-group">
+						<div class="pull-right small">
+                            <input type="checkbox" checked onclick="agree();"></input>
+    						我同意并遵守<a href="$!{env.appUrl}/agreement/index.htm?alias=$!{uuid}">《趴趴兔平台服务协议》</a>
+                        </div>
+                    </div>
+					<div class="form-group" style="margin-top: 30px;">
+						<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在提交..." href="javascript:save();">确认注册</a>
+                    </div>
+					
+					<input type="hidden" name='recommend' value="$!{recommend}" />
+      			</form>
+            </div>
+		</div>
+		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
+		#JSM(["jquery", "jquery.cookie", "bootstrap"])
+		<script>
+    	var appName = '$!{env.appName}';
+		var domain = '$!{env.domain}';
+		var appUrl = '$!{env.appUrl}';
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/register/index.js"></script>
+	</body>
+</html>
