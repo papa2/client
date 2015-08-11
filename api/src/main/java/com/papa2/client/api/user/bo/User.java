@@ -30,6 +30,11 @@ public class User extends SearchInfo {
 	private String password;
 
 	/**
+	 * mobile.
+	 */
+	private String mobile;
+
+	/**
 	 * 状态(D:删除 U:正常 F:禁用).
 	 */
 	private String state;
@@ -71,6 +76,14 @@ public class User extends SearchInfo {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public String getState() {

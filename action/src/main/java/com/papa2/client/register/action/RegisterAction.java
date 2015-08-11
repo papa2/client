@@ -7,6 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import com.papa2.client.api.register.IRegisterService;
 import com.papa2.client.api.register.bo.RegisterResult;
 import com.papa2.client.framework.action.BaseAction;
+import com.papa2.client.framework.bo.BooleanResult;
+import com.papa2.client.framework.struts.annotations.JsonResult;
 
 /**
  * 用户注册.
@@ -22,6 +24,9 @@ public class RegisterAction extends BaseAction {
 
 	private IRegisterService registerService;
 
+	/**
+	 * 手机号注册.
+	 */
 	private String passport;
 
 	private String password;
@@ -41,6 +46,11 @@ public class RegisterAction extends BaseAction {
 	 */
 	private String checkCode;
 
+	/**
+	 * ajax 返回.
+	 */
+	private String message;
+
 	// >>>>>>>>>>以下是注册<<<<<<<<<<
 
 	/**
@@ -57,6 +67,28 @@ public class RegisterAction extends BaseAction {
 		setAttribute();
 
 		return SUCCESS;
+	}
+
+	/**
+	 * 找回登录密码 发送验证码.
+	 * 
+	 * @return
+	 */
+	@JsonResult(field = "message")
+	public String sendCheckCode() {
+		this.getServletResponse().setStatus(500);
+
+		BooleanResult result = null;
+
+		result = registerService.generateCheckCode(passport);
+
+		if (result.getResult()) {
+			this.getServletResponse().setStatus(200);
+		}
+
+		message = result.getCode();
+
+		return JSON_RESULT;
 	}
 
 	/**
@@ -133,6 +165,14 @@ public class RegisterAction extends BaseAction {
 
 	public void setCheckCode(String checkCode) {
 		this.checkCode = checkCode;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

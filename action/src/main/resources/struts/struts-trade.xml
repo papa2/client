@@ -7,11 +7,13 @@
 
 		<!-- 我的账单首页 -->
 		<action name="index" class="tradeAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/trade/index.vm</result>
 		</action>
 		
 		<!-- 账单明细 -->
 		<action name="detail" class="tradeAction" method="detail">
+			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/trade/detail.vm</result>
 		</action>
 		

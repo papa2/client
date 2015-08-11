@@ -5,11 +5,17 @@
 	<package name="{http://client}client$register"
 		extends="{http://client}client$framework" namespace="/register">
 
-		<!-- 客户端注册 -->
+		<!-- 注册首页 -->
 		<action name="index" class="registerAction" method="index">
 			<result name="success">/client/register/index.vm</result>
 			<result name="recommend">/client/register/recommend.vm</result>
 		</action>
+		
+		<!-- 发送短信 -->
+		<action name="sendCheckCode" class="registerAction" method="sendCheckCode" />
+		
+		<!-- 注册 -->
+		<action name="register" class="registerAction" method="register" />
 		
 	</package>
 </struts>

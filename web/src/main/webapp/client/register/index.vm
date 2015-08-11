@@ -24,6 +24,7 @@
 			<div class="modal-body">
   				<form class="form-horizontal" role="form" method="post">
 					<input type="hidden" id="goto" name="goto" value="$!{goto}" />
+					#parse("/client/framework/resultMessage.vm")
 					<div class="form-group has-success">
 						<label class="col-xs-3 control-label text-center">手机号码</label>
     					<div class="col-xs-9">

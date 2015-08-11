@@ -19,16 +19,6 @@ public interface IAccountService {
 	BooleanResult generateCheckCode(String mobile);
 
 	/**
-	 * 生成 6 位数字.
-	 * 
-	 * @param mobile
-	 * @param type
-	 *            是否需要验证mobile是否存在.
-	 * @return
-	 */
-	BooleanResult generateCheckCode(String mobile, boolean type);
-
-	/**
 	 * 忘记密码.
 	 * 
 	 * @param password

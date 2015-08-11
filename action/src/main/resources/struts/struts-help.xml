@@ -7,6 +7,7 @@
 
 		<!-- 帮助首页 -->
 		<action name="index" class="helpAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/help/index.vm</result>
 		</action>
 		

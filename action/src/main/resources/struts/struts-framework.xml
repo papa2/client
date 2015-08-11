@@ -7,6 +7,7 @@
 
 		<result-types>
 			<result-type name="velocity" class="org.apache.struts2.dispatcher.VelocityResult" default="true" />
+			<result-type name="json" class="com.papa2.client.framework.struts.result.JSONResult" />
 		</result-types>
 
 		<interceptors>
@@ -47,6 +48,7 @@
 			<result name="isNotExsit">/client/framework/error/isNotExsit.vm</result>
 			<result name="authorization_error">/client/framework/error/authorization_error.vm</result>
 			<result name="401">/client/framework/error/401.vm</result>
+			<result name="jsonresult" type="json"></result>
 			<result name="resourceResult">/client/framework/common/resourceResult.vm</result>
 			<result name="resultMessage">/client/framework/common/resultMessage.vm</result>
 		</global-results>

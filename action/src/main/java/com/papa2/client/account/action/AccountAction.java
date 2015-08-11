@@ -9,6 +9,7 @@ import com.papa2.client.api.user.bo.User;
 import com.papa2.client.framework.action.BaseAction;
 import com.papa2.client.framework.annotation.ActionMonitor;
 import com.papa2.client.framework.bo.BooleanResult;
+import com.papa2.client.framework.struts.annotations.JsonResult;
 
 /**
  * 账户管理.
@@ -43,11 +44,6 @@ public class AccountAction extends BaseAction {
 	 */
 	private String message;
 
-	/**
-	 * 获取验证码 用于区别 忘记密码 和 注册用户.
-	 */
-	private String type;
-
 	// >>>>>>>>>>以下是忘记密码<<<<<<<<<<
 
 	/**
@@ -66,17 +62,13 @@ public class AccountAction extends BaseAction {
 	 * 
 	 * @return
 	 */
+	@JsonResult(field = "message")
 	public String sendCheckCode() {
 		this.getServletResponse().setStatus(500);
 
 		BooleanResult result = null;
 
-		// 忘记密码
-		if ("forget".equals(type)) {
-			result = accountService.generateCheckCode(passport, true);
-		} else {
-			result = accountService.generateCheckCode(passport);
-		}
+		result = accountService.generateCheckCode(passport);
 
 		if (result.getResult()) {
 			this.getServletResponse().setStatus(200);
@@ -189,14 +181,6 @@ public class AccountAction extends BaseAction {
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 }

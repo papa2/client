@@ -1,6 +1,7 @@
 package com.papa2.client.api.register;
 
 import com.papa2.client.api.register.bo.RegisterResult;
+import com.papa2.client.framework.bo.BooleanResult;
 
 /**
  * 
@@ -14,6 +15,14 @@ public interface IRegisterService {
 	String RESULT_FAILED = "1";
 
 	String RESULT_ERROR = "2";
+
+	/**
+	 * 生成 6 位数字.
+	 * 
+	 * @param mobile
+	 * @return
+	 */
+	BooleanResult generateCheckCode(String mobile);
 
 	/**
 	 * 用户注册.

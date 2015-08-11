@@ -7,8 +7,6 @@ $(document).ready(function() {
 		});
 
 function sendCheckCode() {
-	Messenger().hideAll();
-
 	if (disabled) {
 		return;
 	}
@@ -20,7 +18,7 @@ function sendCheckCode() {
 
 	$.ajax({
 				type : "post",
-				url : appUrl + "/account/msendCheckCode.htm",
+				url : appUrl + "/register/sendCheckCode.htm",
 				data : {
 					"passport" : $("#passport").val(),
 					dateTime : new Date().getTime()
@@ -102,7 +100,7 @@ function save() {
 	$('#btn').button('loading');
 
 	var form = window.document.forms[0];
-	form.action = appUrl + "/register/mobileRegisterAction!register.htm";
+	form.action = appUrl + "/register/register.htm";
 	form.target = "hideFrame";
 	form.submit();
 }
@@ -127,34 +125,24 @@ function promgtMsg() {
 				});
 
 		setTimeout(function() {
-					top.location.href = appUrl + "/mindex.htm?goto="
+					top.location.href = appUrl + "/index.htm?goto="
 							+ encodeURIComponent($("#goto").val());
 				}, 3000);
 	}
 }
 
 function success(message) {
-	Messenger.options = {
-		extraClasses : 'messenger-fixed messenger-on-top',
-		theme : 'air'
-	}
-	Messenger().hideAll();
-	Messenger().post({
-				message : message,
-				type : 'success',
-				showCloseButton : true
-			});
+	$('#failMessage').html();
+	$('#failMsgDiv').hide();
+
+	$('#successMessage').html(message);
+	$('#successMsgDiv').show();
 }
 
 function error(message) {
-	Messenger.options = {
-		extraClasses : 'messenger-fixed messenger-on-top',
-		theme : 'air'
-	}
-	Messenger().hideAll();
-	Messenger().post({
-				message : message,
-				type : 'error',
-				showCloseButton : true
-			});
+	$('#successMessage').html();
+	$('#successMsgDiv').hide();
+
+	$('#failMessage').html(message);
+	$('#failMsgDiv').show();
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="sms">
+	
+	<typeAlias alias="sms" type="com.papa2.client.api.sms.bo.SMS" />
+	
+	<insert id="createSMS" parameterClass="sms">
+	<![CDATA[
+		INSERT
+		INTO basis_tb_sms
+		  (
+			SENDER,
+			RECEIVER,
+			CONTENT,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#sender#,
+			#receiver#,
+			#content#,
+			'U',
+			NOW(),
+			#modifyUser#,
+			NOW(),
+			#modifyUser#
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
+	</insert>
+	
+</sqlMap>

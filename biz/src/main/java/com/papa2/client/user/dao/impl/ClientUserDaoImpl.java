@@ -16,4 +16,9 @@ public class ClientUserDaoImpl extends BaseDaoImpl implements IClientUserDao {
 		return (User) getSqlMapClientTemplate().queryForObject("user.client.getUserByPassport", passport);
 	}
 
+	@Override
+	public Long createUser(User user) {
+		return (Long) getSqlMapClientTemplate().insert("user.client.createUser", user);
+	}
+
 }

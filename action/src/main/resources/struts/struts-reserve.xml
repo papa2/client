@@ -7,6 +7,7 @@
 
 		<!-- 预约首页 -->
 		<action name="index" class="reserveAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/reserve/index.vm</result>
 		</action>
 		

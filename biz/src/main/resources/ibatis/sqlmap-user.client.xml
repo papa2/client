@@ -18,4 +18,43 @@
 	]]>
 	</select>
 	
+	<insert id="createUser" parameterClass="user">
+	<![CDATA[
+		INSERT
+		INTO client_tb_user
+		  (
+			USER_NAME,
+			PASSPORT,
+			PASSWORD,
+			MOBILE,
+			POINTS,
+			SURPLUS_POINTS,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#userName:VARCHAR#,
+			upper(#passport:VARCHAR#),
+			#password:VARCHAR#,
+			#mobile:VARCHAR#,
+			0,
+			0,
+			'U',
+			NOW(),
+			#passport:VARCHAR#,
+			NOW(),
+			#passport:VARCHAR#
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="userId">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
+	</insert>
+	
 </sqlMap>

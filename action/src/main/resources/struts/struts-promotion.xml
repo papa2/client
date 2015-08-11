@@ -7,6 +7,7 @@
 
 		<!-- 优惠首页 -->
 		<action name="index" class="promotionAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/promotion/index.vm</result>
 		</action>
 		

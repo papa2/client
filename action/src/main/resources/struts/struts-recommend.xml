@@ -7,6 +7,7 @@
 
 		<!-- 推荐首页 -->
 		<action name="index" class="recommendAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/recommend/index.vm</result>
 		</action>
 		

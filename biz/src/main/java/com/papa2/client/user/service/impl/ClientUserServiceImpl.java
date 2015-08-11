@@ -9,6 +9,7 @@ import com.papa2.client.framework.bo.BooleanResult;
 import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
+import com.papa2.client.framework.util.LogUtil;
 import com.papa2.client.user.dao.IClientUserDao;
 
 /**
@@ -74,13 +75,38 @@ public class ClientUserServiceImpl implements IClientUserService {
 	}
 
 	@Override
-	public BooleanResult updateUser(User user, String userId, String modifyUser) {
+	public BooleanResult createUser(User user) {
+		BooleanResult result = new BooleanResult();
+		result.setCode(IClientUserService.ERROR_MESSAGE);
+		result.setResult(false);
+
+		// 创建用户
+		Long userId = null;
+		try {
+			userId = clientUserDao.createUser(user);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(user), e);
+
+			if (e.getMessage().indexOf("ORA-00001") != -1 || e.getMessage().indexOf("CLIENT_TB_USER_INDEX1") != -1) {
+				result.setCode("手机号码已注册！");
+			}
+
+			return result;
+		}
+
+		result.setCode(userId.toString());
+		result.setResult(true);
+		return result;
+	}
+
+	@Override
+	public User getUser(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User getUser(String userId) {
+	public BooleanResult updateUser(String userId, User user, String modifyUser) {
 		// TODO Auto-generated method stub
 		return null;
 	}

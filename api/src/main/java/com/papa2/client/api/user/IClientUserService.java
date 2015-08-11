@@ -40,14 +40,12 @@ public interface IClientUserService {
 	User getUser4Validate(String passport);
 
 	/**
-	 * 修改用户信息.
+	 * 创建用户.
 	 * 
 	 * @param user
-	 * @param userId
-	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult updateUser(User user, String userId, String modifyUser);
+	BooleanResult createUser(User user);
 
 	/**
 	 * 
@@ -55,6 +53,16 @@ public interface IClientUserService {
 	 * @return
 	 */
 	User getUser(String userId);
+
+	/**
+	 * 修改用户信息.
+	 * 
+	 * @param userId
+	 * @param user
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult updateUser(String userId, User user, String modifyUser);
 
 	/**
 	 * 用户重置密码.

@@ -7,6 +7,13 @@
 	
 	<!-- 注册 -->
 	<bean id="registerAction" class="com.papa2.client.register.action.RegisterAction" parent="baseAction" scope="request">
+		<property name="registerService" ref="registerService" />
+	</bean>
+	
+	<bean id="registerService" class="com.papa2.client.register.service.impl.RegisterServiceImpl">
+		<property name="memcachedCacheService" ref="memcachedCacheService" />
+		<property name="clientUserService" ref="clientUserService" />
+		<property name="smsService" ref="smsService" />
 	</bean>
 
 </beans>

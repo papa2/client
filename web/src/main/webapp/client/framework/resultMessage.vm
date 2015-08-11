@@ -1,0 +1,16 @@
+<!-- successMessage -->
+<div class="form-group" style="display:none" id="successMsgDiv">
+	<div class="alert alert-success" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span id="successMessage" />
+	</div>
+</div>
+<!-- successMessage -->
+<!-- failMessage -->
+<div class="form-group" style="display:none" id="failMsgDiv">
+	<div class="alert alert-danger" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		<span id="failMessage" />
+	</div>
+</div>
+<!-- failMessage -->

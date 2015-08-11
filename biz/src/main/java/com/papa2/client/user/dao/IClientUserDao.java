@@ -16,4 +16,11 @@ public interface IClientUserDao {
 	 */
 	User getUserByPassport(String passport);
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	Long createUser(User user);
+
 }
