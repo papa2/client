@@ -85,6 +85,6 @@
 		
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/car/index.js?t=20150714"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/car/index.js?t=20150811"></script>
     </body>
 </html>

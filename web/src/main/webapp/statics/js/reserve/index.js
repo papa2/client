@@ -30,7 +30,7 @@ window.onload = loadJScript; // 异步加载地图
 
 function goBack() {
 	loading();
-	top.location.href = appUrl + "/index.htm";
+	top.location.href = appUrl + "/home.htm";
 }
 
 function loading() {

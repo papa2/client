@@ -41,6 +41,6 @@
 		
 		#JSM(["jquery", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/recommend/index.js"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/recommend/index.js?t=20150811"></script>
     </body>
 </html>
