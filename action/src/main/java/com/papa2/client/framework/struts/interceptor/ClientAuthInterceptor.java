@@ -39,7 +39,7 @@ public class ClientAuthInterceptor implements Interceptor {
 		Map session = invocation.getInvocationContext().getSession();
 		User user = (User) session.get("ACEGI_SECURITY_LAST_LOGINUSER");
 
-		if (user == null) {
+		if (user == null || !"CLIENT".equals(user.getType())) {
 			String actionName = getActionName();
 			// 登录首页 不需要 goto
 			if (!"/home.htm".equals(actionName)) {

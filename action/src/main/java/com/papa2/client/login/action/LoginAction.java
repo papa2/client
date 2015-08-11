@@ -39,7 +39,7 @@ public class LoginAction extends BaseAction {
 	private String password;
 
 	/**
-	 * BOSS or CLIENT.
+	 * client or boss.
 	 */
 	private String type;
 
