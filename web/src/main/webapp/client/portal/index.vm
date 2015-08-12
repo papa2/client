@@ -12,7 +12,11 @@
 	<body style="background-image: url('$!{env.imgUrl}/image/portal/map.png');" onload="setPassport();">
 		<div class="container">
 			<div class="page-header text-center text-success">
+				#if($!{type} == "BOSS")
+				<h1>保安大哥您幸苦了</h1>
+				#elseif($!{type} == "CLIENT")
 				<h1>趴趴兔欢迎您回来</h1>
+				#end
             </div>
 			<div class="modal-body">
 				#if($!{user})
@@ -35,7 +39,7 @@
 					<input type="hidden" id="type" name="type" value="$!{type}" />
 					<input type="hidden" id="goto" name="goto" value="$!{goto}" />
 					#if($!stringUtil.isNotEmpty($!{failMessage}))
-					<div class="form-group">
+					<div class="form-group" style="margin-top: -20px; margin-bottom: 0;">
         				<div class="alert alert-danger alert-dismissible" role="alert">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 							$!{failMessage}
@@ -61,17 +65,21 @@
 							<input type="password" class="form-control" id="password" name='password' autocomplete="off" placeholder="登录密码" />
 						</div>
 					</div>
-					<div class="form-group" style="margin-bottom: 0;">
-						<p class="pull-right">
-							<a class="textlink forgot" style="font-size:12px" href="javascript:forgetPassword();">忘记登录密码？</a>
-						</p>
-					</div>
-					<div class="form-group">
+					<div class="form-group" style="margin-top: 45px;">
 						<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在登录..." href="javascript:submit();">登  录</a>
                     </div>
-					<p class="pull-right">
-    					<a class="textlink" style="font-size:12px" href="javascript:register();">免费注册</a>
-    				</p>
+					
+					#if($!{type} == "CLIENT")
+					<div class="form-group">
+						<a class="btn btn-default btn-lg btn-block" href="javascript:register();">免费注册</a>
+                    </div>
+					#end
+					
+					<div class="form-group">
+						<p class="pull-right">
+							<a href="javascript:forgetPassword();">忘记登录密码？</a>
+						</p>
+					</div>
       			</form>
 				#end
             </div>
