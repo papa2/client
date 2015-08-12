@@ -115,12 +115,12 @@ public class ClientUserServiceImpl implements IClientUserService {
 
 		User user = new User();
 
-		if (StringUtils.isEmpty(passport)) {
+		if (StringUtils.isBlank(passport)) {
 			result.setCode("账号不能为空！");
 			return result;
 		}
 
-		user.setPassport(passport);
+		user.setPassport(passport.trim());
 
 		if (StringUtils.isEmpty(password)) {
 			result.setCode("密码不能为空！");
@@ -135,6 +135,13 @@ public class ClientUserServiceImpl implements IClientUserService {
 			result.setCode("密码加密失败！");
 			return result;
 		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("修改人不能为空。");
+			return result;
+		}
+
+		user.setModifyUser(modifyUser);
 
 		try {
 			int c = clientUserDao.setPassword(user);
@@ -181,6 +188,13 @@ public class ClientUserServiceImpl implements IClientUserService {
 			result.setCode("密码加密失败！");
 			return result;
 		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("修改人不能为空。");
+			return result;
+		}
+
+		user.setModifyUser(modifyUser);
 
 		try {
 			int c = clientUserDao.resetPassword(user);

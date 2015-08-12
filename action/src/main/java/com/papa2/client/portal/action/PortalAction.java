@@ -19,6 +19,8 @@ public class PortalAction extends BaseAction {
 
 	private static final String GOTO = "goto";
 
+	private String type;
+
 	/**
 	 * 登录首页.
 	 * 
@@ -30,6 +32,10 @@ public class PortalAction extends BaseAction {
 			setAttribute(this.getSession());
 		} else {
 			setAttribute();
+		}
+
+		if (StringUtils.isBlank(type)) {
+			type = "CLIENT";
 		}
 
 		return SUCCESS;
@@ -69,6 +75,14 @@ public class PortalAction extends BaseAction {
 		if (StringUtils.isNotBlank(url)) {
 			request.setAttribute(GOTO, url.trim());
 		}
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

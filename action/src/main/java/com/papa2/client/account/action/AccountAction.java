@@ -24,6 +24,9 @@ public class AccountAction extends BaseAction {
 
 	private IAccountService accountService;
 
+	/**
+	 * client or boss.
+	 */
 	private String type;
 
 	private String passport;

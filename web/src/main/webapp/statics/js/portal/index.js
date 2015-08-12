@@ -37,6 +37,7 @@ function register() {
 }
 
 function forgetPassword() {
-	top.location.href = appUrl + "/account/forgetPassword.htm?goto="
+	top.location.href = appUrl + "/account/forgetPassword.htm?type="
+			+ $('#type').val() + "&goto="
 			+ encodeURIComponent($("#goto").val());
 }

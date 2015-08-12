@@ -90,15 +90,15 @@ public class BossUserServiceImpl implements IBossUserService {
 
 		User user = new User();
 
-		if (StringUtils.isEmpty(passport)) {
-			result.setCode("账号不能为空！");
+		if (StringUtils.isBlank(passport)) {
+			result.setCode("账号不能为空。");
 			return result;
 		}
 
-		user.setPassport(passport);
+		user.setPassport(passport.trim());
 
 		if (StringUtils.isEmpty(password)) {
-			result.setCode("密码不能为空！");
+			result.setCode("密码不能为空。");
 			return result;
 		}
 
@@ -107,9 +107,16 @@ public class BossUserServiceImpl implements IBossUserService {
 		} catch (IOException e) {
 			logger.error("password:" + password, e);
 
-			result.setCode("密码加密失败！");
+			result.setCode("密码加密失败。");
 			return result;
 		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("修改人不能为空。");
+			return result;
+		}
+
+		user.setModifyUser(modifyUser);
 
 		try {
 			int c = bossUserDao.setPassword(user);
@@ -138,12 +145,12 @@ public class BossUserServiceImpl implements IBossUserService {
 		user.setPassport(passport.trim());
 
 		if (StringUtils.isEmpty(oldPassword)) {
-			result.setCode("请输入原密码！");
+			result.setCode("请输入原密码。");
 			return result;
 		}
 
 		if (StringUtils.isEmpty(password)) {
-			result.setCode("请输入新密码！");
+			result.setCode("请输入新密码。");
 			return result;
 		}
 
@@ -153,9 +160,16 @@ public class BossUserServiceImpl implements IBossUserService {
 		} catch (IOException e) {
 			logger.error("password:" + password + "oldPassword:" + oldPassword, e);
 
-			result.setCode("密码加密失败！");
+			result.setCode("密码加密失败。");
 			return result;
 		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("修改人不能为空。");
+			return result;
+		}
+
+		user.setModifyUser(modifyUser);
 
 		try {
 			int c = bossUserDao.resetPassword(user);
