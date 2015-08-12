@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import com.papa2.client.api.account.IAccountService;
-import com.papa2.client.api.user.bo.User;
 import com.papa2.client.framework.action.BaseAction;
 import com.papa2.client.framework.annotation.ActionMonitor;
 import com.papa2.client.framework.bo.BooleanResult;
@@ -24,6 +23,8 @@ public class AccountAction extends BaseAction {
 	private static final String GOTO = "goto";
 
 	private IAccountService accountService;
+
+	private String type;
 
 	private String passport;
 
@@ -81,7 +82,7 @@ public class AccountAction extends BaseAction {
 
 	@ActionMonitor(actionName = "密码重置")
 	public String setPassword() {
-		BooleanResult result = accountService.setPassword(password, checkCode);
+		BooleanResult result = accountService.setPassword(type, checkCode, password);
 
 		if (result.getResult()) {
 			this.setSuccessMessage("成功修改密码！");
@@ -116,7 +117,7 @@ public class AccountAction extends BaseAction {
 	public String renewPassword() {
 		this.getServletResponse().setStatus(500);
 
-		BooleanResult result = accountService.resetPassword(this.getUser().getPassport(), password, oldPassword);
+		BooleanResult result = accountService.resetPassword(type, this.getUser().getPassport(), password, oldPassword);
 
 		if (result.getResult()) {
 			this.getServletResponse().setStatus(200);
@@ -133,6 +134,14 @@ public class AccountAction extends BaseAction {
 
 	public void setAccountService(IAccountService accountService) {
 		this.accountService = accountService;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getPassport() {

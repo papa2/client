@@ -85,12 +85,12 @@ public class RegisterServiceImpl implements IRegisterService {
 	}
 
 	@Override
-	public RegisterResult registerUser(String mobile, String password, String userName, String checkCode) {
-		return registerUser(mobile, password, userName, checkCode, null);
+	public RegisterResult registerUser(String checkCode, String mobile, String password, String userName) {
+		return registerUser(checkCode, mobile, password, userName, null);
 	}
 
 	@Override
-	public RegisterResult registerUser(String mobile, String password, String userName, String checkCode,
+	public RegisterResult registerUser(String checkCode, String mobile, String password, String userName,
 		String recommend) {
 		// 验证
 		RegisterResult result = validate(mobile, password);

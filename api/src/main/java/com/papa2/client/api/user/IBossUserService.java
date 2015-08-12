@@ -42,22 +42,25 @@ public interface IBossUserService {
 	/**
 	 * 修改用户信息.
 	 * 
-	 * @param user
 	 * @param userId
+	 * @param user
 	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult updateUser(User user, String userId, String modifyUser);
-
-	/**
-	 * 
-	 * @param userId
-	 * @return
-	 */
-	User getUser(String userId);
+	BooleanResult updateUser(String userId, User user, String modifyUser);
 
 	/**
 	 * 用户重置密码.
+	 * 
+	 * @param passport
+	 * @param password
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult setPassword(String passport, String password, String modifyUser);
+
+	/**
+	 * 用户修改密码.
 	 * 
 	 * @param passport
 	 * @param password
@@ -66,15 +69,5 @@ public interface IBossUserService {
 	 * @return
 	 */
 	BooleanResult resetPassword(String passport, String password, String oldPassword, String modifyUser);
-
-	/**
-	 * 修改密码.
-	 * 
-	 * @param passport
-	 * @param password
-	 * @param modifyUser
-	 * @return
-	 */
-	BooleanResult setPassword(String passport, String password, String modifyUser);
 
 }

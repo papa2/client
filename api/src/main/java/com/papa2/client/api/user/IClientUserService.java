@@ -48,13 +48,6 @@ public interface IClientUserService {
 	BooleanResult createUser(User user);
 
 	/**
-	 * 
-	 * @param userId
-	 * @return
-	 */
-	User getUser(String userId);
-
-	/**
 	 * 修改用户信息.
 	 * 
 	 * @param userId

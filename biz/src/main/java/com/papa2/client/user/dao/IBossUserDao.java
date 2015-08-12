@@ -16,4 +16,18 @@ public interface IBossUserDao {
 	 */
 	User getUserByPassport(String passport);
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	int setPassword(User user);
+
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	int resetPassword(User user);
+
 }

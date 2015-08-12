@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.papa2.client.api.account.IAccountService;
 import com.papa2.client.api.cache.IMemcachedCacheService;
 import com.papa2.client.api.sms.ISMSService;
+import com.papa2.client.api.user.IBossUserService;
 import com.papa2.client.api.user.IClientUserService;
 import com.papa2.client.api.user.bo.User;
 import com.papa2.client.framework.bo.BooleanResult;
@@ -24,6 +25,8 @@ public class AccountServiceImpl implements IAccountService {
 	private Logger4jExtend logger = Logger4jCollection.getLogger(AccountServiceImpl.class);
 
 	private IMemcachedCacheService memcachedCacheService;
+
+	private IBossUserService bossUserService;
 
 	private IClientUserService clientUserService;
 
@@ -67,36 +70,50 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	@Override
-	public BooleanResult setPassword(String checkCode, String password) {
+	public BooleanResult setPassword(String type, String checkCode, String password) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
+		if (!"BOSS".equals(type) && !"CLIENT".equals(type)) {
+			result.setCode("用户类型参数不正确。");
+			return result;
+		}
+
 		if (StringUtils.isBlank(checkCode)) {
-			result.setCode("验证码不能为空！");
+			result.setCode("验证码不能为空。");
 			return result;
 		}
 
 		User user = validateCheckCode(checkCode);
 		if (user == null) {
-			result.setCode("验证码错误或已失效，请重新点击获取验证码！");
+			result.setCode("验证码错误或已失效，请重新点击获取验证码。");
 			return result;
 		}
 
 		if (StringUtils.isBlank(password)) {
-			result.setCode("密码不能为空！");
+			result.setCode("密码不能为空。");
 			return result;
 		}
 
 		// 验证码失效
 		invalidCheckCode(checkCode);
 
-		return clientUserService.setPassword(user.getPassport(), password, user.getPassport());
+		if ("BOSS".equals(type)) {
+			return bossUserService.setPassword(user.getPassport(), password, user.getPassport());
+		} else {
+			return clientUserService.setPassword(user.getPassport(), password, user.getPassport());
+		}
 	}
 
 	@Override
-	public BooleanResult resetPassword(String passport, String password, String oldPassword) {
+	public BooleanResult resetPassword(String type, String passport, String password, String oldPassword) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
+
+		if (!"BOSS".equals(type) && !"CLIENT".equals(type)) {
+			result.setCode("用户类型参数不正确。");
+			return result;
+		}
 
 		if (StringUtils.isBlank(passport)) {
 			result.setCode("用户信息不能为空。");
@@ -104,16 +121,20 @@ public class AccountServiceImpl implements IAccountService {
 		}
 
 		if (StringUtils.isEmpty(oldPassword)) {
-			result.setCode("请输入原密码！");
+			result.setCode("请输入原密码。");
 			return result;
 		}
 
 		if (StringUtils.isEmpty(password)) {
-			result.setCode("请输入新密码！");
+			result.setCode("请输入新密码。");
 			return result;
 		}
 
-		return clientUserService.resetPassword(passport, password, oldPassword, passport);
+		if ("BOSS".equals(type)) {
+			return bossUserService.resetPassword(passport, password, oldPassword, passport);
+		} else {
+			return clientUserService.resetPassword(passport, password, oldPassword, passport);
+		}
 	}
 
 	private User validateCheckCode(String checkCode) {
@@ -140,6 +161,14 @@ public class AccountServiceImpl implements IAccountService {
 
 	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
 		this.memcachedCacheService = memcachedCacheService;
+	}
+
+	public IBossUserService getBossUserService() {
+		return bossUserService;
+	}
+
+	public void setBossUserService(IBossUserService bossUserService) {
+		this.bossUserService = bossUserService;
 	}
 
 	public IClientUserService getClientUserService() {

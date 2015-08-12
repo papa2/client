@@ -11,6 +11,7 @@
 	
 	<bean id="accountService" class="com.papa2.client.account.service.impl.AccountServiceImpl">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
+		<property name="bossUserService" ref="bossUserService" />
 		<property name="clientUserService" ref="clientUserService" />
 		<property name="smsService" ref="smsService" />
 	</bean>

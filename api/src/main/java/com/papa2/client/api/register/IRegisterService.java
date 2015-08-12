@@ -27,33 +27,33 @@ public interface IRegisterService {
 	/**
 	 * 用户注册.
 	 * 
+	 * @param checkCode
+	 *            验证码.
 	 * @param mobile
 	 *            手机号码.
 	 * @param password
 	 *            密码.
 	 * @param userName
 	 *            昵称.
-	 * @param checkCode
-	 *            验证码.
 	 * @return
 	 */
-	RegisterResult registerUser(String mobile, String password, String userName, String checkCode);
+	RegisterResult registerUser(String checkCode, String mobile, String password, String userName);
 
 	/**
 	 * 用户注册.
 	 * 
+	 * @param checkCode
+	 *            验证码.
 	 * @param mobile
 	 *            手机号码.
 	 * @param password
 	 *            密码.
 	 * @param userName
 	 *            昵称.
-	 * @param checkCode
-	 *            验证码.
 	 * @param recommend
 	 *            邀请.
 	 * @return
 	 */
-	RegisterResult registerUser(String mobile, String password, String userName, String checkCode, String recommend);
+	RegisterResult registerUser(String checkCode, String mobile, String password, String userName, String recommend);
 
 }
