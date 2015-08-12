@@ -46,6 +46,11 @@ public class User extends SearchInfo {
 	 */
 	private String type;
 
+	/**
+	 * 原密码.
+	 */
+	private String oldPassword;
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -100,6 +105,14 @@ public class User extends SearchInfo {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 }

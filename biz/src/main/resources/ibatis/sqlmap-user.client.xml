@@ -13,8 +13,8 @@
 			   t.password,
 			   t.state
 		  FROM client_tb_user t
-		 WHERE t.state= 'U'
-		   AND t.passport= upper(#possport#)
+		 WHERE t.state = 'U'
+		   AND t.passport = upper(#possport#)
 	]]>
 	</select>
 	
@@ -56,5 +56,28 @@
 		]]>
 		</selectKey>
 	</insert>
+	
+	<update id="setPassword" parameterClass="user">
+	<![CDATA[
+		UPDATE client_tb_user t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.password = #password#
+		 WHERE t.state = 'U'
+		   AND t.passport = upper(#passport#)
+	]]>
+	</update>
+	
+	<update id="resetPassword" parameterClass="user">
+	<![CDATA[
+		UPDATE client_tb_user t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.password = #password#
+		 WHERE t.state = 'U'
+		   AND t.passport = upper(#passport#)
+		   AND t.password = #oldPassword#
+	]]>
+	</update>
 	
 </sqlMap>

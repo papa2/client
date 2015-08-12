@@ -69,20 +69,20 @@ public interface IClientUserService {
 	 * 
 	 * @param passport
 	 * @param password
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult setPassword(String passport, String password, String modifyUser);
+
+	/**
+	 * 用户修改密码.
+	 * 
+	 * @param passport
+	 * @param password
 	 * @param oldPassword
 	 * @param modifyUser
 	 * @return
 	 */
 	BooleanResult resetPassword(String passport, String password, String oldPassword, String modifyUser);
-
-	/**
-	 * 修改密码.
-	 * 
-	 * @param passport
-	 * @param password
-	 * @param modifyUser
-	 * @return
-	 */
-	BooleanResult setPassword(String passport, String password, String modifyUser);
 
 }

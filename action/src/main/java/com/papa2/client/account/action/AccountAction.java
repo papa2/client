@@ -81,7 +81,6 @@ public class AccountAction extends BaseAction {
 
 	@ActionMonitor(actionName = "密码重置")
 	public String setPassword() {
-
 		BooleanResult result = accountService.setPassword(password, checkCode);
 
 		if (result.getResult()) {
@@ -117,14 +116,7 @@ public class AccountAction extends BaseAction {
 	public String renewPassword() {
 		this.getServletResponse().setStatus(500);
 
-		// 验证用户是否登陆
-		User user = this.getUser();
-		if (user == null) {
-			message = "login";
-			return JSON_RESULT;
-		}
-
-		BooleanResult result = accountService.resetPassword(user.getUserId(), password, oldPassword);
+		BooleanResult result = accountService.resetPassword(this.getUser().getPassport(), password, oldPassword);
 
 		if (result.getResult()) {
 			this.getServletResponse().setStatus(200);

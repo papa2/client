@@ -23,4 +23,18 @@ public interface IClientUserDao {
 	 */
 	Long createUser(User user);
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	int setPassword(User user);
+
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	int resetPassword(User user);
+
 }

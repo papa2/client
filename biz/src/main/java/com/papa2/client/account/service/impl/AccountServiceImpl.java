@@ -67,15 +67,71 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 	@Override
-	public BooleanResult setPassword(String password, String checkCode) {
-		// TODO Auto-generated method stub
-		return null;
+	public BooleanResult setPassword(String checkCode, String password) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (StringUtils.isBlank(checkCode)) {
+			result.setCode("验证码不能为空！");
+			return result;
+		}
+
+		User user = validateCheckCode(checkCode);
+		if (user == null) {
+			result.setCode("验证码错误或已失效，请重新点击获取验证码！");
+			return result;
+		}
+
+		if (StringUtils.isBlank(password)) {
+			result.setCode("密码不能为空！");
+			return result;
+		}
+
+		// 验证码失效
+		invalidCheckCode(checkCode);
+
+		return clientUserService.setPassword(user.getPassport(), password, user.getPassport());
 	}
 
 	@Override
-	public BooleanResult resetPassword(Long userId, String password, String oldPassword) {
-		// TODO Auto-generated method stub
+	public BooleanResult resetPassword(String passport, String password, String oldPassword) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (StringUtils.isBlank(passport)) {
+			result.setCode("用户信息不能为空。");
+			return result;
+		}
+
+		if (StringUtils.isEmpty(oldPassword)) {
+			result.setCode("请输入原密码！");
+			return result;
+		}
+
+		if (StringUtils.isEmpty(password)) {
+			result.setCode("请输入新密码！");
+			return result;
+		}
+
+		return clientUserService.resetPassword(passport, password, oldPassword, passport);
+	}
+
+	private User validateCheckCode(String checkCode) {
+		try {
+			return (User) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_CHECK_CODE + checkCode);
+		} catch (Exception e) {
+			logger.error("checkCode:" + checkCode, e);
+		}
+
 		return null;
+	}
+
+	private void invalidCheckCode(String checkCode) {
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_CHECK_CODE + checkCode);
+		} catch (Exception e) {
+			logger.error("checkCode:" + checkCode, e);
+		}
 	}
 
 	public IMemcachedCacheService getMemcachedCacheService() {

@@ -21,20 +21,21 @@ public interface IAccountService {
 	/**
 	 * 忘记密码.
 	 * 
-	 * @param password
 	 * @param checkCode
+	 *            验证码.
+	 * @param password
 	 * @return
 	 */
-	BooleanResult setPassword(String password, String checkCode);
+	BooleanResult setPassword(String checkCode, String password);
 
 	/**
 	 * 修改密码.
 	 * 
-	 * @param userId
+	 * @param passport
 	 * @param password
 	 * @param oldPassword
 	 * @return
 	 */
-	BooleanResult resetPassword(Long userId, String password, String oldPassword);
+	BooleanResult resetPassword(String passport, String password, String oldPassword);
 
 }
