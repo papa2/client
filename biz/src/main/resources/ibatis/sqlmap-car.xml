@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="car">
+	
+	<typeAlias alias="car" type="com.papa2.client.api.car.bo.Car" />
+	
+	<select id="getCarList" parameterClass="car" resultClass="car">
+	<![CDATA[
+		SELECT t.id,
+			   t.car_no AS carNo
+		  FROM client_tb_user_car t
+		 WHERE t.state = 'U'
+		   AND t.user_id = #userId#
+		 ORDER BY t.modify_date DESC
+	]]>
+	</select>
+	
+	<insert id="createCar" parameterClass="car">
+	<![CDATA[
+		INSERT
+		INTO client_tb_user_car
+		  (
+			USER_ID,
+			CAR_NO,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#userId#,
+			#carNo:VARCHAR#,
+			'U',
+			NOW(),
+			#modifyUser:VARCHAR#,
+			NOW(),
+			#modifyUser:VARCHAR#
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
+	</insert>
+	
+</sqlMap>

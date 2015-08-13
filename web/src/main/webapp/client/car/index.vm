@@ -19,26 +19,14 @@
 			<div class="navbar-brand pull-right">我的车辆</div>
         </nav>
 		
-		<ul class="list-group" style="margin-top: -20px;">
-			<li class="list-group-item list-group-item-info">
-				<a class="fa fa-times pull-right" style="margin: 3px 0 0 15px;" herf="#"></a>
-                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10000</strong>
-                <small class="text-success" style="margin-left: 10px;"> 暂无需要缴费</small>
-			</li>
-			
-			#foreach($record in $recordList)
-			<a href="javascript:pay('$!{record.id}');" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
+		<ul class="list-group">
+			#foreach($car in $carList)
+			<a href="javascript:pay('$!{car.id}');" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
 				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
-                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10002</strong>
+                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> $!{car.carNo}</strong>
                 <small class="text-warning" style="margin-left: 10px;"> 预计需要缴费 <i class="fa fa-cny"></i> 10.00</small>
 			</a>
 			#end
-			
-			<li class="list-group-item list-group-item-info">
-				<a class="fa fa-times pull-right" style="margin: 3px 0 0 15px;" herf="#"></a>
-                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> 浙A 10003</strong>
-                <small class="text-success" style="margin-left: 10px;"> 暂无需要缴费</small>
-			</li>
         </ul>
 		
 		<div class="container">
@@ -58,30 +46,47 @@
 						<h4 class="modal-title">我的新车</h4>
                     </div>
 					<div class="modal-body">
-						<form class="form-inline text-center">
+						<!-- successMessage -->
+                        <div class="form-group" style="display:none" id="sMsgDiv">
+                        	<div class="alert alert-success" style="padding: 5px 28px 5px 15px;" role="alert">
+                        		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        		<span id="sMessage" />
+                        	</div>
+                        </div>
+                        <!-- successMessage -->
+                        <!-- failMessage -->
+                        <div class="form-group" style="display:none" id="fMsgDiv">
+                        	<div class="alert alert-danger" style="padding: 5px 28px 5px 15px;" role="alert">
+                        		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        		<span id="fMessage" />
+                        	</div>
+                        </div>
+                        <!-- failMessage -->
+						<form class="form-inline text-center" role="form" method="post">
 							<div class="form-group">
 								<label>浙</label>
 							</div>
 							<div class="form-group">	
 								<select class="form-control">
 									<option>A</option>
-									<option>B</option>
 								</select>
 							</div>
 							<div class="form-group">
-                                <input type="text" class="form-control" placeholder="车牌"></input>
+                                <input type="text" class="form-control" id="carNo" name="car.carNo" placeholder="车牌"></input>
                             </div>
                         </form>
 					</div>
 					<div class="modal-footer">
 						<a type="button" class="btn btn-default" data-dismiss="modal">暂不添加</a>
-						<a type="button" class="btn btn-primary" id="btn" data-loading-text="正在处理..." href="#">确认添加</a>
+						<a type="button" class="btn btn-primary" id="btn" data-loading-text="正在处理..." href="javascript:save();">确认添加</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		#parse("/client/framework/footer.vm")
+		
+		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
 		
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()

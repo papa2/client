@@ -1,12 +1,18 @@
 package com.papa2.client.car.service.impl;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.papa2.client.api.car.ICarService;
-import com.papa2.client.api.record.IRecordService;
-import com.papa2.client.api.record.bo.Record;
+import com.papa2.client.api.car.bo.Car;
+import com.papa2.client.car.dao.ICarDao;
+import com.papa2.client.framework.bo.BooleanResult;
+import com.papa2.client.framework.log.Logger4jCollection;
+import com.papa2.client.framework.log.Logger4jExtend;
+import com.papa2.client.framework.util.LogUtil;
 
 /**
  * 
@@ -15,23 +21,105 @@ import com.papa2.client.api.record.bo.Record;
  */
 public class CarServiceImpl implements ICarService {
 
-	private IRecordService recordService;
+	private Logger4jExtend logger = Logger4jCollection.getLogger(CarServiceImpl.class);
+
+	private ICarDao carDao;
 
 	@Override
-	public List<Record> getRecords(String userId) {
-		if (StringUtils.isBlank(userId)) {
+	public List<Car> getCarList(Long userId) {
+		if (userId == null) {
 			return null;
 		}
 
-		return recordService.getRecordList("X");
+		Car car = new Car();
+		car.setUserId(userId);
+
+		try {
+			return carDao.getCarList(car);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(car), e);
+		}
+
+		return null;
 	}
 
-	public IRecordService getRecordService() {
-		return recordService;
+	private BooleanResult validate(Car car) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (car == null) {
+			result.setCode("车辆信息不能为空。");
+			return result;
+		}
+
+		String carNo = car.getCarNo();
+
+		if (StringUtils.isEmpty(carNo)) {
+			result.setCode("车牌信息不能为空。");
+			return result;
+		}
+
+		boolean res = false;
+
+		try {
+			Pattern pattern = Pattern.compile("^[A-Za-z0-9]+$");
+			Matcher matcher = pattern.matcher(carNo);
+			res = matcher.matches();
+		} catch (Exception e) {
+			logger.error(e);
+		}
+
+		if (!res) {
+			result.setCode("车牌信息不符合规则。");
+			return result;
+		}
+
+		car.setCarNo("浙A" + car.getCarNo().toUpperCase());
+
+		result.setResult(true);
+		return result;
 	}
 
-	public void setRecordService(IRecordService recordService) {
-		this.recordService = recordService;
+	@Override
+	public BooleanResult createCar(Long userId, Car car, String modifyUser) {
+		BooleanResult result = validate(car);
+
+		if (!result.getResult()) {
+			return result;
+		}
+
+		result.setResult(false);
+
+		if (userId == null) {
+			result.setCode("用户账号信息不能为空。");
+			return result;
+		}
+		car.setUserId(userId);
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("操作人信息不能为空。");
+			return result;
+		}
+		car.setModifyUser(modifyUser);
+
+		try {
+			carDao.createCar(car);
+			result.setResult(true);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(car), e);
+
+			result.setCode("写入车辆信息失败！");
+		}
+
+		return result;
+	}
+
+	public ICarDao getCarDao() {
+		return carDao;
+	}
+
+	public void setCarDao(ICarDao carDao) {
+		this.carDao = carDao;
 	}
 
 }

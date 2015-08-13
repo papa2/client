@@ -40,6 +40,7 @@
 		#parse("/client/framework/footer.vm")
 		
 		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
+		
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
 		<script type="text/javascript" src="$!{env.imgUrl}/js/user/index.js"></script>

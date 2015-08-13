@@ -16,7 +16,7 @@ public class RecordDaoImpl extends BaseDaoImpl implements IRecordDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> getRecordList(Record record) {
-		return (List<Record>) getSqlMapClientTemplate().queryForList("record.getRecordList", record);
+		return getSqlMapClientTemplate().queryForList("record.getRecordList", record);
 	}
 
 	@Override

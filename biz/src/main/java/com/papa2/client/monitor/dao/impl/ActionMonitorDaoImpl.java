@@ -20,8 +20,8 @@ public class ActionMonitorDaoImpl extends BaseDaoImpl implements IActionMonitorD
 
 	@Override
 	public int createActionMonitor(final List<ActionMonitor> actionMonitors) {
-		return (Integer) getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
-			public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
+		return getSqlMapClientTemplate().execute(new SqlMapClientCallback<Integer>() {
+			public Integer doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
 				int count = 0;
 				executor.startBatch();
 				for (ActionMonitor monitor : actionMonitors) {

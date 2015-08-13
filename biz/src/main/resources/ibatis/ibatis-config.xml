@@ -30,6 +30,7 @@
 	<typeAlias alias="charaRplace" type="com.papa2.client.framework.ibatis.type.CharacterReplaceHanlderCallback" />
 
 	<sqlMap resource="ibatis/global.xml" />
+	<sqlMap resource="ibatis/sqlmap-car.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.action.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.cache.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.log.xml" />

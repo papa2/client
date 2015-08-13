@@ -11,7 +11,9 @@
 	</bean>
 	
 	<bean id="carService" class="com.papa2.client.car.service.impl.CarServiceImpl">
-		<property name="recordService" ref="recordService" />
+		<property name="carDao" ref="carDao" />
 	</bean>
+	
+	<bean id="carDao" class="com.papa2.client.car.dao.impl.CarDaoImpl" parent="baseDao" />
 
 </beans>

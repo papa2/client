@@ -30,8 +30,8 @@ public class LogMonitorDaoImpl extends BaseDaoImpl implements ILogMonitorDao {
 
 	@Override
 	public int createLogMonitor(final List<LogMonitor> logMonitorList) {
-		return (Integer) getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
-			public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
+		return getSqlMapClientTemplate().execute(new SqlMapClientCallback<Integer>() {
+			public Integer doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
 				int count = 0;
 				executor.startBatch();
 				for (LogMonitor s : logMonitorList) {

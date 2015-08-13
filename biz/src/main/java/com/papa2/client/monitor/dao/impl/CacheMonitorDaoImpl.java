@@ -31,10 +31,10 @@ public class CacheMonitorDaoImpl extends BaseDaoImpl implements ICacheMonitorDao
 
 	@Override
 	public String createCacheMonitor(final List<CacheStats> cacheStatsList) {
-		return (String) getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
+		return getSqlMapClientTemplate().execute(new SqlMapClientCallback<String>() {
 			StringBuilder sb = new StringBuilder();
 
-			public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
+			public String doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
 				executor.startBatch();
 
 				for (CacheStats s : cacheStatsList) {

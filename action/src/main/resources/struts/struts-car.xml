@@ -11,5 +11,10 @@
 			<result name="success">/client/car/index.vm</result>
 		</action>
 		
+		<!-- 添加车辆 -->
+		<action name="create" class="carAction" method="create">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+		
 	</package>
 </struts>
