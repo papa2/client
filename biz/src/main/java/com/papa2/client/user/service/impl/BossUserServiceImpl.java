@@ -78,12 +78,6 @@ public class BossUserServiceImpl implements IBossUserService {
 	}
 
 	@Override
-	public BooleanResult updateUser(String userId, User user, String modifyUser) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public BooleanResult setPassword(String passport, String password, String modifyUser) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);

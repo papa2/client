@@ -28,6 +28,13 @@ public interface IClientUserDao {
 	 * @param user
 	 * @return
 	 */
+	int updateUser(User user);
+
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
 	int setPassword(User user);
 
 	/**

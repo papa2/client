@@ -9,6 +9,7 @@
 	<select id="getUserByPassport" parameterClass="java.lang.String" resultClass="user">
 	<![CDATA[
 		SELECT t.user_id AS userId,
+			   t.user_name AS userName,
 			   t.passport,
 			   t.password,
 			   t.state
@@ -56,6 +57,17 @@
 		]]>
 		</selectKey>
 	</insert>
+	
+	<update id="updateUser" parameterClass="user">
+	<![CDATA[
+		UPDATE client_tb_user t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.user_name = #userName#
+		 WHERE t.state = 'U'
+		   AND t.passport = upper(#passport#)
+	]]>
+	</update>
 	
 	<update id="setPassword" parameterClass="user">
 	<![CDATA[

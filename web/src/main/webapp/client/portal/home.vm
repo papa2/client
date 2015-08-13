@@ -42,14 +42,6 @@
     		</div>
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:car();">
-                        <p>我要支付</p>
-						<i class="fa fa-3x fa-credit-card"></i>
-            		</a>
-    			</div>
-    		</div>
-			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
 					<a class="fa-links" href="javascript:trade();">
                         <p>我的账单</p>
 						<i class="fa fa-3x fa-list-alt"></i>
@@ -58,9 +50,9 @@
     		</div>
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:help();">
-                        <p>HELP</p>
-						<i class="fa fa-3x fa-life-ring"></i>
+					<a class="fa-links" href="javascript:settings();">
+                        <p>我的设置</p>
+						<i class="fa fa-3x fa-cogs"></i>
             		</a>
     			</div>
     		</div>
@@ -80,21 +72,21 @@
             		</a>
     			</div>
     		</div>
+			#end
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
-					<a class="fa-links" href="javascript:about();">
-                        <p>关于趴趴兔</p>
-						<i class="fa fa-3x fa-info-circle"></i>
+					<a class="fa-links" href="javascript:help();">
+                        <p>HELP</p>
+						<i class="fa fa-3x fa-life-ring"></i>
             		</a>
     			</div>
     		</div>
-			#end
         </div>
 		
 		#parse("/client/framework/footer.vm")
 		
 		#JSM(["jquery", "iosbadge", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150804"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150813"></script>
     </body>
 </html>

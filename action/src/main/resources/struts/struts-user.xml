@@ -1,0 +1,20 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://client}client$user"
+		extends="{http://client}client$framework" namespace="/user">
+
+		<!-- 用户信息首页 -->
+		<action name="index" class="userAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/user/index.vm</result>
+		</action>
+		
+		<!-- 修改用户信息 -->
+		<action name="update" class="userAction" method="update">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+		
+	</package>
+</struts>

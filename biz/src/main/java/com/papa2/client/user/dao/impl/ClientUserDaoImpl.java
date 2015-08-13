@@ -22,6 +22,11 @@ public class ClientUserDaoImpl extends BaseDaoImpl implements IClientUserDao {
 	}
 
 	@Override
+	public int updateUser(User user) {
+		return getSqlMapClientTemplate().update("user.client.updateUser", user);
+	}
+
+	@Override
 	public int setPassword(User user) {
 		return getSqlMapClientTemplate().update("user.client.setPassword", user);
 	}

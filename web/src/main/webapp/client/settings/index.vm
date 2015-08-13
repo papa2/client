@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>设置</title>
+		#ICON()
+        #CSSM(["font-awesome", "bootstrap"])
+		<style>
+		body { padding-top: 70px; background-color: #f5f5f5; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:home();"></a>
+			<div class="navbar-brand pull-right">设置</div>
+        </nav>
+		
+		<div class="list-group">
+			<a class="list-group-item" href="javascript:user();">
+				<i class="fa fa-user fa-3x fa-fw pull-left" style="color: #52a0e8;"></i>
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 15px; margin-left: 5px;"></span>
+				<div style="padding: 3px;">
+                    <strong>$!{user.userName}</strong><div class="small" style="color: gray;">$!{user.passport}</div>
+				</div>
+            </a>
+        </div>
+		
+		<div class="list-group">
+			<a class="list-group-item" href="javascript:password();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 4px; margin-left: 5px;"></span>
+				<i class="fa fa-location-arrow fa-lg fa-fw"></i> 我的地址
+			</a>
+			<a class="list-group-item" href="javascript:car();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 4px; margin-left: 5px;"></span>
+				<i class="fa fa-car fa-lg fa-fw"></i> 我的车辆
+			</a>
+        </div>
+		
+		<div class="list-group">
+			<a class="list-group-item" href="javascript:password();">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 4px; margin-left: 5px;"></span>
+				<i class="fa fa-lock fa-lg fa-fw"></i> 修改密码
+			</a>
+        </div>
+		
+		<div class="list-group">
+			<a class="list-group-item" href="#">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 4px; margin-left: 5px;"></span>
+				<i class="fa fa-headphones fa-lg fa-fw"></i> 服务大厅
+			</a>
+			<a class="list-group-item" href="#">
+				<span class="fa fa-chevron-right pull-right" style="margin-top: 4px; margin-left: 5px;"></span>
+				<i class="fa fa-info-circle fa-lg fa-fw"></i> 关于
+			</a>
+        </div>
+		
+		<div style="margin: 0 20px 0 20px;">
+			<a class="btn btn-danger btn-block" style="font-size: 18px;" id="btn" data-loading-text="正在退出..." href="javascript:logout();">安全退出</a>
+        </div>
+		
+		#parse("/client/framework/footer.vm")
+		
+		#JSM(["jquery", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript">
+		</script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/settings/index.js"></script>
+    </body>
+</html>

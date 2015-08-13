@@ -16,6 +16,8 @@
 	<include file="struts/struts-recommend.xml" />
 	<include file="struts/struts-register.xml" />
 	<include file="struts/struts-reserve.xml" />
+	<include file="struts/struts-settings.xml" />
 	<include file="struts/struts-trade.xml" />
+	<include file="struts/struts-user.xml" />
 	<include file="struts/struts-wxap.xml" />
 </struts>

@@ -103,9 +103,59 @@ public class ClientUserServiceImpl implements IClientUserService {
 	}
 
 	@Override
-	public BooleanResult updateUser(String userId, User user, String modifyUser) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUser(String passport) {
+		User user = getUserByPassport(passport);
+
+		if (user == null) {
+			return null;
+		}
+
+		user.setPassword(null);
+
+		return user;
+	}
+
+	@Override
+	public BooleanResult updateUser(String passport, User user, String modifyUser) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (user == null) {
+			result.setCode("用户信息不能为空。");
+			return result;
+		}
+
+		if (StringUtils.isBlank(passport)) {
+			result.setCode("用户账号信息不能为空。");
+			return result;
+		}
+		user.setPassport(passport.trim());
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("操作人信息不能为空。");
+			return result;
+		}
+		user.setModifyUser(modifyUser);
+
+		try {
+			int c = clientUserDao.updateUser(user);
+
+			if (c == 1) {
+				result.setCode("修改信息成功！");
+				result.setResult(true);
+
+				// remove cache
+				remove(passport);
+			} else {
+				result.setCode("修改信息失败，请稍后再试！");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(user), e);
+
+			result.setCode("修改信息失败！");
+		}
+
+		return result;
 	}
 
 	@Override
@@ -206,6 +256,21 @@ public class ClientUserServiceImpl implements IClientUserService {
 		}
 
 		return result;
+	}
+
+	/**
+	 * remove cache.
+	 * 
+	 * @param userId
+	 */
+	private void remove(String passport) {
+		String key = passport.trim().toUpperCase();
+
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_CLIENT_PASSPORT + key);
+		} catch (ServiceException e) {
+			logger.error(e);
+		}
 	}
 
 	public IMemcachedCacheService getMemcachedCacheService() {

@@ -1,6 +1,6 @@
 function goBack() {
 	loading();
-	top.location.href = appUrl + "/home.htm";
+	top.location.href = appUrl + "/settings/index.htm";
 }
 
 function pay(id) {

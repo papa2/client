@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://client}client$settings"
+		extends="{http://client}client$framework" namespace="/settings">
+
+		<!-- 设置首页 -->
+		<action name="index" class="settingsAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/settings/index.vm</result>
+		</action>
+		
+	</package>
+</struts>

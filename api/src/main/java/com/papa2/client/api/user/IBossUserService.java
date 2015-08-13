@@ -40,16 +40,6 @@ public interface IBossUserService {
 	User getUser4Validate(String passport);
 
 	/**
-	 * 修改用户信息.
-	 * 
-	 * @param userId
-	 * @param user
-	 * @param modifyUser
-	 * @return
-	 */
-	BooleanResult updateUser(String userId, User user, String modifyUser);
-
-	/**
 	 * 用户重置密码.
 	 * 
 	 * @param passport

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>我的信息</title>
+		#ICON()
+        #CSSM(["bootstrap"])
+		<style>
+		body { padding-top: 70px; padding-bottom: 70px; }
+		.col-xs-3, .col-xs-9 { padding-right: 5px; padding-left: 5px; }
+		.col-xs-3 { padding-top: 6px; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:goBack();"></a>
+			<div class="navbar-brand pull-right">我的信息</div>
+        </nav>
+		
+		<div class="container">
+			<div class="modal-body">
+  				<form class="form-horizontal" role="form" method="post">
+					#parse("/client/framework/resultMessage.vm")
+    				<div class="form-group has-success text-center">
+    					<label class="col-xs-3 control-label">昵称</label>
+    					<div class="col-xs-9">
+    						<input type="text" class="form-control" id="userName" name="user.userName" value="$!{user.userName}" placeholder="" />
+                        </div>
+					</div>
+					<div class="form-group" style="margin-top: 30px;">
+						<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在提交..." href="javascript:save();">确认修改</a>
+                    </div>
+      			</form>
+            </div>
+		</div>
+		
+		#parse("/client/framework/footer.vm")
+		
+		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
+		#JSM(["jquery", "bootstrap", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript" src="$!{env.imgUrl}/js/user/index.js"></script>
+	</body>
+</html>

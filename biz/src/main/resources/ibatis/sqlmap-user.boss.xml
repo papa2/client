@@ -9,12 +9,13 @@
 	<select id="getUserByPassport" parameterClass="java.lang.String" resultClass="user">
 	<![CDATA[
 		SELECT t.user_id AS userId,
+			   t.user_name AS userName,
 			   t.passport,
 			   t.password,
 			   t.state
 		  FROM boss_tb_user t
-		 WHERE t.state= 'U'
-		   AND t.passport= upper(#possport#)
+		 WHERE t.state = 'U'
+		   AND t.passport = upper(#possport#)
 	]]>
 	</select>
 	

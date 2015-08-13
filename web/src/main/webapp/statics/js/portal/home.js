@@ -3,19 +3,14 @@ function reserve() {
 	top.location.href = appUrl + "/reserve/index.htm";
 }
 
-function car() {
+function settings() {
 	loading();
-	top.location.href = appUrl + "/car/index.htm";
+	top.location.href = appUrl + "/settings/index.htm";
 }
 
 function trade() {
 	loading();
 	top.location.href = appUrl + "/trade/index.htm";
-}
-
-function help() {
-	loading();
-	top.location.href = appUrl + "/help/index.htm";
 }
 
 function recommend() {
@@ -28,14 +23,14 @@ function promotion() {
 	top.location.href = appUrl + "/promotion/index.htm";
 }
 
-function about() {
-	loading();
-	top.location.href = appUrl + "/about/index.htm";
-}
-
 function scan() {
 	loading();
 	top.location.href = appUrl + "/wxap/scan.htm";
+}
+
+function help() {
+	loading();
+	top.location.href = appUrl + "/help/index.htm";
 }
 
 function loading() {

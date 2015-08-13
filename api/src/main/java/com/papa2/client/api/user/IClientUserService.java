@@ -48,6 +48,13 @@ public interface IClientUserService {
 	BooleanResult createUser(User user);
 
 	/**
+	 * 
+	 * @param passport
+	 * @return
+	 */
+	User getUser(String passport);
+
+	/**
 	 * 修改用户信息.
 	 * 
 	 * @param userId
@@ -55,7 +62,7 @@ public interface IClientUserService {
 	 * @param modifyUser
 	 * @return
 	 */
-	BooleanResult updateUser(String userId, User user, String modifyUser);
+	BooleanResult updateUser(String passport, User user, String modifyUser);
 
 	/**
 	 * 用户重置密码.

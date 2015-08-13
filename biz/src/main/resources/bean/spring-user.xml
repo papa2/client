@@ -5,6 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
+	<!-- 用户 -->
+	<bean id="userAction" class="com.papa2.client.user.action.UserAction" parent="baseAction" scope="request">
+		<property name="clientUserService" ref="clientUserService" />
+	</bean>
+	
 	<bean id="bossUserService" class="com.papa2.client.user.service.impl.BossUserServiceImpl">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="bossUserDao" ref="bossUserDao" />
