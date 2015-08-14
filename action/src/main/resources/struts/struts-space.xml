@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://client}client$space"
+		extends="{http://client}client$framework" namespace="/space">
+
+		<!-- 出租车位首页 -->
+		<action name="index" class="spaceAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/space/index.vm</result>
+		</action>
+		
+	</package>
+</struts>

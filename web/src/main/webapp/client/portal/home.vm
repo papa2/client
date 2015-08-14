@@ -58,6 +58,14 @@
     		</div>
 			<div class="col-xs-4">
     			<div class="thumbnail tile tile-medium tile-blue">
+					<a class="fa-links" href="javascript:space();">
+                        <p>出租车位</p>
+						<i class="fa fa-3x fa-th-large"></i>
+            		</a>
+    			</div>
+    		</div>
+			<div class="col-xs-4">
+    			<div class="thumbnail tile tile-medium tile-blue">
 					<a class="fa-links" href="javascript:recommend();">
                         <p>我要推荐</p>
 						<i class="fa fa-3x fa-share-alt"></i>
@@ -87,6 +95,6 @@
 		
 		#JSM(["jquery", "iosbadge", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150813"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150814"></script>
     </body>
 </html>

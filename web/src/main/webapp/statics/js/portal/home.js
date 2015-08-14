@@ -3,14 +3,19 @@ function reserve() {
 	top.location.href = appUrl + "/reserve/index.htm";
 }
 
+function trade() {
+	loading();
+	top.location.href = appUrl + "/trade/index.htm";
+}
+
 function settings() {
 	loading();
 	top.location.href = appUrl + "/settings/index.htm";
 }
 
-function trade() {
+function space() {
 	loading();
-	top.location.href = appUrl + "/trade/index.htm";
+	top.location.href = appUrl + "/space/index.htm";
 }
 
 function recommend() {
