@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>出租车位</title>
+		#ICON()
+        #CSSM(["messenger", "bootstrap"])
+		<style>
+		body { padding-top: 70px; padding-bottom: 70px; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:goBack();"></a>
+			<div class="navbar-brand pull-right">车位信息</div>
+        </nav>
+		
+		<div>
+			<div class="modal-header">
+				<h4 class="modal-title">0. 请选择出租方式</h4>
+            </div>
+			<div class="modal-body">
+				<form class="" role="form" method="post">
+    				<div class="radio">
+    					<label>
+    						<input type="radio" name="space.costType" id="optionsRadios1" value="H" checked />
+    						按小时段出租
+                            <p class="help-block">您可以选择<strong>每周</strong>固定时间段出租您的车位</p>
+    					</label>
+    				</div>
+                    <div class="radio">
+    					<label>
+    						<input type="radio" name="space.costType" id="optionsRadios2" value="M" />
+    						包月出租
+                            <p class="help-block">您可以选择<strong>包月</strong>出租您的车位</p>
+    					</label>
+    				</div>
+                </form>
+            </div>
+			<div class="modal-footer">
+				<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在处理..." href="javascript:next();">确认</a>
+			</div>
+        </div>
+		
+		#parse("/client/framework/footer.vm")
+		
+		#JSM(["jquery", "bootstrap", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript">
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/space/create.js"></script>
+    </body>
+</html>

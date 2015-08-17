@@ -6,6 +6,9 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<!-- 社区 公共停车场 -->
+	<bean id="caseAction" class="com.papa2.client.cases.action.CaseAction" parent="baseAction" scope="request">
+		<property name="caseService" ref="caseService" />
+	</bean>
 	
 	<bean id="caseService" class="com.papa2.client.cases.service.impl.CaseServiceImpl">
 		<property name="caseDao" ref="caseDao" />

@@ -31,12 +31,14 @@
 
 	<sqlMap resource="ibatis/global.xml" />
 	<sqlMap resource="ibatis/sqlmap-car.xml" />
+	<sqlMap resource="ibatis/sqlmap-case.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.action.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.cache.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.log.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.method.xml" />
 	<sqlMap resource="ibatis/sqlmap-record.xml" />
 	<sqlMap resource="ibatis/sqlmap-sms.xml" />
+	<sqlMap resource="ibatis/sqlmap-space.xml" />
 	<sqlMap resource="ibatis/sqlmap-user.boss.xml" />
 	<sqlMap resource="ibatis/sqlmap-user.client.xml" />
     

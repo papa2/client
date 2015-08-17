@@ -6,14 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>出租车位</title>
 		#ICON()
-        #CSSM(["messenger", "bootstrap"])
+        #CSSM(["font-awesome", "bootstrap"])
 		<style>
 		body { padding-top: 70px; padding-bottom: 70px; }
-		div { overflow: hidden; }
-		hr { margin-top: 10px; margin-bottom: 10px; }
-		input { border: 0px; }
-		p { margin: 0 0 3px; }
-		.col-xs-3, .col-xs-4, .col-xs-8, .col-xs-9 { padding-right: 5px; padding-left: 5px; }
 		</style>
 		#UA()
 	</head>
@@ -23,25 +18,28 @@
 			<div class="navbar-brand pull-right">车位信息</div>
         </nav>
 		
-		<div id="step1">
-			<div>
-				<div class="col-xs-12" style="padding-right: 2px;">
-					<label style="padding-right: 5px; padding-left: 5px; float: left;">选择<br />地区</label>
-					<div class="col-xs-3"><select class="form-control small" style="width: 73px;" id="province" ></select></div>
-					<div class="col-xs-3"><select class="form-control small" style="width: 73px;" id="city" ></select></div>
-					<div class="col-xs-4"><select class="form-control small" id="area" ></select></div>
-                </div>
-			</div>
-			<hr />
-    		<div class="col-xs-12 text-center">
-    			<a class="btn btn-success" style="width: 100px;" id="next" data-loading-text="正在处理..." href="javascript:next();">确认</a>
-            </div>
-		</div>
+		<ul class="list-group">
+			#foreach($space in $spaceList)
+			<a href="javascript:pay('$!{sapce.spaceId}');" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
+				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> $!{space.spaceCode}</strong>
+			</a>
+			#end
+        </ul>
 		
-		#JSM(["jquery", "jquery.citytools", "bootstrap"])
+		<div class="container">
+			<div class="modal-body">
+				<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在处理..." href="javascript:createSpace();">
+					<i class="fa fa-plus"></i> 我要出租车位
+				</a>
+            </div>
+        </div>
+		
+		#parse("/client/framework/footer.vm")
+		
+		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
 		<script type="text/javascript">
-		var backCode = '3301';
         </script>
 		<script type="text/javascript" src="$!{env.imgUrl}/js/space/index.js"></script>
     </body>

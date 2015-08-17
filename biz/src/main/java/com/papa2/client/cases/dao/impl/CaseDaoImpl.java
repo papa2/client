@@ -19,4 +19,9 @@ public class CaseDaoImpl extends BaseDaoImpl implements ICaseDao {
 		return getSqlMapClientTemplate().queryForList("case.getCaseList", cases);
 	}
 
+	@Override
+	public Case getCase(Case cases) {
+		return (Case) getSqlMapClientTemplate().queryForObject("case.getCase", cases);
+	}
+
 }

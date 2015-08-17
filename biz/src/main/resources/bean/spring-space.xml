@@ -7,6 +7,14 @@
 	
 	<!-- 出租车位 -->
 	<bean id="spaceAction" class="com.papa2.client.space.action.SpaceAction" parent="baseAction" scope="request">
+		<property name="caseService" ref="caseService" />
+		<property name="spaceService" ref="spaceService" />
 	</bean>
+	
+	<bean id="spaceService" class="com.papa2.client.space.service.impl.SpaceServiceImpl">
+		<property name="spaceDao" ref="spaceDao" />
+	</bean>
+	
+	<bean id="spaceDao" class="com.papa2.client.space.dao.impl.SpaceDaoImpl" parent="baseDao" />
 
 </beans>

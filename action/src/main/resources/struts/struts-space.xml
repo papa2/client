@@ -11,5 +11,33 @@
 			<result name="success">/client/space/index.vm</result>
 		</action>
 		
+		<!-- 出租车位 -->
+		<action name="createPrepare" class="spaceAction" method="createPrepare">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="createPrepare">/client/space/create.vm</result>
+		</action>
+		
+		<!-- 1st -->
+		<action name="1st" class="spaceAction" method="first">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/space/1st.vm</result>
+		</action>
+		
+		<!-- 2nd -->
+		<action name="2nd" class="spaceAction" method="second">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/space/2nd.vm</result>
+		</action>
+		
+		<!-- 3rd -->
+		<action name="3rd" class="spaceAction" method="third">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/space/3rd.vm</result>
+		</action>
+		
+		<action name="create" class="spaceAction" method="create">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+		
 	</package>
 </struts>

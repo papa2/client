@@ -19,4 +19,21 @@ public interface ICaseService {
 	 */
 	List<Case> getCaseList(String backCode);
 
+	/**
+	 * 根据省市区查询 社区 公共停车场.
+	 * 
+	 * @param backCode
+	 * @param type
+	 *            是否开放车位.
+	 * @return
+	 */
+	List<Case> getCaseList(String backCode, String type);
+
+	/**
+	 * 
+	 * @param caseId
+	 * @return
+	 */
+	Case getCase(Long caseId);
+
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="case">
+	
+	<typeAlias alias="case" type="com.papa2.client.api.cases.bo.Case" />
+	
+	<select id="getCaseList" parameterClass="case" resultClass="case">
+	<![CDATA[
+		SELECT t.case_id AS caseId,
+			   t.case_name AS caseName,
+			   t.address
+		  FROM boss_tb_case t
+		 WHERE t.state = 'U'
+	]]>
+		<dynamic>
+			<isNotEmpty property="type" prepend="and">
+			<![CDATA[ t.type = #type# ]]>
+			</isNotEmpty>
+		</dynamic>
+	<![CDATA[
+		 ORDER BY t.case_name ASC
+	]]>
+	</select>
+	
+	<select id="getCase" parameterClass="case" resultClass="case">
+	<![CDATA[
+		SELECT t.case_id AS caseId,
+			   t.case_name AS caseName,
+			   t.address
+		  FROM boss_tb_case t
+		 WHERE t.state = 'U'
+		   AND t.case_id = #caseId#
+	]]>
+	</select>
+	
+</sqlMap>

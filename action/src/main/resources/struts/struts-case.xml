@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://client}client$case"
+		extends="{http://client}client$framework" namespace="/case">
+
+		<!-- 社区 公共停车场首页 -->
+		<action name="caseAction" class="caseAction">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+		
+	</package>
+</struts>

@@ -40,6 +40,11 @@ public class Case implements Serializable {
 
 	private String backCode;
 
+	/**
+	 * 是否开放车位.
+	 */
+	private String type;
+
 	public Long getCaseId() {
 		return caseId;
 	}
@@ -102,6 +107,14 @@ public class Case implements Serializable {
 
 	public void setBackCode(String backCode) {
 		this.backCode = backCode;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

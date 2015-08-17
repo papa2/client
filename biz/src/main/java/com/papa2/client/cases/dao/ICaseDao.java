@@ -18,4 +18,11 @@ public interface ICaseDao {
 	 */
 	List<Case> getCaseList(Case cases);
 
+	/**
+	 * 
+	 * @param cases
+	 * @return
+	 */
+	Case getCase(Case cases);
+
 }

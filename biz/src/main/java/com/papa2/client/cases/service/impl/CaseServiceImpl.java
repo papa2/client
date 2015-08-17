@@ -24,6 +24,11 @@ public class CaseServiceImpl implements ICaseService {
 
 	@Override
 	public List<Case> getCaseList(String backCode) {
+		return getCaseList(backCode, null);
+	}
+
+	@Override
+	public List<Case> getCaseList(String backCode, String type) {
 		Case cases = new Case();
 
 		if (StringUtils.isBlank(backCode)) {
@@ -32,8 +37,30 @@ public class CaseServiceImpl implements ICaseService {
 
 		cases.setBackCode(backCode.trim());
 
+		if (StringUtils.isNotBlank(type)) {
+			cases.setType(type.trim());
+		}
+
 		try {
 			return caseDao.getCaseList(cases);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(cases), e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public Case getCase(Long caseId) {
+		if (caseId == null) {
+			return null;
+		}
+
+		Case cases = new Case();
+		cases.setCaseId(caseId);
+
+		try {
+			return caseDao.getCase(cases);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(cases), e);
 		}
