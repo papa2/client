@@ -1,6 +1,7 @@
 package com.papa2.client.api.cases.bo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 社区 公共停车场.
@@ -39,6 +40,16 @@ public class Case implements Serializable {
 	private String postalCode;
 
 	private String backCode;
+
+	/**
+	 * 建议按时收费金额.
+	 */
+	private BigDecimal costHour;
+
+	/**
+	 * 建议包月收费金额.
+	 */
+	private BigDecimal costMonth;
 
 	/**
 	 * 是否开放车位.
@@ -107,6 +118,22 @@ public class Case implements Serializable {
 
 	public void setBackCode(String backCode) {
 		this.backCode = backCode;
+	}
+
+	public BigDecimal getCostHour() {
+		return costHour;
+	}
+
+	public void setCostHour(BigDecimal costHour) {
+		this.costHour = costHour;
+	}
+
+	public BigDecimal getCostMonth() {
+		return costMonth;
+	}
+
+	public void setCostMonth(BigDecimal costMonth) {
+		this.costMonth = costMonth;
 	}
 
 	public String getType() {

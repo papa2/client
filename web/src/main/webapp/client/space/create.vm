@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>出租车位</title>
 		#ICON()
-        #CSSM(["messenger", "bootstrap"])
+        #CSSM(["bootstrap"])
 		<style>
 		body { padding-top: 70px; padding-bottom: 70px; }
 		</style>
@@ -15,25 +15,33 @@
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
 			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
-			<div class="navbar-brand pull-right">车位信息</div>
+			<div class="navbar-brand pull-right">0. 请选择出租方式</div>
         </nav>
 		
 		<div>
-			<div class="modal-header">
-				<h4 class="modal-title">0. 请选择出租方式</h4>
-            </div>
+			<!-- div class="modal-header"><h4 class="modal-title">0. 请选择出租方式</h4></div -->
 			<div class="modal-body">
 				<form class="" role="form" method="post">
+					<input type="hidden" name="backCode" value="$!{backCode}"></input>
+					<input type="hidden" name="space.caseId" value="$!{space.caseId}"></input>
     				<div class="radio">
     					<label>
+							#if($!{space.costType} == 'H')
     						<input type="radio" name="space.costType" id="optionsRadios1" value="H" checked />
+							#else
+							<input type="radio" name="space.costType" id="optionsRadios1" value="H" />
+							#end
     						按小时段出租
                             <p class="help-block">您可以选择<strong>每周</strong>固定时间段出租您的车位</p>
     					</label>
     				</div>
                     <div class="radio">
     					<label>
-    						<input type="radio" name="space.costType" id="optionsRadios2" value="M" />
+							#if($!{space.costType} == 'M')
+    						<input type="radio" name="space.costType" id="optionsRadios2" value="M" checked />
+							#else
+							<input type="radio" name="space.costType" id="optionsRadios2" value="M" />
+							#end
     						包月出租
                             <p class="help-block">您可以选择<strong>包月</strong>出租您的车位</p>
     					</label>
@@ -41,7 +49,7 @@
                 </form>
             </div>
 			<div class="modal-footer">
-				<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在处理..." href="javascript:next();">确认</a>
+				<a class="btn btn-success btn-block" id="btn" data-loading-text="正在处理..." href="javascript:next();">确认</a>
 			</div>
         </div>
 		

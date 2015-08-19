@@ -39,5 +39,22 @@
 			<interceptor-ref name="clientAuthStack" />
 		</action>
 		
+		<action name="detail" class="spaceAction" method="detail">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/space/detail.vm</result>
+		</action>
+		
+		<action name="update" class="spaceAction" method="update">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+		
+		<action name="cancel" class="spaceAction" method="cancel">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+		
+		<action name="enable" class="spaceAction" method="enable">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+		
 	</package>
 </struts>

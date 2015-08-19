@@ -24,8 +24,10 @@
 			SUN,
 			START_TIME,
 			END_TIME,
-			START_DATE,
-			END_DATE,
+			START_YEAR,
+			START_MONTH,
+			END_YEAR,
+			END_MONTH,
 			COST_TYPE,
 			COST,
 			STATE,
@@ -49,8 +51,10 @@
 			#sun#,
 			#startTime#,
 			#endTime#,
-			STR_TO_DATE(#startDate#, '%Y-%m-%d %T'),
-			STR_TO_DATE(#endDate#, '%Y-%m-%d %T'),
+			#startYear#,
+			#startMonth#,
+			#endYear#,
+			#endMonth#,
 			#costType#,
 			#cost#,
 			'U',
@@ -70,12 +74,82 @@
 	<select id="getSpaceList" parameterClass="space" resultClass="space">
 	<![CDATA[
 		SELECT t.space_id AS spaceId,
-			   t.space_code AS spaceCode
-		  FROM boss_tb_case_park_space t
-		 WHERE t.state = 'U'
+			   t.space_code AS spaceCode,
+			   t.state,
+			   p.case_name AS caseName
+		  FROM boss_tb_case_park_space t,
+			   boss_tb_case p
+		 WHERE t.case_id = p.case_id
 		   AND t.user_id = #userId#
 		 ORDER BY t.modify_date DESC
 	]]>
 	</select>
+	
+	<select id="getSpace" parameterClass="space" resultClass="space">
+	<![CDATA[
+		SELECT t.space_id AS spaceId,
+			   t.space_code AS spaceCode,
+			   t.mon,
+			   t.tue,
+			   t.wed,
+			   t.thu,
+			   t.fri,
+			   t.sat,
+			   t.sun,
+			   t.start_time AS startTime,
+			   t.end_time AS endTime,
+			   t.start_year AS startYear,
+			   t.start_month AS startMonth,
+			   t.end_year AS endYear,
+			   t.end_month AS endMonth,
+			   t.cost_type AS costType,
+			   t.cost,
+			   t.state,
+			   t.case_id AS caseId,
+			   p.case_name AS caseName
+		  FROM boss_tb_case_park_space t,
+			   boss_tb_case p
+		 WHERE t.case_id = p.case_id
+		   AND t.user_id = #userId#
+		   AND t.space_id = #spaceId#
+	]]>
+	</select>
+	
+	<update id="updateSpace1" parameterClass="space">
+	<![CDATA[
+		UPDATE boss_tb_case_park_space t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.space_code = #spaceCode#,
+			   t.mon = #mon#,
+			   t.tue = #tue#,
+			   t.wed = #wed#,
+			   t.thu = #thu#,
+			   t.fri = #fri#,
+			   t.sat = #sat#,
+			   t.sun = #sun#,
+			   t.start_time = #startTime#,
+			   t.end_time = #endTime#,
+			   t.start_year = #startYear#,
+			   t.start_month = #startMonth#,
+			   t.end_year = #endYear#,
+			   t.end_month = #endMonth#,
+			   t.cost = #cost#
+		 WHERE t.user_id = #userId#
+		   AND t.space_id = #spaceId#
+	]]>
+	</update>
+	
+	<update id="updateSpace2" parameterClass="java.util.Map">
+	<![CDATA[
+		UPDATE boss_tb_case_park_space t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.state = #state#
+		 WHERE t.state <> #state#
+		   AND t.user_id = #userId#
+		   AND t.space_id = #spaceId#
+	]]>
+	</update>
 	
 </sqlMap>

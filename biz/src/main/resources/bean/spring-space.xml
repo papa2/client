@@ -12,6 +12,7 @@
 	</bean>
 	
 	<bean id="spaceService" class="com.papa2.client.space.service.impl.SpaceServiceImpl">
+		<property name="caseService" ref="caseService" />
 		<property name="spaceDao" ref="spaceDao" />
 	</bean>
 	

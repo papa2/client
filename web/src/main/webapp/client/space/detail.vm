@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>出租车位</title>
+		<title>出租车位信息</title>
 		#ICON()
         #CSSM(["bootstrap"])
 		<style>
@@ -15,16 +15,15 @@
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
 			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
-			<div class="navbar-brand pull-right">3. 请选择时间段及计费</div>
+			<div class="navbar-brand pull-right">出租车位信息</div>
         </nav>
 		
 		<div>
-			<!-- div class="modal-header"><h4 class="modal-title">3. 请选择时间段及计费</h4></div -->
 			#parse("/client/framework/resultMessage.vm")
 			<div class="modal-body">
 				<form class="" role="form" method="post">
+					<input type="hidden" name="space.spaceId" value="$!{space.spaceId}"></input>
 					<input type="hidden" name="space.costType" value="$!{space.costType}"></input>
-					<input type="hidden" name="backCode" value="$!{backCode}"></input>
 					<input type="hidden" name="space.caseId" value="$!{space.caseId}"></input>
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">出租方式：</label>
@@ -36,11 +35,11 @@
                     </div>
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">出租小区：</label>
-							$!{cases.caseName}
+							$!{space.caseName}
                     </div>
 					<div class="has-success" style="margin-bottom: 5px;">
 						<label class="control-label">出租车位：</label>
-						<input type="text" class="form-control" style="display: inline; width: 150px; height: 25px;" id="spaceCode" name="space.spaceCode" placeholder="请填写车位编号" />
+						<input type="text" class="form-control" style="display: inline; width: 150px; height: 25px;" id="spaceCode" name="space.spaceCode" value="$!{space.spaceCode}" placeholder="请填写车位编号" />
                     </div>
 					#if($!{space.costType} == 'H')
 					<div style="margin-bottom: 5px;">
@@ -48,31 +47,31 @@
 						<div class="has-success" style="margin-left: 10px;">
             				<div class="radio" style="margin-top: 0;">
                 				<label class="radio-inline">
-                					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="W" checked/> 工作日
+                					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="W"/> 工作日
                 				</label>
                 				<label class="radio-inline">
                 					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="H"/> 双休日
                 				</label>
             					<label class="radio-inline">
-                					<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="C"/> 自定义
+                					<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="C" checked/> 自定义
                 				</label>
                             </div>
             				<div style="margin-left: 10px;">
             					<div class="checkbox">
-                    				<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox1" name="space.mon" value="Y" onchange="toggleCheckbox(this)" checked/> 周一</label>
-            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox2" name="space.tue" value="Y" onchange="toggleCheckbox(this)" checked/> 周二</label>
-            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox3" name="space.wed" value="Y" onchange="toggleCheckbox(this)" checked/> 周三</label>
-            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox4" name="space.thu" value="Y" onchange="toggleCheckbox(this)" checked/> 周四</label>
+                    				<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox1" name="space.mon" value="Y" onchange="toggleCheckbox(this)" #if($!{space.mon} == 'Y') checked #end /> 周一</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox2" name="space.tue" value="Y" onchange="toggleCheckbox(this)" #if($!{space.tue} == 'Y') checked #end /> 周二</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox3" name="space.wed" value="Y" onchange="toggleCheckbox(this)" #if($!{space.wed} == 'Y') checked #end /> 周三</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox4" name="space.thu" value="Y" onchange="toggleCheckbox(this)" #if($!{space.thu} == 'Y') checked #end /> 周四</label>
                                 </div>
             					<div class="checkbox">
-            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox5" name="space.fri" value="Y" onchange="toggleCheckbox(this)" checked/> 周五</label>
-            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox6" name="space.sat" value="Y" onchange="toggleCheckbox(this)" /> 周六</label>
-            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox7" name="space.sun" value="Y" onchange="toggleCheckbox(this)" /> 周日</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox5" name="space.fri" value="Y" onchange="toggleCheckbox(this)" #if($!{space.fri} == 'Y') checked #end /> 周五</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox6" name="space.sat" value="Y" onchange="toggleCheckbox(this)" #if($!{space.sat} == 'Y') checked #end /> 周六</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox7" name="space.sun" value="Y" onchange="toggleCheckbox(this)" #if($!{space.sun} == 'Y') checked #end /> 周日</label>
                                 </div>
                             </div>
 							<div>
 								开始
-								<select class="form-control" style="display: inline; width: 80px; height: 25px;" name="space.startTime">
+								<select class="form-control" style="display: inline; width: 80px; height: 25px;" id="startTime" name="space.startTime">
 									<option>00:00</option>
 									<option>01:00</option>
 									<option>02:00</option>
@@ -81,7 +80,7 @@
 									<option>06:00</option>
 									<option>07:00</option>
 									<option>08:00</option>
-									<option selected>09:00</option>
+									<option>09:00</option>
 									<option>10:00</option>
 									<option>11:00</option>
 									<option>12:00</option>
@@ -98,7 +97,7 @@
 									<option>23:00</option>
 								</select>
 								结束
-								<select class="form-control" style="display: inline; width: 80px; height: 25px;" name="space.endTime">
+								<select class="form-control" style="display: inline; width: 80px; height: 25px;" id="endTime" name="space.endTime">
 									<option>00:00</option>
 									<option>01:00</option>
 									<option>02:00</option>
@@ -114,7 +113,7 @@
 									<option>13:00</option>
 									<option>14:00</option>
 									<option>15:00</option>
-									<option selected>16:00</option>
+									<option>16:00</option>
 									<option>17:00</option>
 									<option>18:00</option>
 									<option>19:00</option>
@@ -130,7 +129,7 @@
 						<label class="control-label">出租计费：</label>
     					<div class="has-success" style="margin-left: 10px;">
     						每小时
-							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" value="$!{cases.costHour}" disabled />
+							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" value="$!{space.cost}" disabled />
 							元
                         </div>
 						<p class="help-block">按时出租，计费根据物业统一制定，暂不支持自定义。</p>
@@ -168,7 +167,7 @@
 									<option>2016</option>
 									<option>2017</option>
 								</select>
-								<select class="form-control" style="display: inline; width: 50px; height: 25px;" name="space.endMonth">
+								<select class="form-control" style="display: inline; width: 50px; height: 25px;" id="endMonth" name="space.endMonth">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -180,7 +179,7 @@
 									<option>9</option>
 									<option>10</option>
 									<option>11</option>
-									<option selected>12</option>
+									<option>12</option>
 								</select>
                             </div>
                         </div>
@@ -189,7 +188,7 @@
 						<label class="control-label">出租计费：</label>
     					<div class="has-success" style="margin-left: 10px;">
     						每月
-							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" id="cost" name="space.cost" value="$!{cases.mthCost}" value="5.00" />
+							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" id="cost" name="space.cost" value="$!{space.cost}" value="5.00" />
 							元
                         </div>
 						<p class="help-block">包月出租，物业建议计费金额，支持自定义。</p>
@@ -197,24 +196,31 @@
 					#end
                 </form>
             </div>
-			<div class="modal-footer">
-				<div class="text-center">
-    				<a class="btn btn-danger" id="btn0" data-loading-text="正在处理..." href="javascript:cancel();">取消</a>
-    				<a class="btn btn-default" id="btn1" data-loading-text="正在处理..." href="javascript:back();">上一步</a>
-    				<a class="btn btn-success" id="btn2" data-loading-text="正在处理..." href="javascript:done();">完成</a>
+			<nav class="navbar navbar-default navbar-fixed-bottom text-center">
+				<div style="margin: 10px;">
+					#if($!{space.state} == 'U')
+    				<a class="btn btn-danger" id="btn0" data-loading-text="正在处理..." href="javascript:cancel();">取消出租</a>
+					#else
+					<a class="btn btn-info" id="btn0" data-loading-text="正在处理..." href="javascript:enable();">恢复出租</a>
+					#end
+    				<a class="btn btn-success" id="btn1" data-loading-text="正在处理..." href="javascript:update();">保存修改</a>
+    				<a class="btn btn-default" id="btn2" data-loading-text="正在处理..." href="javascript:profit();">查看收益</a>
                 </div>
-			</div>
+			</nav>
         </div>
-		
-		#parse("/client/framework/footer.vm")
 		
 		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
 		<script type="text/javascript">
-		var year = $!{year};
-		var month = $!{month};
+		var startTime = '$!{space.startTime}';
+		var endTime = '$!{space.endTime}';
+		
+		var startYear = $!{space.startYear};
+		var startMonth = $!{space.startMonth};
+		var endYear = $!{space.endYear};
+		var endMonth = $!{space.endMonth};
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/space/3rd.js?t=20150820"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/space/detail.js?t=20150820"></script>
     </body>
 </html>

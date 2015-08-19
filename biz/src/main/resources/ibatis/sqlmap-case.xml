@@ -13,6 +13,7 @@
 			   t.address
 		  FROM boss_tb_case t
 		 WHERE t.state = 'U'
+		   AND t.back_code = #backCode#
 	]]>
 		<dynamic>
 			<isNotEmpty property="type" prepend="and">
@@ -28,7 +29,9 @@
 	<![CDATA[
 		SELECT t.case_id AS caseId,
 			   t.case_name AS caseName,
-			   t.address
+			   t.address,
+			   t.cost_hour AS costHour,
+			   t.cost_month AS costMonth
 		  FROM boss_tb_case t
 		 WHERE t.state = 'U'
 		   AND t.case_id = #caseId#

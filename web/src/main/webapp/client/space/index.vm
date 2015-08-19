@@ -20,22 +20,24 @@
 		
 		<ul class="list-group">
 			#foreach($space in $spaceList)
-			<a href="javascript:pay('$!{sapce.spaceId}');" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
-                <i class="fa fa-car" style="margin-right: 5px;"></i><strong> $!{space.spaceCode}</strong>
-			</a>
+				#if($!{space.state} == 'U')
+    			<a href="javascript:detail('$!{space.spaceId}');" class="list-group-item list-group-item-success">
+				#else
+				<a href="javascript:detail('$!{space.spaceId}');" class="list-group-item list-group-item-warning">
+				#end
+    				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                    <i class="fa fa-ticket" style="margin-right: 5px;"></i><strong> $!{space.caseName} 出租车位： $!{space.spaceCode}</strong>
+    			</a>
 			#end
         </ul>
 		
-		<div class="container">
-			<div class="modal-body">
-				<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在处理..." href="javascript:createSpace();">
-					<i class="fa fa-plus"></i> 我要出租车位
+		<nav class="navbar navbar-default navbar-fixed-bottom text-center">
+			<div style="margin: 10px;">
+				<a class="btn btn-success" id="btn" data-loading-text="正在处理..." href="javascript:createSpace();">
+					我要出租车位
 				</a>
             </div>
-        </div>
-		
-		#parse("/client/framework/footer.vm")
+        </nav>
 		
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()

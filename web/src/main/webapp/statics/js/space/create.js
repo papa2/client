@@ -1,6 +1,6 @@
 function back() {
 	loading();
-	top.location.href = appUrl + "space/index.htm";
+	top.location.href = appUrl + "/space/index.htm";
 }
 
 function next() {

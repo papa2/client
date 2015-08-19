@@ -28,4 +28,40 @@ public interface ISpaceService {
 	 */
 	List<Space> getSpaceList(Long userId);
 
+	/**
+	 * 
+	 * @param userId
+	 * @param spaceId
+	 * @return
+	 */
+	Space getSpace(Long userId, String spaceId);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param space
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult updateSpace(Long userId, Space space, String modifyUser);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param space
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult cancelSpace(Long userId, Space space, String modifyUser);
+
+	/**
+	 * 启用.
+	 * 
+	 * @param userId
+	 * @param space
+	 * @param modifyUser
+	 * @return
+	 */
+	BooleanResult enableSpace(Long userId, Space space, String modifyUser);
+
 }

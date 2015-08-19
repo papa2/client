@@ -21,7 +21,7 @@
 		
 		<ul class="list-group">
 			#foreach($car in $carList)
-			<a href="javascript:pay('$!{car.id}');" class="list-group-item list-group-item-success" style="margin: 10px 0 10px 0; ">
+			<a href="javascript:pay('$!{car.id}');" class="list-group-item list-group-item-success">
 				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
                 <i class="fa fa-car" style="margin-right: 5px;"></i><strong> $!{car.carNo}</strong>
                 <small class="text-warning" style="margin-left: 10px;"> 预计需要缴费 <i class="fa fa-cny"></i> 10.00</small>
@@ -29,15 +29,13 @@
 			#end
         </ul>
 		
-		<div class="container">
-			<div class="modal-body">
-        		<div style="margin-top: 10px;">
-                    <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#createCar">
-						<i class="fa fa-plus"></i> 我要添加车辆
-					</button>
-                </div>
+		<nav class="navbar navbar-default navbar-fixed-bottom text-center">
+			<div style="margin: 10px;">
+				<button class="btn btn-primary" data-toggle="modal" data-target="#createCar">
+					我要添加车辆
+				</button>
             </div>
-        </div>
+        </nav>
 		
 		<div class="modal fade" id="createCar" tabindex="-1" role="dialog" aria-labelledby="createCarLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -83,8 +81,6 @@
 				</div>
 			</div>
 		</div>
-		
-		#parse("/client/framework/footer.vm")
 		
 		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
 		

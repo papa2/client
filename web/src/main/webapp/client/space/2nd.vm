@@ -20,31 +20,37 @@
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
 			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
-			<div class="navbar-brand pull-right">车位信息</div>
+			<div class="navbar-brand pull-right">2. 请选择已开放的小区</div>
         </nav>
 		
 		<div>
-			<div class="modal-header">
-				<h4 class="modal-title">2. 请选择已开放的小区</h4>
-            </div>
+			<!-- div class="modal-header"><h4 class="modal-title">2. 请选择已开放的小区</h4></div -->
 			<div class="modal-body">
-				<form class="form-horizontal" role="form" method="post">
+				<form role="form" method="post">
 					<input type="hidden" name="space.costType" value="$!{space.costType}"></input>
 					<input type="hidden" id="bc" name="backCode" value="$!{backCode}"></input>
 					<input type="hidden" id="caseId" name="space.caseId"></input>
-    				<ul class="list-group" style="margin-top: -16px; margin-bottom: -16px;">
+                </form>
+				<ul class="list-group" style="margin-top: -16px; margin-bottom: -16px;">
+					#if($caseList && $caseList != [])
 						#foreach($case in $caseList)
-            			<a class="list-group-item" style="margin-left: -16px; margin-right: -16px;"href="javascript:next('$!{case.caseId}')">
+            			<a class="list-group-item" style="margin-left: -16px; margin-right: -16px;" href="javascript:next('$!{case.caseId}')">
 							<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
 							<span class="fa fa-building-o"></span> $!{case.caseName} @ $!{case.address}
             			</a>
 						#end
-                    </ul>
-                </form>
+					#else
+						<li class="list-group-item" style="margin-left: -16px; margin-right: -16px;">
+							<i class="fa fa-cog fa-spin"></i> 趴趴兔正在努力的搜集数据哦。
+						</li>
+					#end
+                </ul>
             </div>
-			<div class="modal-footer text-center">
-				<a class="btn btn-danger btn-lg" id="btn0" data-loading-text="正在处理..." href="javascript:cancel();">取消</a>
-				<a class="btn btn-default btn-lg" id="btn" data-loading-text="正在处理..." href="javascript:back();">上一步</a>
+			<div class="modal-footer">
+				<div class="text-center">
+					<a class="btn btn-danger" id="btn0" data-loading-text="正在处理..." href="javascript:cancel();">取消</a>
+					<a class="btn btn-default" id="btn" data-loading-text="正在处理..." href="javascript:back();">上一步</a>
+				</div>
 			</div>
         </div>
 		

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.papa2.client.api.cases.ICaseService;
+import com.papa2.client.api.cases.bo.Case;
 import com.papa2.client.api.space.ISpaceService;
 import com.papa2.client.api.space.bo.Space;
 import com.papa2.client.framework.bo.BooleanResult;
@@ -21,6 +23,8 @@ public class SpaceServiceImpl implements ISpaceService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(SpaceServiceImpl.class);
 
+	private ICaseService caseService;
+
 	private ISpaceDao spaceDao;
 
 	private BooleanResult validate(Space space) {
@@ -34,6 +38,11 @@ public class SpaceServiceImpl implements ISpaceService {
 
 		if (StringUtils.isBlank(space.getSpaceCode())) {
 			result.setCode("车位编号信息不能为空。");
+			return result;
+		}
+
+		if (space.getCaseId() == null) {
+			result.setCode("停车场信息不能为空。");
 			return result;
 		}
 
@@ -65,6 +74,26 @@ public class SpaceServiceImpl implements ISpaceService {
 			space.setSun("N");
 		}
 
+		if (StringUtils.isBlank(space.getCostType())) {
+			result.setCode("出租方式不能为空。");
+			return result;
+		}
+
+		if ("H".equals(space.getCostType())) {
+			Case cases = caseService.getCase(space.getCaseId());
+			if (cases == null) {
+				result.setCode("停车场信息不能为空。");
+				return result;
+			}
+
+			space.setCost(cases.getCostHour());
+		} else {
+			if (space.getCost() == null) {
+				result.setCode("出租费用信息不能为空。");
+				return result;
+			}
+		}
+
 		result.setResult(true);
 		return result;
 	}
@@ -82,9 +111,14 @@ public class SpaceServiceImpl implements ISpaceService {
 			result.setCode("车位出租人信息不能为空。");
 			return result;
 		}
-
 		space.setUserId(userId);
+
 		space.setType("P");
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("操作人信息不能为空。");
+			return result;
+		}
 		space.setModifyUser(modifyUser);
 
 		try {
@@ -93,7 +127,7 @@ public class SpaceServiceImpl implements ISpaceService {
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(space), e);
 
-			result.setCode("写入车位信息失败！");
+			result.setCode("写入车位信息表失败！");
 		}
 
 		return result;
@@ -115,6 +149,136 @@ public class SpaceServiceImpl implements ISpaceService {
 		}
 
 		return null;
+	}
+
+	@Override
+	public Space getSpace(Long userId, String spaceId) {
+		Space space = new Space();
+
+		if (userId == null) {
+			return null;
+		}
+		space.setUserId(userId);
+
+		if (StringUtils.isBlank(spaceId)) {
+			return null;
+		}
+
+		try {
+			space.setSpaceId(Long.valueOf(spaceId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+			return null;
+		}
+
+		try {
+			return spaceDao.getSpace(space);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(space), e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public BooleanResult updateSpace(Long userId, Space space, String modifyUser) {
+		BooleanResult result = validate(space);
+		if (!result.getResult()) {
+			return result;
+		}
+
+		result.setResult(false);
+
+		if (space.getSpaceId() == null) {
+			result.setCode("出租车位信息不能为空。");
+			return result;
+		}
+
+		if (userId == null) {
+			result.setCode("车位出租人信息不能为空。");
+			return result;
+		}
+		space.setUserId(userId);
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("操作人信息不能为空。");
+			return result;
+		}
+		space.setModifyUser(modifyUser);
+
+		try {
+			int c = spaceDao.updateSpace(space);
+			if (c == 1) {
+				result.setResult(true);
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(space), e);
+
+			result.setCode("更新车位信息表失败！");
+		}
+
+		return result;
+	}
+
+	@Override
+	public BooleanResult cancelSpace(Long userId, Space space, String modifyUser) {
+		return updateSpace(userId, space, "D", modifyUser);
+	}
+
+	@Override
+	public BooleanResult enableSpace(Long userId, Space space, String modifyUser) {
+		return updateSpace(userId, space, "U", modifyUser);
+	}
+
+	/**
+	 * 
+	 * @param userId
+	 * @param space
+	 * @param state
+	 * @param modifyUser
+	 * @return
+	 */
+	private BooleanResult updateSpace(Long userId, Space space, String state, String modifyUser) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		if (space == null || space.getSpaceId() == null) {
+			result.setCode("出租车位信息不能为空。");
+			return result;
+		}
+
+		if (userId == null) {
+			result.setCode("车位出租人信息不能为空。");
+			return result;
+		}
+
+		if (StringUtils.isEmpty(modifyUser)) {
+			result.setCode("操作人信息不能为空。");
+			return result;
+		}
+
+		try {
+			int c = spaceDao.updateSpace(userId, space.getSpaceId(), state, modifyUser);
+			if (c == 1) {
+				result.setResult(true);
+			} else {
+				result.setCode("更新车位信息失败！");
+			}
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(space), e);
+
+			result.setCode("更新车位信息表失败！");
+		}
+
+		return result;
+	}
+
+	public ICaseService getCaseService() {
+		return caseService;
+	}
+
+	public void setCaseService(ICaseService caseService) {
+		this.caseService = caseService;
 	}
 
 	public ISpaceDao getSpaceDao() {

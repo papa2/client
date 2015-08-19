@@ -25,4 +25,28 @@ public interface ISpaceDao {
 	 */
 	List<Space> getSpaceList(Space space);
 
+	/**
+	 * 
+	 * @param space
+	 * @return
+	 */
+	Space getSpace(Space space);
+
+	/**
+	 * 
+	 * @param space
+	 * @return
+	 */
+	int updateSpace(Space space);
+
+	/**
+	 * 
+	 * @param userId
+	 * @param spaceId
+	 * @param state
+	 * @param modifyUser
+	 * @return
+	 */
+	int updateSpace(Long userId, Long spaceId, String state, String modifyUser);
+
 }

@@ -55,12 +55,16 @@ public class Space implements Serializable {
 	/**
 	 * 出租周期开始日期.
 	 */
-	private String startDate;
+	private int startYear;
+
+	private int startMonth;
 
 	/**
 	 * 出租周期结束日期.
 	 */
-	private String endDate;
+	private int endYear;
+
+	private int endMonth;
 
 	/**
 	 * 出租方式.
@@ -69,7 +73,13 @@ public class Space implements Serializable {
 
 	private BigDecimal cost;
 
+	private String state;
+
 	private String modifyUser;
+
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private String caseName;
 
 	public Long getSpaceId() {
 		return spaceId;
@@ -183,20 +193,36 @@ public class Space implements Serializable {
 		this.endTime = endTime;
 	}
 
-	public String getStartDate() {
-		return startDate;
+	public int getStartYear() {
+		return startYear;
 	}
 
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+	public void setStartYear(int startYear) {
+		this.startYear = startYear;
 	}
 
-	public String getEndDate() {
-		return endDate;
+	public int getStartMonth() {
+		return startMonth;
 	}
 
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setStartMonth(int startMonth) {
+		this.startMonth = startMonth;
+	}
+
+	public int getEndYear() {
+		return endYear;
+	}
+
+	public void setEndYear(int endYear) {
+		this.endYear = endYear;
+	}
+
+	public int getEndMonth() {
+		return endMonth;
+	}
+
+	public void setEndMonth(int endMonth) {
+		this.endMonth = endMonth;
 	}
 
 	public String getCostType() {
@@ -215,12 +241,28 @@ public class Space implements Serializable {
 		this.cost = cost;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public String getModifyUser() {
 		return modifyUser;
 	}
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
+	}
+
+	public String getCaseName() {
+		return caseName;
+	}
+
+	public void setCaseName(String caseName) {
+		this.caseName = caseName;
 	}
 
 }

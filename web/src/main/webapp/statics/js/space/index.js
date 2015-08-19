@@ -8,6 +8,11 @@ function createSpace() {
 	top.location.href = appUrl + "/space/createPrepare.htm";
 }
 
+function detail(spaceId) {
+	$('#btn').button('loading');
+	top.location.href = appUrl + "/space/detail.htm?spaceId=" + spaceId;
+}
+
 function loading() {
 	new Spinner({
 				top : '500%'

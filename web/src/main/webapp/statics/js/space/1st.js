@@ -8,7 +8,17 @@ $(document).ready(function() {
 			$.fn.cityTools(e);
 		});
 
+function cancel() {
+	loading();
+
+	$('#btn0').button('loading');
+
+	top.location.href = appUrl + "/space/index.htm";
+}
+
 function back() {
+	$("#bc").val($("#backCode").val());
+
 	loading();
 
 	$('#btn1').button('loading');

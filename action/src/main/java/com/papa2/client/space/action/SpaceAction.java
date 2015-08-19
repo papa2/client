@@ -8,6 +8,7 @@ import com.papa2.client.api.space.ISpaceService;
 import com.papa2.client.api.space.bo.Space;
 import com.papa2.client.framework.action.BaseAction;
 import com.papa2.client.framework.bo.BooleanResult;
+import com.papa2.client.framework.util.DateUtil;
 
 /**
  * 出租车位.
@@ -41,9 +42,21 @@ public class SpaceAction extends BaseAction {
 	private Case cases;
 
 	/**
+	 * 当前年.
+	 */
+	private int year;
+
+	/**
+	 * 当前月.
+	 */
+	private int month;
+
+	/**
 	 * 查询我的出租车位.
 	 */
 	private List<Space> spaceList;
+
+	private String spaceId;
 
 	/**
 	 * 首页.
@@ -62,6 +75,11 @@ public class SpaceAction extends BaseAction {
 	 * @return
 	 */
 	public String createPrepare() {
+		if (space == null) {
+			space = new Space();
+			space.setCostType("H");
+		}
+
 		return CREATE_PREPARE;
 	}
 
@@ -99,6 +117,9 @@ public class SpaceAction extends BaseAction {
 			cases = caseService.getCase(space.getCaseId());
 		}
 
+		year = DateUtil.getYear();
+		month = DateUtil.getMonth();
+
 		return SUCCESS;
 	}
 
@@ -108,7 +129,55 @@ public class SpaceAction extends BaseAction {
 		BooleanResult result = spaceService.createSpace(userId, space, userId.toString());
 
 		if (result.getResult()) {
-			this.setSuccessMessage("车位信息添加成功！");
+			this.setSuccessMessage("出租车位信息添加成功！");
+		} else {
+			this.setFailMessage(result.getCode());
+		}
+
+		return RESULT_MESSAGE;
+	}
+
+	public String detail() {
+		space = spaceService.getSpace(this.getUser().getUserId(), spaceId);
+
+		return SUCCESS;
+	}
+
+	public String update() {
+		Long userId = this.getUser().getUserId();
+
+		BooleanResult result = spaceService.updateSpace(userId, space, userId.toString());
+
+		if (result.getResult()) {
+			this.setSuccessMessage("出租信息修改成功！");
+		} else {
+			this.setFailMessage(result.getCode());
+		}
+
+		return RESULT_MESSAGE;
+	}
+
+	public String cancel() {
+		Long userId = this.getUser().getUserId();
+
+		BooleanResult result = spaceService.cancelSpace(userId, space, userId.toString());
+
+		if (result.getResult()) {
+			this.setSuccessMessage("出租信息取消成功！");
+		} else {
+			this.setFailMessage(result.getCode());
+		}
+
+		return RESULT_MESSAGE;
+	}
+
+	public String enable() {
+		Long userId = this.getUser().getUserId();
+
+		BooleanResult result = spaceService.enableSpace(userId, space, userId.toString());
+
+		if (result.getResult()) {
+			this.setSuccessMessage("出租信息启用成功！");
 		} else {
 			this.setFailMessage(result.getCode());
 		}
@@ -164,12 +233,36 @@ public class SpaceAction extends BaseAction {
 		this.cases = cases;
 	}
 
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
 	public List<Space> getSpaceList() {
 		return spaceList;
 	}
 
 	public void setSpaceList(List<Space> spaceList) {
 		this.spaceList = spaceList;
+	}
+
+	public String getSpaceId() {
+		return spaceId;
+	}
+
+	public void setSpaceId(String spaceId) {
+		this.spaceId = spaceId;
 	}
 
 }

@@ -1,7 +1,11 @@
 $(document).ready(function() {
-			$("#startYear").val(year);
-			$("#startMonth").val(month);
-			$("#endYear").val(year);
+			$("#startTime").val(startTime);
+			$("#endTime").val(endTime);
+
+			$("#startYear").val(startYear);
+			$("#startMonth").val(startMonth);
+			$("#endYear").val(endYear);
+			$("#endMonth").val(endMonth);
 
 			$("input[name='inlineRadioOptions']").change(function() {
 						var s = $("input[name='inlineRadioOptions']:checked")
@@ -33,11 +37,39 @@ function toggleCheckbox() {
 }
 
 function cancel() {
-	loading();
-
 	$('#btn0').button('loading');
 
-	top.location.href = appUrl + "/space/index.htm";
+	var form = window.document.forms[0];
+	form.action = appUrl + "/space/cancel.htm";
+	form.target = "hideFrame";
+	form.submit();
+}
+
+function enable() {
+	$('#btn0').button('loading');
+
+	var form = window.document.forms[0];
+	form.action = appUrl + "/space/enable.htm";
+	form.target = "hideFrame";
+	form.submit();
+}
+
+function update() {
+	$('#btn1').button('loading');
+
+	var form = window.document.forms[0];
+	form.action = appUrl + "/space/update.htm";
+	form.target = "hideFrame";
+	form.submit();
+}
+
+function profit() {
+	$('#btn2').button('loading');
+
+	var form = window.document.forms[0];
+	form.action = appUrl + "/space/profit.htm";
+	form.target = "hideFrame";
+	form.submit();
 }
 
 function back() {
@@ -45,25 +77,7 @@ function back() {
 
 	$('#btn1').button('loading');
 
-	var form = window.document.forms[0];
-	form.action = appUrl + "/space/2nd.htm";
-	form.target = "_top";
-	form.submit();
-}
-
-function done() {
-	if ($('#spaceCode').val() == "") {
-		error("出租车位编号信息不能为空。");
-		return;
-	}
-
-	$('#btn1').hide();
-	$('#btn2').button('loading');
-
-	var form = window.document.forms[0];
-	form.action = appUrl + "/space/create.htm";
-	form.target = "hideFrame";
-	form.submit();
+	top.location.href = appUrl + "/space/index.htm";
 }
 
 function promgtMsg() {
@@ -72,7 +86,6 @@ function promgtMsg() {
 	var successResult = hideFrame.contentWindow.successResult;
 	if (failResult != undefined && failResult != "") {
 		error(failResult);
-		$('#btn1').show();
 	} else if (successResult != undefined) {
 		success(successResult);
 
@@ -81,6 +94,8 @@ function promgtMsg() {
 				}, 3000);
 	}
 
+	$('#btn0').button('reset');
+	$('#btn1').button('reset');
 	$('#btn2').button('reset');
 }
 

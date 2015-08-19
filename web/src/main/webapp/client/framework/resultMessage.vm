@@ -1,6 +1,6 @@
 <!-- successMessage -->
 <div class="form-group" style="margin-top: -20px; margin-bottom: 0; display:none" id="successMsgDiv">
-	<div class="alert alert-success" role="alert">
+	<div class="alert alert-success" style="padding: 8px; margin-bottom: 0;" role="alert">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		<span id="successMessage" />
 	</div>
@@ -8,7 +8,7 @@
 <!-- successMessage -->
 <!-- failMessage -->
 <div class="form-group" style="margin-top: -20px; margin-bottom: 0; display:none" id="failMsgDiv">
-	<div class="alert alert-danger" role="alert">
+	<div class="alert alert-danger" style="padding: 8px; margin-bottom: 0;" role="alert">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 		<span id="failMessage" />
 	</div>
