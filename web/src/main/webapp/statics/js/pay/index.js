@@ -1,4 +1,4 @@
-function goBack() {
+function back() {
 	loading();
 	top.location.href = appUrl + "/car/index.htm";
 }

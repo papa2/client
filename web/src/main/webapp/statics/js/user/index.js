@@ -2,7 +2,7 @@ $(document).ready(function() {
 			$('#hideFrame').bind('load', promgtMsg);
 		});
 
-function goBack() {
+function back() {
 	loading();
 	top.location.href = appUrl + "/settings/index.htm";
 }

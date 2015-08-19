@@ -28,7 +28,7 @@ function init() {
 
 window.onload = loadJScript; // 异步加载地图
 
-function goBack() {
+function back() {
 	loading();
 	top.location.href = appUrl + "/home.htm";
 }

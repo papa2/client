@@ -28,7 +28,7 @@ function toggleCheckbox() {
 	$("#inlineRadio3").prop("checked", true);
 }
 
-function goBack() {
+function back() {
 	loading();
 
 	$('#btn1').button('loading');

@@ -1,4 +1,4 @@
-function goBack() {
+function back() {
 	loading();
 
 	$('#btn').button('loading');

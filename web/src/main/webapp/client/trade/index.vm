@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
-			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:goBack();"></a>
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
 			<div class="navbar-brand pull-right">我的账单</div>
         </nav>
 		

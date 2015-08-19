@@ -8,7 +8,7 @@ $(document).ready(function() {
 			$.fn.cityTools(e);
 		});
 
-function goBack() {
+function back() {
 	loading();
 
 	$('#btn1').button('loading');
