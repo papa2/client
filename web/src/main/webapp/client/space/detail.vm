@@ -24,7 +24,7 @@
 				<form class="" role="form" method="post">
 					<input type="hidden" name="space.spaceId" value="$!{space.spaceId}"></input>
 					<input type="hidden" name="space.costType" value="$!{space.costType}"></input>
-					<input type="hidden" name="space.caseId" value="$!{space.caseId}"></input>
+					<input type="hidden" name="space.parkId" value="$!{space.parkId}"></input>
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">出租方式：</label>
 						#if($!{space.costType} == 'H')
@@ -35,7 +35,7 @@
                     </div>
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">出租小区：</label>
-							$!{space.caseName}
+							$!{space.parkName}
                     </div>
 					<div class="has-success" style="margin-bottom: 5px;">
 						<label class="control-label">出租车位：</label>

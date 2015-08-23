@@ -6,14 +6,14 @@
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<!-- 社区 公共停车场 -->
-	<bean id="caseAction" class="com.papa2.client.cases.action.CaseAction" parent="baseAction" scope="request">
-		<property name="caseService" ref="caseService" />
+	<bean id="parkAction" class="com.papa2.client.park.action.ParkAction" parent="baseAction" scope="request">
+		<property name="parkService" ref="parkService" />
 	</bean>
 	
-	<bean id="caseService" class="com.papa2.client.cases.service.impl.CaseServiceImpl">
-		<property name="caseDao" ref="caseDao" />
+	<bean id="parkService" class="com.papa2.client.park.service.impl.ParkServiceImpl">
+		<property name="parkDao" ref="parkDao" />
 	</bean>
 	
-	<bean id="caseDao" class="com.papa2.client.cases.dao.impl.CaseDaoImpl" parent="baseDao" />
+	<bean id="parkDao" class="com.papa2.client.park.dao.impl.ParkDaoImpl" parent="baseDao" />
 
 </beans>

@@ -9,10 +9,10 @@
 	<insert id="createSpace" parameterClass="space">
 	<![CDATA[
 		INSERT
-		INTO boss_tb_case_park_space
+		INTO boss_tb_park_space
 		  (
 			SPACE_CODE,
-			CASE_ID,
+			PARK_ID,
 			TYPE,
 			USER_ID,
 			MON,
@@ -39,7 +39,7 @@
 		  VALUES
 		  (
 			#spaceCode#,
-			#caseId#,
+			#parkId#,
 			#type#,
 			#userId#,
 			#mon#,
@@ -76,10 +76,10 @@
 		SELECT t.space_id AS spaceId,
 			   t.space_code AS spaceCode,
 			   t.state,
-			   p.case_name AS caseName
-		  FROM boss_tb_case_park_space t,
-			   boss_tb_case p
-		 WHERE t.case_id = p.case_id
+			   p.park_name AS parkName
+		  FROM boss_tb_park_space t,
+			   boss_tb_park p
+		 WHERE t.park_id = p.park_id
 		   AND t.user_id = #userId#
 		 ORDER BY t.modify_date DESC
 	]]>
@@ -105,11 +105,11 @@
 			   t.cost_type AS costType,
 			   t.cost,
 			   t.state,
-			   t.case_id AS caseId,
-			   p.case_name AS caseName
-		  FROM boss_tb_case_park_space t,
-			   boss_tb_case p
-		 WHERE t.case_id = p.case_id
+			   t.park_id AS parkId,
+			   p.park_name AS parkName
+		  FROM boss_tb_park_space t,
+			   boss_tb_park p
+		 WHERE t.park_id = p.park_id
 		   AND t.user_id = #userId#
 		   AND t.space_id = #spaceId#
 	]]>
@@ -117,7 +117,7 @@
 	
 	<update id="updateSpace1" parameterClass="space">
 	<![CDATA[
-		UPDATE boss_tb_case_park_space t
+		UPDATE boss_tb_park_space t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #modifyUser#,
 			   t.space_code = #spaceCode#,
@@ -142,7 +142,7 @@
 	
 	<update id="updateSpace2" parameterClass="java.util.Map">
 	<![CDATA[
-		UPDATE boss_tb_case_park_space t
+		UPDATE boss_tb_park_space t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #modifyUser#,
 			   t.state = #state#

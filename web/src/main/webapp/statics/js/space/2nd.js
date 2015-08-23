@@ -16,8 +16,8 @@ function back() {
 	form.submit();
 }
 
-function next(caseId) {
-	$('#caseId').val(caseId);
+function next(parkId) {
+	$('#parkId').val(parkId);
 
 	loading();
 

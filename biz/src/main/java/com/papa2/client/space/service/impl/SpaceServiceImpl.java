@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.papa2.client.api.cases.ICaseService;
-import com.papa2.client.api.cases.bo.Case;
+import com.papa2.client.api.park.IParkService;
+import com.papa2.client.api.park.bo.Park;
 import com.papa2.client.api.space.ISpaceService;
 import com.papa2.client.api.space.bo.Space;
 import com.papa2.client.framework.bo.BooleanResult;
@@ -23,7 +23,7 @@ public class SpaceServiceImpl implements ISpaceService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(SpaceServiceImpl.class);
 
-	private ICaseService caseService;
+	private IParkService parkService;
 
 	private ISpaceDao spaceDao;
 
@@ -41,7 +41,7 @@ public class SpaceServiceImpl implements ISpaceService {
 			return result;
 		}
 
-		if (space.getCaseId() == null) {
+		if (space.getParkId() == null) {
 			result.setCode("停车场信息不能为空。");
 			return result;
 		}
@@ -80,13 +80,13 @@ public class SpaceServiceImpl implements ISpaceService {
 		}
 
 		if ("H".equals(space.getCostType())) {
-			Case cases = caseService.getCase(space.getCaseId());
-			if (cases == null) {
+			Park park = parkService.getPark(space.getParkId());
+			if (park == null) {
 				result.setCode("停车场信息不能为空。");
 				return result;
 			}
 
-			space.setCost(cases.getCostHour());
+			space.setCost(park.getCostHour());
 		} else {
 			if (space.getCost() == null) {
 				result.setCode("出租费用信息不能为空。");
@@ -273,12 +273,12 @@ public class SpaceServiceImpl implements ISpaceService {
 		return result;
 	}
 
-	public ICaseService getCaseService() {
-		return caseService;
+	public IParkService getParkService() {
+		return parkService;
 	}
 
-	public void setCaseService(ICaseService caseService) {
-		this.caseService = caseService;
+	public void setParkService(IParkService parkService) {
+		this.parkService = parkService;
 	}
 
 	public ISpaceDao getSpaceDao() {

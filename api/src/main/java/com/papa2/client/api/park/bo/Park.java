@@ -1,4 +1,4 @@
-package com.papa2.client.api.cases.bo;
+package com.papa2.client.api.park.bo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -9,13 +9,13 @@ import java.math.BigDecimal;
  * @author xujiakun
  * 
  */
-public class Case implements Serializable {
+public class Park implements Serializable {
 
 	private static final long serialVersionUID = 2932879228480807674L;
 
-	private Long caseId;
+	private Long parkId;
 
-	private String caseName;
+	private String parkName;
 
 	/**
 	 * 省.
@@ -56,20 +56,20 @@ public class Case implements Serializable {
 	 */
 	private String type;
 
-	public Long getCaseId() {
-		return caseId;
+	public Long getParkId() {
+		return parkId;
 	}
 
-	public void setCaseId(Long caseId) {
-		this.caseId = caseId;
+	public void setParkId(Long parkId) {
+		this.parkId = parkId;
 	}
 
-	public String getCaseName() {
-		return caseName;
+	public String getParkName() {
+		return parkName;
 	}
 
-	public void setCaseName(String caseName) {
-		this.caseName = caseName;
+	public void setParkName(String parkName) {
+		this.parkName = parkName;
 	}
 
 	public String getProvince() {

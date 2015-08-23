@@ -29,14 +29,14 @@
 				<form role="form" method="post">
 					<input type="hidden" name="space.costType" value="$!{space.costType}"></input>
 					<input type="hidden" id="bc" name="backCode" value="$!{backCode}"></input>
-					<input type="hidden" id="caseId" name="space.caseId"></input>
+					<input type="hidden" id="parkId" name="space.parkId"></input>
                 </form>
 				<ul class="list-group" style="margin-top: -16px; margin-bottom: -16px;">
-					#if($caseList && $caseList != [])
-						#foreach($case in $caseList)
-            			<a class="list-group-item" style="margin-left: -16px; margin-right: -16px;" href="javascript:next('$!{case.caseId}')">
+					#if($parkList && $parkList != [])
+						#foreach($park in $parkList)
+            			<a class="list-group-item" style="margin-left: -16px; margin-right: -16px;" href="javascript:next('$!{park.parkId}')">
 							<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
-							<span class="fa fa-building-o"></span> $!{case.caseName} @ $!{case.address}
+							<span class="fa fa-building-o"></span> $!{park.parkName} @ $!{park.address}
             			</a>
 						#end
 					#else
@@ -60,6 +60,6 @@
 		#JS_ENV_VAL()
 		<script type="text/javascript">
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/space/2nd.js?t=20150818"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/space/2nd.js?t=20150823"></script>
     </body>
 </html>

@@ -31,7 +31,7 @@
                         </div>
 					</div>
 					<div class="form-group" style="margin-top: 30px;">
-						<a class="btn btn-success btn-lg btn-block" id="btn" data-loading-text="正在提交..." href="javascript:save();">确认修改</a>
+						<a class="btn btn-success btn-block" id="btn" data-loading-text="正在提交..." href="javascript:save();">确认修改</a>
                     </div>
       			</form>
             </div>

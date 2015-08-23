@@ -16,7 +16,7 @@ public class Space implements Serializable {
 
 	private String spaceCode;
 
-	private Long caseId;
+	private Long parkId;
 
 	/**
 	 * 车位归属:物业;用户.
@@ -79,7 +79,7 @@ public class Space implements Serializable {
 
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
-	private String caseName;
+	private String parkName;
 
 	public Long getSpaceId() {
 		return spaceId;
@@ -97,12 +97,12 @@ public class Space implements Serializable {
 		this.spaceCode = spaceCode;
 	}
 
-	public Long getCaseId() {
-		return caseId;
+	public Long getParkId() {
+		return parkId;
 	}
 
-	public void setCaseId(Long caseId) {
-		this.caseId = caseId;
+	public void setParkId(Long parkId) {
+		this.parkId = parkId;
 	}
 
 	public String getType() {
@@ -257,12 +257,12 @@ public class Space implements Serializable {
 		this.modifyUser = modifyUser;
 	}
 
-	public String getCaseName() {
-		return caseName;
+	public String getParkName() {
+		return parkName;
 	}
 
-	public void setCaseName(String caseName) {
-		this.caseName = caseName;
+	public void setParkName(String parkName) {
+		this.parkName = parkName;
 	}
 
 }

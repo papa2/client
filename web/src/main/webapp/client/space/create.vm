@@ -23,7 +23,7 @@
 			<div class="modal-body">
 				<form class="" role="form" method="post">
 					<input type="hidden" name="backCode" value="$!{backCode}"></input>
-					<input type="hidden" name="space.caseId" value="$!{space.caseId}"></input>
+					<input type="hidden" name="space.parkId" value="$!{space.parkId}"></input>
     				<div class="radio">
     					<label>
 							#if($!{space.costType} == 'H')

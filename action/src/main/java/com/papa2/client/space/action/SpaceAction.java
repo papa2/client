@@ -2,8 +2,8 @@ package com.papa2.client.space.action;
 
 import java.util.List;
 
-import com.papa2.client.api.cases.ICaseService;
-import com.papa2.client.api.cases.bo.Case;
+import com.papa2.client.api.park.IParkService;
+import com.papa2.client.api.park.bo.Park;
 import com.papa2.client.api.space.ISpaceService;
 import com.papa2.client.api.space.bo.Space;
 import com.papa2.client.framework.action.BaseAction;
@@ -20,11 +20,11 @@ public class SpaceAction extends BaseAction {
 
 	private static final long serialVersionUID = 438411530615208990L;
 
-	private ICaseService caseService;
+	private IParkService parkService;
 
 	private ISpaceService spaceService;
 
-	private List<Case> caseList;
+	private List<Park> parkList;
 
 	/**
 	 * 出租车位.
@@ -39,7 +39,7 @@ public class SpaceAction extends BaseAction {
 	/**
 	 * 所属小区.
 	 */
-	private Case cases;
+	private Park park;
 
 	/**
 	 * 当前年.
@@ -99,9 +99,9 @@ public class SpaceAction extends BaseAction {
 	 */
 	public String second() {
 		if (space != null && "M".equals(space.getCostType())) {
-			caseList = caseService.getCaseList(backCode, "Y");
+			parkList = parkService.getParkList(backCode, "Y");
 		} else {
-			caseList = caseService.getCaseList(backCode);
+			parkList = parkService.getParkList(backCode);
 		}
 
 		return SUCCESS;
@@ -114,7 +114,7 @@ public class SpaceAction extends BaseAction {
 	 */
 	public String third() {
 		if (space != null) {
-			cases = caseService.getCase(space.getCaseId());
+			park = parkService.getPark(space.getParkId());
 		}
 
 		year = DateUtil.getYear();
@@ -185,12 +185,12 @@ public class SpaceAction extends BaseAction {
 		return RESULT_MESSAGE;
 	}
 
-	public ICaseService getCaseService() {
-		return caseService;
+	public IParkService getParkService() {
+		return parkService;
 	}
 
-	public void setCaseService(ICaseService caseService) {
-		this.caseService = caseService;
+	public void setParkService(IParkService parkService) {
+		this.parkService = parkService;
 	}
 
 	public ISpaceService getSpaceService() {
@@ -201,12 +201,12 @@ public class SpaceAction extends BaseAction {
 		this.spaceService = spaceService;
 	}
 
-	public List<Case> getCaseList() {
-		return caseList;
+	public List<Park> getParkList() {
+		return parkList;
 	}
 
-	public void setCaseList(List<Case> caseList) {
-		this.caseList = caseList;
+	public void setParkList(List<Park> parkList) {
+		this.parkList = parkList;
 	}
 
 	public Space getSpace() {
@@ -225,12 +225,12 @@ public class SpaceAction extends BaseAction {
 		this.backCode = backCode;
 	}
 
-	public Case getCases() {
-		return cases;
+	public Park getPark() {
+		return park;
 	}
 
-	public void setCases(Case cases) {
-		this.cases = cases;
+	public void setPark(Park park) {
+		this.park = park;
 	}
 
 	public int getYear() {

@@ -2,11 +2,11 @@
  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
  "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<package name="{http://client}client$case"
-		extends="{http://client}client$framework" namespace="/case">
+	<package name="{http://client}client$park"
+		extends="{http://client}client$framework" namespace="/park">
 
 		<!-- 社区 公共停车场首页 -->
-		<action name="caseAction" class="caseAction">
+		<action name="parkAction" class="parkAction">
 			<interceptor-ref name="clientAuthStack" />
 		</action>
 		

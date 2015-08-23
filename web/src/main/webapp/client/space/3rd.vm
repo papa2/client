@@ -25,7 +25,7 @@
 				<form class="" role="form" method="post">
 					<input type="hidden" name="space.costType" value="$!{space.costType}"></input>
 					<input type="hidden" name="backCode" value="$!{backCode}"></input>
-					<input type="hidden" name="space.caseId" value="$!{space.caseId}"></input>
+					<input type="hidden" name="space.parkId" value="$!{space.parkId}"></input>
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">出租方式：</label>
 						#if($!{space.costType} == 'H')
@@ -36,7 +36,7 @@
                     </div>
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">出租小区：</label>
-							$!{cases.caseName}
+							$!{park.parkName}
                     </div>
 					<div class="has-success" style="margin-bottom: 5px;">
 						<label class="control-label">出租车位：</label>
@@ -130,7 +130,7 @@
 						<label class="control-label">出租计费：</label>
     					<div class="has-success" style="margin-left: 10px;">
     						每小时
-							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" value="$!{cases.costHour}" disabled />
+							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" value="$!{park.costHour}" disabled />
 							元
                         </div>
 						<p class="help-block">按时出租，计费根据物业统一制定，暂不支持自定义。</p>
@@ -189,7 +189,7 @@
 						<label class="control-label">出租计费：</label>
     					<div class="has-success" style="margin-left: 10px;">
     						每月
-							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" id="cost" name="space.cost" value="$!{cases.mthCost}" value="5.00" />
+							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" id="cost" name="space.cost" value="$!{park.mthCost}" value="5.00" />
 							元
                         </div>
 						<p class="help-block">包月出租，物业建议计费金额，支持自定义。</p>

@@ -1,15 +1,15 @@
-package com.papa2.client.api.cases;
+package com.papa2.client.api.park;
 
 import java.util.List;
 
-import com.papa2.client.api.cases.bo.Case;
+import com.papa2.client.api.park.bo.Park;
 
 /**
  * 
  * @author xujiakun
  * 
  */
-public interface ICaseService {
+public interface IParkService {
 
 	/**
 	 * 根据省市区查询 社区 公共停车场.
@@ -17,7 +17,7 @@ public interface ICaseService {
 	 * @param backCode
 	 * @return
 	 */
-	List<Case> getCaseList(String backCode);
+	List<Park> getParkList(String backCode);
 
 	/**
 	 * 根据省市区查询 社区 公共停车场.
@@ -27,13 +27,13 @@ public interface ICaseService {
 	 *            是否开放车位.
 	 * @return
 	 */
-	List<Case> getCaseList(String backCode, String type);
+	List<Park> getParkList(String backCode, String type);
 
 	/**
 	 * 
-	 * @param caseId
+	 * @param parkId
 	 * @return
 	 */
-	Case getCase(Long caseId);
+	Park getPark(Long parkId);
 
 }
