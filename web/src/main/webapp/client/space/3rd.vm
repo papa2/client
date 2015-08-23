@@ -189,7 +189,7 @@
 						<label class="control-label">出租计费：</label>
     					<div class="has-success" style="margin-left: 10px;">
     						每月
-							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" id="cost" name="space.cost" value="$!{park.mthCost}" value="5.00" />
+							<input type="text" class="form-control" style="display: inline; width: 60px; height: 25px; margin: 0 5px 0 5px;" id="cost" name="space.cost" value="$!{park.costMonth}" />
 							元
                         </div>
 						<p class="help-block">包月出租，物业建议计费金额，支持自定义。</p>
