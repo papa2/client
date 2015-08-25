@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title></title>
+		#ICON()
+        #CSSM(["font-awesome", "bootstrap"])
+		<style>
+		body { padding-top: 70px; padding-bottom: 70px; background-color: #f5f5f5; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
+			<div class="navbar-brand pull-right"></div>
+        </nav>
+		
+		<ul class="list-group">
+			#foreach($space in $spaceList)
+    			<a href="javascript:detail('$!{space.spaceId}');" class="list-group-item">
+    				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
+                    <i class="fa fa-ticket" style="margin-right: 5px;"></i>
+					<strong>$!{space.parkName}</strong> ： 
+					#if($!{space.costType} == 'M') 包月出租 #else 按时出租 #end
+					<i class="fa fa-cny"></i> $!{space.cost}
+    			</a>
+			#end
+        </ul>
+		
+		#parse("/client/framework/footer.vm")
+		
+		#JSM(["jquery", "bootstrap", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript">
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/list.js"></script>
+    </body>
+</html>

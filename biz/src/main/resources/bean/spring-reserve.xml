@@ -7,6 +7,13 @@
 	
 	<!-- 预约 -->
 	<bean id="reserveAction" class="com.papa2.client.reserve.action.ReserveAction" parent="baseAction" scope="request">
+		<property name="reserveService" ref="reserveService" />
+		<property name="parkService" ref="parkService" />
+		<property name="spaceService" ref="spaceService" />
+	</bean>
+	
+	<bean id="reserveService" class="com.papa2.client.reserve.service.impl.ReserveServiceImpl">
+		<property name="spaceService" ref="spaceService" />
 	</bean>
 
 </beans>

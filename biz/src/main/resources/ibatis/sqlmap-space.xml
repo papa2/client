@@ -76,11 +76,25 @@
 		SELECT t.space_id AS spaceId,
 			   t.space_code AS spaceCode,
 			   t.state,
+			   t.cost_type AS costType,
+			   t.cost,
 			   p.park_name AS parkName
 		  FROM boss_tb_park_space t,
 			   boss_tb_park p
 		 WHERE t.park_id = p.park_id
-		   AND t.user_id = #userId#
+	]]>
+		<dynamic>
+			<isNotEmpty property="userId" prepend="and">
+			<![CDATA[ t.user_id = #userId# ]]>
+			</isNotEmpty>
+			<isNotEmpty property="parkId" prepend="and">
+			<![CDATA[ t.park_id = #parkId# ]]>
+			</isNotEmpty>
+			<isNotEmpty property="state" prepend="and">
+			<![CDATA[ t.state = #state# ]]>
+			</isNotEmpty>
+		</dynamic>
+	<![CDATA[
 		 ORDER BY t.modify_date DESC
 	]]>
 	</select>
@@ -110,9 +124,13 @@
 		  FROM boss_tb_park_space t,
 			   boss_tb_park p
 		 WHERE t.park_id = p.park_id
-		   AND t.user_id = #userId#
 		   AND t.space_id = #spaceId#
 	]]>
+		<dynamic>
+			<isNotEmpty property="userId" prepend="and">
+			<![CDATA[ t.user_id = #userId# ]]>
+			</isNotEmpty>
+		</dynamic>
 	</select>
 	
 	<update id="updateSpace1" parameterClass="space">

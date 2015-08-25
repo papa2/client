@@ -12,6 +12,8 @@ import com.papa2.client.framework.bo.BooleanResult;
  */
 public interface ISpaceService {
 
+	// >>>>>>>>>>以下是出租<<<<<<<<<<
+
 	/**
 	 * 
 	 * @param userId
@@ -63,5 +65,21 @@ public interface ISpaceService {
 	 * @return
 	 */
 	BooleanResult enableSpace(Long userId, Space space, String modifyUser);
+
+	// >>>>>>>>>>以下是要租<<<<<<<<<<
+
+	/**
+	 * 
+	 * @param parkId
+	 * @return
+	 */
+	List<Space> getSpaceList(String parkId);
+
+	/**
+	 * 
+	 * @param spaceId
+	 * @return
+	 */
+	Space getSpace(String spaceId);
 
 }

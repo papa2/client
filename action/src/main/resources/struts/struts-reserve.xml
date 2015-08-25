@@ -11,5 +11,16 @@
 			<result name="success">/client/reserve/index.vm</result>
 		</action>
 		
+		<!-- 可供出租车位 -->
+		<action name="list" class="reserveAction" method="list">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/reserve/list.vm</result>
+		</action>
+		
+		<action name="detail" class="reserveAction" method="detail">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/reserve/list.vm</result>
+		</action>
+		
 	</package>
 </struts>

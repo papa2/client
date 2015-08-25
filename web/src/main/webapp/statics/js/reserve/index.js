@@ -1,3 +1,13 @@
+$(document).ready(function() {
+			var e = {
+				provinceId : "province",
+				cityId : "city",
+				countyId : "area",
+				dfCode : backCode
+			};
+			$.fn.cityTools(e);
+		});
+
 // 百度地图API功能
 function loadJScript() {
 	var script = document.createElement("script");
@@ -26,11 +36,24 @@ function init() {
 			})
 }
 
-window.onload = loadJScript; // 异步加载地图
+// window.onload = loadJScript; // 异步加载地图
 
 function back() {
 	loading();
 	top.location.href = appUrl + "/home.htm";
+}
+
+function search() {
+	loading();
+
+	top.location.href = appUrl + "/reserve/index.htm?backCode="
+			+ $("#backCode").val();
+}
+
+function list(parkId) {
+	loading();
+
+	top.location.href = appUrl + "/reserve/list.htm?parkId=" + parkId;
 }
 
 function loading() {

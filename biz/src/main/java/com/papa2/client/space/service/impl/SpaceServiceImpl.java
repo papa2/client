@@ -273,6 +273,57 @@ public class SpaceServiceImpl implements ISpaceService {
 		return result;
 	}
 
+	@Override
+	public List<Space> getSpaceList(String parkId) {
+		if (StringUtils.isBlank(parkId)) {
+			return null;
+		}
+
+		Space space = new Space();
+
+		try {
+			space.setParkId(Long.valueOf(parkId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+			return null;
+		}
+
+		// 正在出租的车位
+		space.setState("U");
+
+		try {
+			return spaceDao.getSpaceList(space);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(space), e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public Space getSpace(String spaceId) {
+		Space space = new Space();
+
+		if (StringUtils.isBlank(spaceId)) {
+			return null;
+		}
+
+		try {
+			space.setSpaceId(Long.valueOf(spaceId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+			return null;
+		}
+
+		try {
+			return spaceDao.getSpace(space);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(space), e);
+		}
+
+		return null;
+	}
+
 	public IParkService getParkService() {
 		return parkService;
 	}
