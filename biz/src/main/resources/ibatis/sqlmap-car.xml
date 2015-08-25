@@ -8,7 +8,7 @@
 	
 	<select id="getCarList" parameterClass="car" resultClass="car">
 	<![CDATA[
-		SELECT t.id,
+		SELECT t.car_id AS carId,
 			   t.car_no AS carNo
 		  FROM client_tb_user_car t
 		 WHERE t.state = 'U'
@@ -41,7 +41,7 @@
 			#modifyUser:VARCHAR#
 		  )
 	]]>
-		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<selectKey resultClass="java.lang.Long" keyProperty="carId">
 		<![CDATA[
 			SELECT LAST_INSERT_ID()
 		]]>

@@ -33,9 +33,9 @@
     		</div>
 			#elseif($!{user.type} == "CLIENT")
 			<div class="col-xs-4">
-    			<div class="thumbnail tile tile-medium tile-blue">
+    			<div class="thumbnail tile tile-medium tile-blue" id="reserveCount">
 					<a class="fa-links" href="javascript:reserve();">
-                        <p>预约停车</p>
+                        <p>我的预约</p>
 						<i class="fa fa-3x fa-bullhorn"></i>
             		</a>
     			</div>
@@ -95,6 +95,6 @@
 		
 		#JSM(["jquery", "iosbadge", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150814"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150826"></script>
     </body>
 </html>

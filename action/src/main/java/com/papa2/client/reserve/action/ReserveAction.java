@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.papa2.client.api.car.ICarService;
+import com.papa2.client.api.car.bo.Car;
 import com.papa2.client.api.park.IParkService;
 import com.papa2.client.api.park.bo.Park;
 import com.papa2.client.api.reserve.IReserveService;
@@ -11,6 +13,8 @@ import com.papa2.client.api.reserve.bo.Reserve;
 import com.papa2.client.api.space.ISpaceService;
 import com.papa2.client.api.space.bo.Space;
 import com.papa2.client.framework.action.BaseAction;
+import com.papa2.client.framework.bo.BooleanResult;
+import com.papa2.client.framework.struts.annotations.JsonResult;
 
 /**
  * 预约.
@@ -28,6 +32,12 @@ public class ReserveAction extends BaseAction {
 
 	private ISpaceService spaceService;
 
+	private ICarService carService;
+
+	private int count;
+
+	private List<Reserve> reserveList;
+
 	private List<Park> parkList;
 
 	private String backCode;
@@ -40,12 +50,27 @@ public class ReserveAction extends BaseAction {
 
 	private String spaceId;
 
+	private List<Car> carList;
+
+	@JsonResult(field = "count")
+	public String getReserveCount() {
+		count = reserveService.getReserveCount(this.getUser().getUserId());
+
+		return JSON_RESULT;
+	}
+
 	/**
 	 * 首页.
 	 * 
 	 * @return
 	 */
 	public String index() {
+		reserveList = reserveService.getReserveList(this.getUser().getUserId());
+
+		return SUCCESS;
+	}
+
+	public String first() {
 		if (StringUtils.isNotBlank(backCode)) {
 			parkList = parkService.getParkList(backCode, "Y");
 		}
@@ -58,16 +83,33 @@ public class ReserveAction extends BaseAction {
 	 * 
 	 * @return
 	 */
-	public String list() {
+	public String second() {
 		spaceList = spaceService.getSpaceList(parkId);
 
 		return SUCCESS;
 	}
 
-	public String detail() {
-		reserve = reserveService.getReserve(spaceId);
+	public String third() {
+		// 车位详情
+		reserve = reserveService.getSpace(spaceId);
+		// 我的车
+		carList = carService.getCarList(this.getUser().getUserId());
 
 		return SUCCESS;
+	}
+
+	public String reserve() {
+		Long userId = this.getUser().getUserId();
+
+		BooleanResult result = reserveService.createReserve(userId, reserve, userId.toString());
+
+		if (result.getResult()) {
+			this.setSuccessMessage("预约车位成功！");
+		} else {
+			this.setFailMessage(result.getCode());
+		}
+
+		return RESULT_MESSAGE;
 	}
 
 	public IReserveService getReserveService() {
@@ -92,6 +134,30 @@ public class ReserveAction extends BaseAction {
 
 	public void setSpaceService(ISpaceService spaceService) {
 		this.spaceService = spaceService;
+	}
+
+	public ICarService getCarService() {
+		return carService;
+	}
+
+	public void setCarService(ICarService carService) {
+		this.carService = carService;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public List<Reserve> getReserveList() {
+		return reserveList;
+	}
+
+	public void setReserveList(List<Reserve> reserveList) {
+		this.reserveList = reserveList;
 	}
 
 	public List<Park> getParkList() {
@@ -140,6 +206,14 @@ public class ReserveAction extends BaseAction {
 
 	public void setSpaceId(String spaceId) {
 		this.spaceId = spaceId;
+	}
+
+	public List<Car> getCarList() {
+		return carList;
+	}
+
+	public void setCarList(List<Car> carList) {
+		this.carList = carList;
 	}
 
 }

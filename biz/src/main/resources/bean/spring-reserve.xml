@@ -10,10 +10,14 @@
 		<property name="reserveService" ref="reserveService" />
 		<property name="parkService" ref="parkService" />
 		<property name="spaceService" ref="spaceService" />
+		<property name="carService" ref="carService" />
 	</bean>
 	
 	<bean id="reserveService" class="com.papa2.client.reserve.service.impl.ReserveServiceImpl">
 		<property name="spaceService" ref="spaceService" />
+		<property name="reserveDao" ref="reserveDao" />
 	</bean>
+	
+	<bean id="reserveDao" class="com.papa2.client.reserve.dao.impl.ReserveDaoImpl" parent="baseDao" />
 
 </beans>

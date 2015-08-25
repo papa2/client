@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="reserve">
+	
+	<typeAlias alias="reserve" type="com.papa2.client.api.reserve.bo.Reserve" />
+	
+	<select id="getReserveCount" parameterClass="reserve" resultClass="java.lang.Integer">
+	<![CDATA[
+		SELECT COUNT(1)
+		  FROM client_tb_park_reserve t
+		 WHERE t.expire_date > NOW()
+		   AND t.state = 'U'
+		   AND t.user_id = #userId#
+	]]>
+	</select>
+	
+	<select id="getReserveList" parameterClass="reserve" resultClass="reserve">
+	<![CDATA[
+		SELECT t.id,
+			   t.car_id AS carId,
+			   t.space_id AS spaceId,
+			   DATE_FORMAT(t.reserve_date, '%Y-%m-%d %T') AS reserveDate,
+			   DATE_FORMAT(t.expire_date, '%Y-%m-%d %T') AS expireDate,
+			   CASE WHEN t.expire_date > NOW() THEN 'N' ELSE 'Y' END AS expireState,
+			   t.state,
+			   q.park_name AS parkName,
+			   k.car_no AS carNo
+		  FROM client_tb_park_reserve t,
+			   boss_tb_park_space p,
+			   boss_tb_park q,
+			   client_tb_user_car k
+		 WHERE t.space_id = p.space_id
+		   AND p.park_id = q.park_id
+		   AND t.car_id = k.car_id
+		   AND t.user_id = #userId#
+		 ORDER BY t.modify_date DESC
+	]]>
+	</select>
+	
+	<insert id="createReserve" parameterClass="reserve">
+	<![CDATA[
+		INSERT
+		INTO client_tb_park_reserve
+		  (
+			USER_ID,
+			CAR_ID,
+			SPACE_ID,
+			RESERVE_DATE,
+			EXPIRE_DATE,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#userId#,
+			#carId#,
+			#spaceId#,
+			NOW(),
+			date_add(NOW(), interval 1 hour),
+			'U',
+			NOW(),
+			#modifyUser#,
+			NOW(),
+			#modifyUser#
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
+	</insert>
+	
+</sqlMap>

@@ -35,8 +35,6 @@ function toggleCheckbox() {
 function cancel() {
 	loading();
 
-	$('#btn0').button('loading');
-
 	top.location.href = appUrl + "/space/index.htm";
 }
 

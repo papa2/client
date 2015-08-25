@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>租车位</title>
+		#ICON()
+        #CSSM(["bootstrap"])
+		<style>
+		body { padding-top: 70px; padding-bottom: 70px; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back('$!{reserve.space.parkId}');"></a>
+			<div class="navbar-brand pull-right">租车位</div>
+        </nav>
+		
+		<div>
+			#parse("/client/framework/resultMessage.vm")
+			<div class="modal-body">
+				<form class="" role="form" method="post">
+					<input type="hidden" name="reserve.spaceId" value="$!{reserve.space.spaceId}"></input>
+					<div style="margin-bottom: 5px;">
+						<label class="control-label">租用方式：</label>
+						#if($!{reserve.space.costType} == 'H')
+							按时租用
+						#else
+							包月租用
+						#end
+                    </div>
+					<div style="margin-bottom: 5px;">
+						<label class="control-label">所在小区：</label> $!{reserve.space.parkName}
+                    </div>
+					<div class="has-success" style="margin-bottom: 5px;">
+						<label class="control-label">车位编号：</label> $!{reserve.space.spaceCode}
+                    </div>
+					#if($!{reserve.space.costType} == 'H')
+					<div style="margin-bottom: 5px;">
+						<label class="control-label">开放租用时间：</label>
+						<div class="has-success" style="margin-left: 10px;">
+            				<div style="margin-left: 10px;">
+            					<div class="checkbox disabled">
+                    				<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox1" value="Y" onchange="toggleCheckbox(this)" #if($!{reserve.space.mon} == 'Y') checked #end disabled /> 周一</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox2" value="Y" onchange="toggleCheckbox(this)" #if($!{reserve.space.tue} == 'Y') checked #end disabled /> 周二</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox3" value="Y" onchange="toggleCheckbox(this)" #if($!{reserve.space.wed} == 'Y') checked #end disabled /> 周三</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox4" value="Y" onchange="toggleCheckbox(this)" #if($!{reserve.space.thu} == 'Y') checked #end disabled /> 周四</label>
+                                </div>
+            					<div class="checkbox disabled">
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox5" value="Y" onchange="toggleCheckbox(this)" #if($!{reserve.space.fri} == 'Y') checked #end disabled /> 周五</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox6" value="Y" onchange="toggleCheckbox(this)" #if($!{reserve.space.sat} == 'Y') checked #end disabled /> 周六</label>
+            						<label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox7" value="Y" onchange="toggleCheckbox(this)" #if($!{reserve.space.sun} == 'Y') checked #end disabled /> 周日</label>
+                                </div>
+                            </div>
+							<div>
+								从 <strong>$!{reserve.space.startTime} </strong>
+								到 <strong>$!{reserve.space.endTime} </strong>
+                            </div>
+                        </div>
+                    </div>
+					<div style="margin-bottom: 5px;">
+						<label class="control-label">租用计费：</label> 每小时 <strong>$!{reserve.space.cost}</strong> 元
+                    </div>
+					#else
+					<div style="margin-bottom: 5px;">
+						<label class="control-label">开放租用时间：</label>
+						<div class="has-success" style="margin-left: 10px;">
+							<div style="margin-bottom: 3px;">
+								从 <strong>$!{reserve.space.startYear} 年 $!{reserve.space.startMonth} 月</strong>
+								到 <strong>$!{reserve.space.endYear} 年 $!{reserve.space.endMonth} 月</strong>
+                            </div>
+                        </div>
+                    </div>
+					<div style="margin-bottom: 5px;">
+						<label class="control-label">租用计费：</label> 每月 <strong>$!{reserve.space.cost}</strong> 元
+                    </div>
+					#end
+					
+					<div>
+						<label class="control-label">我的车：</label>
+						#if($carList && $carList != [])
+    						<select class="form-control" style="display: inline; width: 120px; height: 25px;" name="reserve.carId">
+							#foreach($car in $carList)
+								<option value="$!{car.carId}">$!{car.carNo}</option>
+							#end
+							</select>
+						#else
+							添加我的车
+						#end
+                    </div>
+                </form>
+            </div>
+			<nav class="navbar navbar-default navbar-fixed-bottom text-center">
+				<div style="margin: 10px;">
+					<a class="btn btn-danger" id="btn0" data-loading-text="正在处理..." href="javascript:cancel();">取消操作</a>
+    				<a class="btn btn-success" id="btn1" data-loading-text="正在处理..." href="javascript:reserve();">预定车位</a>
+                </div>
+			</nav>
+        </div>
+		
+		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
+		#JSM(["jquery", "bootstrap", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript">
+		var backCode = '$!{backCode}';
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/3rd.js?t=20150826"></script>
+    </body>
+</html>

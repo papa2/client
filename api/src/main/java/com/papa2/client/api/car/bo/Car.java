@@ -11,7 +11,7 @@ public class Car implements Serializable {
 
 	private static final long serialVersionUID = -7788659343968374496L;
 
-	private Long id;
+	private Long carId;
 
 	private Long userId;
 
@@ -21,12 +21,12 @@ public class Car implements Serializable {
 
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
-	public Long getId() {
-		return id;
+	public Long getCarId() {
+		return carId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCarId(Long carId) {
+		this.carId = carId;
 	}
 
 	public Long getUserId() {

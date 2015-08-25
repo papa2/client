@@ -14,13 +14,13 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
-			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back('$!{backCode}');"></a>
 			<div class="navbar-brand pull-right"></div>
         </nav>
 		
 		<ul class="list-group">
 			#foreach($space in $spaceList)
-    			<a href="javascript:detail('$!{space.spaceId}');" class="list-group-item">
+    			<a href="javascript:next('$!{space.spaceId}');" class="list-group-item">
     				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
                     <i class="fa fa-ticket" style="margin-right: 5px;"></i>
 					<strong>$!{space.parkName}</strong> ： 
@@ -35,7 +35,8 @@
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
 		<script type="text/javascript">
+		var backCode = '$!{backCode}';
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/list.js"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/2nd.js?t=20150826"></script>
     </body>
 </html>

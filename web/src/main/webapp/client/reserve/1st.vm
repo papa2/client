@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>我要抢车位</title>
+		#ICON()
+        #CSSM(["font-awesome", "bootstrap"])
+		<style>
+		body { padding-top: 70px; padding-bottom: 70px; background-color: #f5f5f5; }
+		body, html, #allmap {width: 100%; height: 100%; overflow: hidden; margin:0; }
+		.col-xs-3 { padding-right: 1px; padding-left: 1px; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
+			<div class="navbar-brand pull-right">我要抢车位</div>
+        </nav>
+		
+		<div>
+			<div class="modal-header" style="padding: 0;">
+				<div class="form-group text-center">
+					<div class="col-xs-3" style="margin-left: 10px;"><select class="form-control small" id="province" ></select></div>
+					<div class="col-xs-3"><select class="form-control small" id="city" ></select></div>
+					<div class="col-xs-3"><select class="form-control small" id="area" ></select></div>
+					<a class="btn btn-success" id="btn" data-loading-text="正在处理..." href="javascript:search();">查询</a>
+				</div>
+			</div>
+    		<div class="modal-body">
+    			<ul class="list-group" style="margin-top: -16px; margin-bottom: -16px;">
+    				#if($parkList && $parkList != [])
+    					#foreach($park in $parkList)
+            			<a class="list-group-item" style="margin-left: -16px; margin-right: -16px;" href="javascript:next('$!{park.parkId}')">
+    						<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
+    						<span class="fa fa-building-o"></span> $!{park.parkName} @ $!{park.address}
+            			</a>
+    					#end
+    				#else
+						#if($backCode)
+    					<li class="list-group-item" style="margin-left: -16px; margin-right: -16px;">
+    						<i class="fa fa-cog fa-spin"></i> 趴趴兔正在努力的搜集数据哦。
+    					</li>
+						#end
+    				#end
+                </ul>
+            </div>
+        </div>
+		
+		<div style="margin-top: 10px;" id="allmap"></div>
+		
+		#parse("/client/framework/footer.vm")
+		
+		#JSM(["jquery", "jquery.citytools", "bootstrap", "spin"])
+		#JS_ENV_VAL()
+		<script type="text/javascript">
+		var backCode = '$!{backCode}' == '' ? '3301' : '$!{backCode}';
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/1st.js?t=20150826"></script>
+    </body>
+</html>

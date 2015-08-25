@@ -83,7 +83,6 @@ public class CarServiceImpl implements ICarService {
 	@Override
 	public BooleanResult createCar(Long userId, Car car, String modifyUser) {
 		BooleanResult result = validate(car);
-
 		if (!result.getResult()) {
 			return result;
 		}
@@ -91,7 +90,7 @@ public class CarServiceImpl implements ICarService {
 		result.setResult(false);
 
 		if (userId == null) {
-			result.setCode("用户账号信息不能为空。");
+			result.setCode("用户信息不能为空。");
 			return result;
 		}
 		car.setUserId(userId);

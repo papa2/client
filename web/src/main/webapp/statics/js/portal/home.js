@@ -1,3 +1,25 @@
+$(document).ready(function() {
+			$.ajax({
+						type : "post",
+						url : appUrl
+								+ "/reserve/reserveAction!getReserveCount.htm",
+						data : {
+							dateTime : new Date().getTime()
+						},
+						success : function(data) {
+							if (data != 0) {
+								$("#reserveCount").iosbadge({
+											content : data,
+											size : 24
+										});
+							}
+						},
+						error : function() {
+
+						}
+					});
+		});
+
 function reserve() {
 	loading();
 	top.location.href = appUrl + "/reserve/index.htm";

@@ -4,6 +4,10 @@
 <struts>
 	<package name="{http://client}client$reserve"
 		extends="{http://client}client$framework" namespace="/reserve">
+		
+		<action name="reserveAction" class="reserveAction">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
 
 		<!-- 预约首页 -->
 		<action name="index" class="reserveAction" method="index">
@@ -11,15 +15,25 @@
 			<result name="success">/client/reserve/index.vm</result>
 		</action>
 		
-		<!-- 可供出租车位 -->
-		<action name="list" class="reserveAction" method="list">
+		<action name="1st" class="reserveAction" method="first">
 			<interceptor-ref name="clientAuthStack" />
-			<result name="success">/client/reserve/list.vm</result>
+			<result name="success">/client/reserve/1st.vm</result>
 		</action>
 		
-		<action name="detail" class="reserveAction" method="detail">
+		<!-- 可供出租车位 -->
+		<action name="2nd" class="reserveAction" method="second">
 			<interceptor-ref name="clientAuthStack" />
-			<result name="success">/client/reserve/list.vm</result>
+			<result name="success">/client/reserve/2nd.vm</result>
+		</action>
+		
+		<!-- 出租车位详情 -->
+		<action name="3rd" class="reserveAction" method="third">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/reserve/3rd.vm</result>
+		</action>
+		
+		<action name="reserve" class="reserveAction" method="reserve">
+			<interceptor-ref name="clientAuthStack" />
 		</action>
 		
 	</package>
