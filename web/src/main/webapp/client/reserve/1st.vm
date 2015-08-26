@@ -17,7 +17,7 @@
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
 			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
-			<div class="navbar-brand pull-right">我要抢车位</div>
+			<div class="navbar-brand pull-right">我要抢车位<i class="fa fa-map-pin" style="margin-left: 10px;"></i></div>
         </nav>
 		
 		<div>
