@@ -191,7 +191,7 @@ public final class HttpUtil {
 	 * @throws Exception
 	 */
 	public static String post(String url, Map<String, String> params) throws Exception {
-		return post(url, params, null);
+		return post(url, params, CHARSET_UTF8);
 	}
 
 	/**
