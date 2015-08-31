@@ -31,6 +31,13 @@
 						<a class="list-group-item list-group-item-success" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.id}')">
 						#end
     						<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
+							#if($!{reserve.state} == 'D')
+							<span class="label label-info pull-right" style="margin-top: 3px;">预约作废</span>
+							#elseif($!{reserve.expireState} == 'Y')
+							<span class="label label-info pull-right" style="margin-top: 3px;">预约过期</span>
+							#else
+							<span class="label label-success pull-right" style="margin-top: 3px;">预约中</span>
+							#end
     						<span class="fa fa-building-o"></span> $!{reserve.carNo} @ $!{reserve.parkName}
             			</a>
     					#end
