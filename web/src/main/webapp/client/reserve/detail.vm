@@ -9,6 +9,7 @@
         #CSSM(["bootstrap"])
 		<style>
 		body { padding-top: 70px; padding-bottom: 70px; }
+		.qrcode img { margin-left: auto; margin-right: auto; }
 		</style>
 		#UA()
 	</head>
@@ -86,13 +87,21 @@
 			<nav class="navbar navbar-default navbar-fixed-bottom text-center">
 				<div style="margin: 10px;">
 					<a class="btn btn-danger" id="btn0" data-loading-text="正在处理..." href="javascript:cancel();">取消操作</a>
-    				<a class="btn btn-success" id="btn1" data-loading-text="正在处理..." href="javascript:reserve();">预定车位</a>
+    				<a class="btn btn-success" id="btn1" data-loading-text="正在处理..." href="javascript:QR();">我要停车</a>
                 </div>
 			</nav>
         </div>
 		
+		<div class="modal fade" id="QRCodeModal" tabindex="-1" role="dialog" aria-labelledby="QRCodeLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="qrcode" id="qrcode"></div>
+                </div>
+            </div>
+        </div>
+		
 		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
-		#JSM(["jquery", "bootstrap", "spin"])
+		#JSM(["jquery", "bootstrap", "spin", "qrcodejs"])
 		#JS_ENV_VAL()
 		<script type="text/javascript">
         </script>

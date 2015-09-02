@@ -69,6 +69,8 @@
 			<script src="$!{env.imgUrl}/jquery.ui/jquery-ui.min.js"></script>
 		#elseif($key == 'messenger')
 			<script src="$!{env.imgUrl}/messenger/js/messenger.min.js"></script>
+		#elseif($key == 'qrcodejs')
+			<script src="$!{env.imgUrl}/qrcodejs/qrcode.min.js"></script>
 		#elseif($key == 'spin')
 			<script src="$!{env.imgUrl}/spin/spin.min.js"></script>
 		#end
