@@ -32,4 +32,11 @@ public interface IReserveDao {
 	 */
 	Long createReserve(Reserve reserve);
 
+	/**
+	 * 
+	 * @param reserve
+	 * @return
+	 */
+	Reserve getReserve(Reserve reserve);
+
 }

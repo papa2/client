@@ -130,6 +130,41 @@ public class ReserveServiceImpl implements IReserveService {
 		return result;
 	}
 
+	@Override
+	public Reserve getReserve(Long userId, String reserveId) {
+		Reserve reserve = new Reserve();
+
+		if (userId == null) {
+			return null;
+		}
+		reserve.setUserId(userId);
+
+		if (StringUtils.isBlank(reserveId)) {
+			return null;
+		}
+
+		try {
+			reserve.setReserveId(Long.valueOf(reserveId));
+		} catch (NumberFormatException e) {
+			logger.error(LogUtil.parserBean(reserve), e);
+		}
+
+		try {
+			reserve = reserveDao.getReserve(reserve);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(reserve), e);
+			return null;
+		}
+
+		if (reserve == null) {
+			return null;
+		}
+
+		reserve.setSpace(spaceService.getSpace(userId, String.valueOf(reserve.getSpaceId())));
+
+		return reserve;
+	}
+
 	public ISpaceService getSpaceService() {
 		return spaceService;
 	}

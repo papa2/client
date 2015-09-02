@@ -18,7 +18,7 @@
 	
 	<select id="getReserveList" parameterClass="reserve" resultClass="reserve">
 	<![CDATA[
-		SELECT t.id,
+		SELECT t.reserve_id AS reserveId,
 			   t.car_id AS carId,
 			   t.space_id AS spaceId,
 			   DATE_FORMAT(t.reserve_date, '%Y-%m-%d %T') AS reserveDate,
@@ -69,11 +69,29 @@
 			#modifyUser#
 		  )
 	]]>
-		<selectKey resultClass="java.lang.Long" keyProperty="id">
+		<selectKey resultClass="java.lang.Long" keyProperty="reserveId">
 		<![CDATA[
 			SELECT LAST_INSERT_ID()
 		]]>
 		</selectKey>
 	</insert>
+	
+	<select id="getReserve" parameterClass="reserve" resultClass="reserve">
+	<![CDATA[
+		SELECT t.reserve_id AS reserveId,
+			   t.car_id AS carId,
+			   t.space_id AS spaceId,
+			   DATE_FORMAT(t.reserve_date, '%Y-%m-%d %T') AS reserveDate,
+			   DATE_FORMAT(t.expire_date, '%Y-%m-%d %T') AS expireDate,
+			   CASE WHEN t.expire_date > NOW() THEN 'N' ELSE 'Y' END AS expireState,
+			   t.state,
+			   k.car_no AS carNo
+		  FROM client_tb_park_reserve t,
+			   client_tb_user_car k
+		 WHERE t.car_id = k.car_id
+		   AND t.user_id = #userId#
+		   AND t.reserve_id = #reserveId#
+	]]>
+	</select>
 	
 </sqlMap>

@@ -24,11 +24,11 @@
     				#if($reserveList && $reserveList != [])
     					#foreach($reserve in $reserveList)
 						#if($!{reserve.state} == 'D')
-						<a class="list-group-item list-group-item-danger" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.id}')">
+						<a class="list-group-item list-group-item-danger" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.reserveId}')">
 						#elseif($!{reserve.expireState} == 'Y')
-						<a class="list-group-item list-group-item-warning" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.id}')">
+						<a class="list-group-item list-group-item-warning" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.reserveId}')">
 						#else
-						<a class="list-group-item list-group-item-success" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.id}')">
+						<a class="list-group-item list-group-item-success" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.reserveId}')">
 						#end
     						<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
 							#if($!{reserve.state} == 'D')

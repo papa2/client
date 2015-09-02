@@ -13,7 +13,7 @@ public class Reserve implements Serializable {
 
 	private static final long serialVersionUID = -860137298924094450L;
 
-	private Long id;
+	private Long reserveId;
 
 	private Long userId;
 
@@ -51,12 +51,12 @@ public class Reserve implements Serializable {
 	 */
 	private String expireState;
 
-	public Long getId() {
-		return id;
+	public Long getReserveId() {
+		return reserveId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setReserveId(Long reserveId) {
+		this.reserveId = reserveId;
 	}
 
 	public Long getUserId() {

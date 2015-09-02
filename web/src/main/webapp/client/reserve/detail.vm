@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>预约车位</title>
+		<title>我的预约车位</title>
 		#ICON()
         #CSSM(["bootstrap"])
 		<style>
@@ -14,8 +14,8 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
-			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back('$!{reserve.space.parkId}');"></a>
-			<div class="navbar-brand pull-right">预约车位</div>
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
+			<div class="navbar-brand pull-right">我的预约车位</div>
         </nav>
 		
 		<div>
@@ -79,16 +79,7 @@
 					#end
 					
 					<div>
-						<label class="control-label">我的车：</label>
-						#if($carList && $carList != [])
-    						<select class="form-control" style="display: inline; width: 120px; height: 25px;" name="reserve.carId">
-							#foreach($car in $carList)
-								<option value="$!{car.carId}">$!{car.carNo}</option>
-							#end
-							</select>
-						#else
-							添加我的车
-						#end
+						<label class="control-label">我的车：</label> <strong>$!{reserve.carNo}</strong>
                     </div>
                 </form>
             </div>
@@ -104,8 +95,7 @@
 		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
 		<script type="text/javascript">
-		var backCode = '$!{backCode}';
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/3rd.js?t=20150826"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/detail.js"></script>
     </body>
 </html>

@@ -46,4 +46,12 @@ public interface IReserveService {
 	 */
 	BooleanResult createReserve(Long userId, Reserve reserve, String modifyUser);
 
+	/**
+	 * 
+	 * @param userId
+	 * @param reserveId
+	 * @return
+	 */
+	Reserve getReserve(Long userId, String reserveId);
+
 }

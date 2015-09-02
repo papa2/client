@@ -52,6 +52,11 @@ public class ReserveAction extends BaseAction {
 
 	private List<Car> carList;
 
+	/**
+	 * 查询具体预约信息.
+	 */
+	private String reserveId;
+
 	@JsonResult(field = "count")
 	public String getReserveCount() {
 		count = reserveService.getReserveCount(this.getUser().getUserId());
@@ -110,6 +115,12 @@ public class ReserveAction extends BaseAction {
 		}
 
 		return RESULT_MESSAGE;
+	}
+
+	public String detail() {
+		reserve = reserveService.getReserve(this.getUser().getUserId(), reserveId);
+
+		return SUCCESS;
 	}
 
 	public IReserveService getReserveService() {
@@ -214,6 +225,14 @@ public class ReserveAction extends BaseAction {
 
 	public void setCarList(List<Car> carList) {
 		this.carList = carList;
+	}
+
+	public String getReserveId() {
+		return reserveId;
+	}
+
+	public void setReserveId(String reserveId) {
+		this.reserveId = reserveId;
 	}
 
 }

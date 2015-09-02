@@ -36,5 +36,11 @@
 			<interceptor-ref name="clientAuthStack" />
 		</action>
 		
+		<!-- 预约详情 -->
+		<action name="detail" class="reserveAction" method="detail">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/reserve/detail.vm</result>
+		</action>
+		
 	</package>
 </struts>
