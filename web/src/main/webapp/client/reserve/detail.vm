@@ -105,6 +105,6 @@
 		#JS_ENV_VAL()
 		<script type="text/javascript">
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/detail.js"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/detail.js?t=20150902"></script>
     </body>
 </html>
