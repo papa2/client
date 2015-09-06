@@ -53,5 +53,11 @@ public interface IReserveService {
 	 * @return
 	 */
 	Reserve getReserve(Long userId, String reserveId);
+	
+	
+	
+	
+	
+	//String generateToken(Object object);
 
 }

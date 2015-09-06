@@ -123,6 +123,11 @@ public class ReserveAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String getQRCode() {
+
+		return JSON_RESULT;
+	}
+
 	public IReserveService getReserveService() {
 		return reserveService;
 	}
