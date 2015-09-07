@@ -2,6 +2,7 @@ package com.papa2.client.api.reserve;
 
 import java.util.List;
 
+import com.papa2.client.api.ca.bo.ValidateResult;
 import com.papa2.client.api.reserve.bo.Reserve;
 import com.papa2.client.framework.bo.BooleanResult;
 
@@ -53,11 +54,52 @@ public interface IReserveService {
 	 * @return
 	 */
 	Reserve getReserve(Long userId, String reserveId);
-	
-	
-	
-	
-	
-	//String generateToken(Object object);
+
+	// >>>>>>>>>>以下是二维码<<<<<<<<<<
+
+	/**
+	 * 
+	 * @param userId
+	 * @param reserveId
+	 * @return
+	 */
+	String generateToken(Long userId, String reserveId);
+
+	/**
+	 * 
+	 * @param token
+	 * @return
+	 */
+	ValidateResult validateToken(String token);
+
+	/**
+	 * 
+	 * @param parkId
+	 * @param userId
+	 *            保安.
+	 * @param token
+	 * @return
+	 */
+	Reserve getReserve(Long parkId, Long userId, String token);
+
+	/**
+	 * 进场.
+	 * 
+	 * @param parkId
+	 * @param userId
+	 * @param reserveId
+	 * @return
+	 */
+	BooleanResult enter(Long parkId, Long userId, String reserveId);
+
+	/**
+	 * 离场.
+	 * 
+	 * @param parkId
+	 * @param userId
+	 * @param reserveId
+	 * @return
+	 */
+	BooleanResult leave(Long parkId, Long userId, String reserveId);
 
 }

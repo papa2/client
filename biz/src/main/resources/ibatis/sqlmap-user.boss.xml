@@ -12,8 +12,9 @@
 			   t.user_name AS userName,
 			   t.passport,
 			   t.password,
-			   t.state
-		  FROM boss_tb_user t
+			   t.state,
+			   t.park_id AS parkId
+		  FROM boss_tb_park_user t
 		 WHERE t.state = 'U'
 		   AND t.passport = upper(#possport#)
 	]]>
@@ -21,7 +22,7 @@
 	
 	<update id="setPassword" parameterClass="user">
 	<![CDATA[
-		UPDATE boss_tb_user t
+		UPDATE boss_tb_park_user t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #modifyUser#,
 			   t.password = #password#
@@ -32,7 +33,7 @@
 	
 	<update id="resetPassword" parameterClass="user">
 	<![CDATA[
-		UPDATE boss_tb_user t
+		UPDATE boss_tb_park_user t
 		   SET t.modify_date = NOW(),
 			   t.modify_user = #modifyUser#,
 			   t.password = #password#
@@ -41,5 +42,17 @@
 		   AND t.password = #oldPassword#
 	]]>
 	</update>
+	
+	<select id="getUser" parameterClass="user" resultClass="user">
+	<![CDATA[
+		SELECT t.user_id AS userId,
+			   t.user_name AS userName,
+			   t.passport,
+			   t.park_id AS parkId
+		  FROM boss_tb_park_user t
+		 WHERE t.state = 'U'
+		   AND t.user_id = #userId#
+	]]>
+	</select>
 	
 </sqlMap>

@@ -8,9 +8,28 @@ package com.papa2.client.api.record.bo;
  */
 public class Record {
 
-	private Long id;
+	private Long recordId;
 
-	private String parkId;
+	/**
+	 * 保安 or 租车人.
+	 */
+	private Long userId;
+
+	/**
+	 * 预约.
+	 */
+	private Long reserveId;
+
+	private String modifyUser;
+
+	// >>>>>>>>>>以下是增强属性<<<<<<<<<<
+
+	private String recordDate;
+
+	/**
+	 * 进场 or 出场.
+	 */
+	private String type;
 
 	/**
 	 * 停车开始时间.
@@ -22,37 +41,52 @@ public class Record {
 	 */
 	private String endTime;
 
-	/**
-	 * 停车卡信息.
-	 */
-	private String parkCardId;
-
-	/**
-	 * 车牌信息.
-	 */
-	private String carNo;
-
-	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
-
-	/**
-	 * 停车卡信息.
-	 */
-	private String parkCardNo;
-
-	public Long getId() {
-		return id;
+	public Long getRecordId() {
+		return recordId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setRecordId(Long recordId) {
+		this.recordId = recordId;
 	}
 
-	public String getParkId() {
-		return parkId;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setParkId(String parkId) {
-		this.parkId = parkId;
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getReserveId() {
+		return reserveId;
+	}
+
+	public void setReserveId(Long reserveId) {
+		this.reserveId = reserveId;
+	}
+
+	public String getModifyUser() {
+		return modifyUser;
+	}
+
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
+	}
+
+	public String getRecordDate() {
+		return recordDate;
+	}
+
+	public void setRecordDate(String recordDate) {
+		this.recordDate = recordDate;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getStartTime() {
@@ -71,28 +105,6 @@ public class Record {
 		this.endTime = endTime;
 	}
 
-	public String getParkCardId() {
-		return parkCardId;
-	}
-
-	public void setParkCardId(String parkCardId) {
-		this.parkCardId = parkCardId;
-	}
-
-	public String getCarNo() {
-		return carNo;
-	}
-
-	public void setCarNo(String carNo) {
-		this.carNo = carNo;
-	}
-
-	public String getParkCardNo() {
-		return parkCardNo;
-	}
-
-	public void setParkCardNo(String parkCardNo) {
-		this.parkCardNo = parkCardNo;
-	}
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
 }

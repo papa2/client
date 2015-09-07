@@ -73,6 +73,12 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 
 	int CACHE_KEY_ACTION_LOG_DEFAULT_EXP = 0;
 
+	// >>>>>>>>>>以下是二维码相关<<<<<<<<<<
+
+	String CACHE_KEY_QR_CODE = "key_qr_code_";
+
+	int CACHE_KEY_QR_CODE_DEFAULT_EXP = 3 * 60;
+
 	// >>>>>>>>>>以下是微信相关<<<<<<<<<<
 
 	/**

@@ -57,6 +57,11 @@ public class ReserveAction extends BaseAction {
 	 */
 	private String reserveId;
 
+	/**
+	 * 二维码.
+	 */
+	private String token;
+
 	@JsonResult(field = "count")
 	public String getReserveCount() {
 		count = reserveService.getReserveCount(this.getUser().getUserId());
@@ -123,7 +128,15 @@ public class ReserveAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	public String qrCode() {
+		token = reserveService.generateToken(this.getUser().getUserId(), reserveId);
+
+		return SUCCESS;
+	}
+
+	@JsonResult(field = "token")
 	public String getQRCode() {
+		qrCode();
 
 		return JSON_RESULT;
 	}
@@ -238,6 +251,14 @@ public class ReserveAction extends BaseAction {
 
 	public void setReserveId(String reserveId) {
 		this.reserveId = reserveId;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

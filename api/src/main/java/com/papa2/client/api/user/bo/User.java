@@ -41,6 +41,10 @@ public class User extends SearchInfo {
 
 	private String modifyUser;
 
+	// >>>>>>>>>>以下是增强属性<<<<<<<<<<
+
+	private Long parkId;
+
 	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
 
 	/**
@@ -107,6 +111,14 @@ public class User extends SearchInfo {
 
 	public void setModifyUser(String modifyUser) {
 		this.modifyUser = modifyUser;
+	}
+
+	public Long getParkId() {
+		return parkId;
+	}
+
+	public void setParkId(Long parkId) {
+		this.parkId = parkId;
 	}
 
 	public String getType() {

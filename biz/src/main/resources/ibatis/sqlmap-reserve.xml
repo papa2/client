@@ -89,7 +89,13 @@
 		  FROM client_tb_park_reserve t,
 			   client_tb_user_car k
 		 WHERE t.car_id = k.car_id
-		   AND t.user_id = #userId#
+	]]>
+		<dynamic>
+			<isNotEmpty property="userId" prepend="and">
+			<![CDATA[ t.user_id = #userId# ]]>
+			</isNotEmpty>
+		</dynamic>
+	<![CDATA[
 		   AND t.reserve_id = #reserveId#
 	]]>
 	</select>

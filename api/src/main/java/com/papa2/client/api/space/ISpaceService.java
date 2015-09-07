@@ -76,10 +76,19 @@ public interface ISpaceService {
 	List<Space> getSpaceList(String parkId);
 
 	/**
+	 * 租车人查看车位信息.
 	 * 
 	 * @param spaceId
 	 * @return
 	 */
 	Space getSpace(String spaceId);
+
+	/**
+	 * 保安查看车位信息.
+	 * 
+	 * @param spaceId
+	 * @return
+	 */
+	Space getSpace(Long spaceId);
 
 }

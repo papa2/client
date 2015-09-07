@@ -177,6 +177,25 @@ public class BossUserServiceImpl implements IBossUserService {
 		return result;
 	}
 
+	@Override
+	public User getUser(Long userId) {
+		User user = new User();
+
+		if (userId == null) {
+			return null;
+		}
+
+		user.setUserId(userId);
+
+		try {
+			return bossUserDao.getUser(user);
+		} catch (Exception e) {
+			logger.error(LogUtil.parserBean(user), e);
+		}
+
+		return null;
+	}
+
 	public IMemcachedCacheService getMemcachedCacheService() {
 		return memcachedCacheService;
 	}

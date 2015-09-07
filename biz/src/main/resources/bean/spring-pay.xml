@@ -11,7 +11,7 @@
 	</bean>
 	
 	<bean id="payService" class="com.papa2.client.pay.service.impl.PayServiceImpl">
-		<property name="recordService" ref="recordService" />
+		<property name="clientRecordService" ref="clientRecordService" />
 	</bean>
 
 </beans>

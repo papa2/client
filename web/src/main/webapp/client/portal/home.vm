@@ -95,6 +95,6 @@
 		
 		#JSM(["jquery", "iosbadge", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150826"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/portal/home.js?t=20150907"></script>
     </body>
 </html>

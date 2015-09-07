@@ -52,7 +52,7 @@ function promotion() {
 
 function scan() {
 	loading();
-	top.location.href = appUrl + "/wxap/scan.htm";
+	top.location.href = appUrl + "/reserve/scan.htm";
 }
 
 function help() {

@@ -26,4 +26,9 @@ public class BossUserDaoImpl extends BaseDaoImpl implements IBossUserDao {
 		return getSqlMapClientTemplate().update("user.boss.resetPassword", user);
 	}
 
+	@Override
+	public User getUser(User user) {
+		return (User) getSqlMapClientTemplate().queryForObject("user.boss.getUser", user);
+	}
+
 }

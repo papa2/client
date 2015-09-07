@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>我的二维码</title>
+		#ICON()
+        #CSSM(["bootstrap"])
+		<style>
+		body { padding-top: 70px; padding-bottom: 70px; background-color: #f5f5f5; }
+		.qrcode img { margin-left: auto; margin-right: auto; }
+		</style>
+		#UA()
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
+			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
+			<div class="navbar-brand pull-right">我的二维码</div>
+        </nav>
+		
+		<div>
+			#parse("/client/framework/resultMessage.vm")
+			<div class="modal-body text-center">
+				<div class="qrcode" id="qrcode"></div>
+                <p class="help-block"><span class="glyphicon glyphicon-repeat" style="font-size: 13px;"></span>  每分钟自动更新</p>
+            </div>
+        </div>
+		
+		#parse("/client/framework/footer.vm")
+		
+		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
+		#JSM(["jquery", "spin", "qrcodejs"])
+		#JS_ENV_VAL()
+		<script type="text/javascript">
+		var token = '$!{token}';
+		var reserveId = '$!{reserveId}';
+        </script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/qrCode.js?t=20150907"></script>
+    </body>
+</html>

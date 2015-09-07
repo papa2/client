@@ -39,4 +39,11 @@ public interface IReserveDao {
 	 */
 	Reserve getReserve(Reserve reserve);
 
+	/**
+	 * 
+	 * @param reserve
+	 * @return
+	 */
+	int updateReserve(Reserve reserve);
+
 }

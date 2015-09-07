@@ -12,12 +12,27 @@
 		<property name="spaceService" ref="spaceService" />
 		<property name="carService" ref="carService" />
 	</bean>
-	
 	<bean id="reserveService" class="com.papa2.client.reserve.service.impl.ReserveServiceImpl">
+		<property name="transactionTemplate" ref="transactionTemplate" />
+		<property name="memcachedCacheService" ref="memcachedCacheService" />
 		<property name="spaceService" ref="spaceService" />
+		<property name="bossUserService" ref="bossUserService" />
+		<property name="bossRecordService" ref="bossRecordService" />
+		<property name="clientRecordService" ref="clientRecordService" />
 		<property name="reserveDao" ref="reserveDao" />
 	</bean>
-	
 	<bean id="reserveDao" class="com.papa2.client.reserve.dao.impl.ReserveDaoImpl" parent="baseDao" />
+	
+	<!-- 扫一扫 -->
+	<bean id="scanAction" class="com.papa2.client.reserve.action.ScanAction" parent="baseAction" scope="request">
+		<property name="reserveService" ref="reserveService" />
+		<property name="signatureService" ref="signatureService" />
+		<property name="appUrl">
+			<value>${appUrl}</value>
+		</property>
+		<property name="appId">
+			<value>${wxap.appId}</value>
+		</property>
+	</bean>
 
 </beans>

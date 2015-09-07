@@ -74,7 +74,7 @@ public class CAServiceImpl implements ICAService {
 	@Override
 	public boolean validateRequest(Long userId, String url) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	/**

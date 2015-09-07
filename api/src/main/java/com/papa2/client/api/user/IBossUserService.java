@@ -60,4 +60,12 @@ public interface IBossUserService {
 	 */
 	BooleanResult resetPassword(String passport, String password, String oldPassword, String modifyUser);
 
+	/**
+	 * 获得用户信息.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	User getUser(Long userId);
+
 }

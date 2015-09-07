@@ -16,7 +16,7 @@ public class PayAction extends BaseAction {
 
 	private IPayService payService;
 
-	private String id;
+	private String recordId;
 
 	private Record record;
 
@@ -27,7 +27,7 @@ public class PayAction extends BaseAction {
 	 */
 	public String index() {
 
-		record = payService.getRecord(id);
+		record = payService.getRecord(this.getUser().getUserId(), recordId);
 
 		return SUCCESS;
 	}
@@ -40,12 +40,12 @@ public class PayAction extends BaseAction {
 		this.payService = payService;
 	}
 
-	public String getId() {
-		return id;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 
 	public Record getRecord() {

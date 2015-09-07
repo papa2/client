@@ -34,4 +34,9 @@ public class ReserveDaoImpl extends BaseDaoImpl implements IReserveDao {
 		return (Reserve) getSqlMapClientTemplate().queryForObject("reserve.getReserve", reserve);
 	}
 
+	@Override
+	public int updateReserve(Reserve reserve) {
+		return getSqlMapClientTemplate().update("reserve.updateReserve", reserve);
+	}
+
 }

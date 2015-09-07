@@ -42,5 +42,32 @@
 			<result name="success">/client/reserve/detail.vm</result>
 		</action>
 		
+		<!-- 二维码 -->
+		<action name="qrCode" class="reserveAction" method="qrCode">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/reserve/QRCode.vm</result>
+		</action>
+		
+		<!-- 扫一扫 -->
+		<action name="scan" class="scanAction" method="scan">
+			<interceptor-ref name="bossAuthStack" />
+			<result name="success">/client/reserve/scan.vm</result>
+		</action>
+		
+		<action name="result" class="scanAction" method="result">
+			<interceptor-ref name="bossAuthStack" />
+			<result name="success">/client/reserve/scanResult.vm</result>
+		</action>
+		
+		<!-- 确认进场 -->
+		<action name="enter" class="scanAction" method="enter">
+			<interceptor-ref name="bossAuthStack" />
+		</action>
+		
+		<!-- 确认离场 -->
+		<action name="leave" class="scanAction" method="leave">
+			<interceptor-ref name="bossAuthStack" />
+		</action>
+		
 	</package>
 </struts>

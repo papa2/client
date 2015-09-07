@@ -30,4 +30,11 @@ public interface IBossUserDao {
 	 */
 	int resetPassword(User user);
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	User getUser(User user);
+
 }

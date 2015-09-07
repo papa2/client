@@ -302,18 +302,27 @@ public class SpaceServiceImpl implements ISpaceService {
 
 	@Override
 	public Space getSpace(String spaceId) {
-		Space space = new Space();
-
 		if (StringUtils.isBlank(spaceId)) {
 			return null;
 		}
 
 		try {
-			space.setSpaceId(Long.valueOf(spaceId));
+			return getSpace(Long.valueOf(spaceId));
 		} catch (NumberFormatException e) {
 			logger.error(e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public Space getSpace(Long spaceId) {
+		if (spaceId == null) {
 			return null;
 		}
+
+		Space space = new Space();
+		space.setSpaceId(spaceId);
 
 		try {
 			return spaceDao.getSpace(space);

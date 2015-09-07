@@ -3,7 +3,7 @@ package com.papa2.client.pay.service.impl;
 import org.apache.commons.lang.StringUtils;
 
 import com.papa2.client.api.pay.IPayService;
-import com.papa2.client.api.record.IRecordService;
+import com.papa2.client.api.record.IClientRecordService;
 import com.papa2.client.api.record.bo.Record;
 
 /**
@@ -13,23 +13,23 @@ import com.papa2.client.api.record.bo.Record;
  */
 public class PayServiceImpl implements IPayService {
 
-	private IRecordService recordService;
+	private IClientRecordService clientRecordService;
 
 	@Override
-	public Record getRecord(String id) {
-		if (StringUtils.isBlank(id)) {
+	public Record getRecord(Long userId, String recordId) {
+		if (userId == null || StringUtils.isBlank(recordId)) {
 			return null;
 		}
 
-		return recordService.getRecord(id);
+		return clientRecordService.getRecord(userId, recordId);
 	}
 
-	public IRecordService getRecordService() {
-		return recordService;
+	public IClientRecordService getClientRecordService() {
+		return clientRecordService;
 	}
 
-	public void setRecordService(IRecordService recordService) {
-		this.recordService = recordService;
+	public void setClientRecordService(IClientRecordService clientRecordService) {
+		this.clientRecordService = clientRecordService;
 	}
 
 }

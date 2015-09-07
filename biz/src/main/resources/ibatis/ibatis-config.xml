@@ -36,7 +36,8 @@
 	<sqlMap resource="ibatis/sqlmap-monitor.log.xml" />
 	<sqlMap resource="ibatis/sqlmap-monitor.method.xml" />
 	<sqlMap resource="ibatis/sqlmap-park.xml" />
-	<sqlMap resource="ibatis/sqlmap-record.xml" />
+	<sqlMap resource="ibatis/sqlmap-record.boss.xml" />
+	<sqlMap resource="ibatis/sqlmap-record.client.xml" />
 	<sqlMap resource="ibatis/sqlmap-reserve.xml" />
 	<sqlMap resource="ibatis/sqlmap-sms.xml" />
 	<sqlMap resource="ibatis/sqlmap-space.xml" />

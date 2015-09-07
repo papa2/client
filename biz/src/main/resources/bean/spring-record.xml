@@ -5,10 +5,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="recordService" class="com.papa2.client.record.service.impl.RecordServiceImpl">
-		<property name="recordDao" ref="recordDao" />
+	<!-- BOSS -->
+	<bean id="bossRecordService" class="com.papa2.client.record.service.impl.BossRecordServiceImpl">
+		<property name="bossRecordDao" ref="bossRecordDao" />
 	</bean>
+	<bean id="bossRecordDao" class="com.papa2.client.record.dao.impl.BossRecordDaoImpl" parent="baseDao" />
 	
-	<bean id="recordDao" class="com.papa2.client.record.dao.impl.RecordDaoImpl" parent="baseDao" />
+	<!-- CLIENT -->
+	<bean id="clientRecordService" class="com.papa2.client.record.service.impl.ClientRecordServiceImpl">
+		<property name="clientRecordDao" ref="clientRecordDao" />
+	</bean>
+	<bean id="clientRecordDao" class="com.papa2.client.record.dao.impl.ClientRecordDaoImpl" parent="baseDao" />
 	
 </beans>

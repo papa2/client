@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>我的预约车位</title>
+		<title>预约车主信息</title>
 		#ICON()
         #CSSM(["bootstrap"])
 		<style>
@@ -15,7 +15,7 @@
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
 			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
-			<div class="navbar-brand pull-right">我的预约车位</div>
+			<div class="navbar-brand pull-right">预约车主信息</div>
         </nav>
 		
 		<div>
@@ -59,9 +59,6 @@
                             </div>
                         </div>
                     </div>
-					<div style="margin-bottom: 5px;">
-						<label class="control-label">租用计费：</label> 每小时 <strong>$!{reserve.space.cost}</strong> 元
-                    </div>
 					#else
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">开放租用时间：</label>
@@ -72,30 +69,30 @@
                             </div>
                         </div>
                     </div>
-					<div style="margin-bottom: 5px;">
-						<label class="control-label">租用计费：</label> 每月 <strong>$!{reserve.space.cost}</strong> 元
-                    </div>
 					#end
 					
 					<div>
-						<label class="control-label">我的车：</label> <strong>$!{reserve.carNo}</strong>
+						<label class="control-label">车牌信息：</label> <strong>$!{reserve.carNo}</strong>
                     </div>
                 </form>
             </div>
 			<nav class="navbar navbar-default navbar-fixed-bottom text-center">
 				<div style="margin: 10px;">
-					<a class="btn btn-danger" id="btn0" data-loading-text="正在处理..." href="javascript:cancel();">取消操作</a>
-    				<a class="btn btn-success" id="btn1" data-loading-text="正在处理..." href="javascript:QR();">我要停车</a>
+					#if($!{reserve.state} == 'U')
+					<a class="btn btn-info" id="btn0" data-loading-text="正在处理..." href="javascript:enter();">确认进场</a>
+					#elseif($!{reserve.state} == 'I')
+    				<a class="btn btn-success" id="btn1" data-loading-text="正在处理..." href="javascript:leave();">确认离场</a>
+					#end
                 </div>
 			</nav>
         </div>
 		
 		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
-		#JSM(["jquery", "spin"])
+		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
 		<script type="text/javascript">
-		var reserveId = '$!{reserve.reserveId}';
+		var state = '$!{reserve.state}';
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/detail.js?t=20150907"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/scanResult.js?t=20150909"></script>
     </body>
 </html>

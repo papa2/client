@@ -2,13 +2,19 @@ package com.papa2.client.api.pay;
 
 import com.papa2.client.api.record.bo.Record;
 
+/**
+ * 
+ * @author JiakunXu
+ * 
+ */
 public interface IPayService {
 
 	/**
 	 * 
-	 * @param id
+	 * @param userId
+	 * @param recordId
 	 * @return
 	 */
-	Record getRecord(String id);
+	Record getRecord(Long userId, String recordId);
 
 }
