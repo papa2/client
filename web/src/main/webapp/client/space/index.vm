@@ -18,7 +18,7 @@
 			<div class="navbar-brand pull-right">车位信息</div>
         </nav>
 		
-		<ul class="list-group">
+		<ul class="list-group" style="margin-top: -20px;">
 			#foreach($space in $spaceList)
 				#if($!{space.state} == 'U')
     			<a href="javascript:detail('$!{space.spaceId}');" class="list-group-item list-group-item-success">

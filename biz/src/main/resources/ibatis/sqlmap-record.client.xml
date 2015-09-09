@@ -6,12 +6,13 @@
 	
 	<typeAlias alias="record" type="com.papa2.client.api.record.bo.Record" />
 	
-	<insert id="createRecord" parameterClass="reserve">
+	<insert id="createRecord" parameterClass="record">
 	<![CDATA[
 		INSERT
 		INTO client_tb_park_record
 		  (
 			USER_ID,
+			CAR_NO,
 			RESERVE_ID,
 			START_TIME,
 			STATE,
@@ -23,6 +24,7 @@
 		  VALUES
 		  (
 			#userId#,
+			#carNo#,
 			#reserveId#,
 			NOW(),
 			'U',
@@ -39,26 +41,82 @@
 		</selectKey>
 	</insert>
 	
+	<update id="updateRecord" parameterClass="record">
+	<![CDATA[
+		UPDATE client_tb_park_record t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.end_time = NOW(),
+			   t.state = 'F'
+		 WHERE t.state = 'U'
+		   AND t.reserve_id = #reserveId#
+		   AND t.user_id = #userId#
+	]]>
+	</update>
+	
+	<update id="updateRecordState" parameterClass="record">
+	<![CDATA[
+		UPDATE client_tb_park_record t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.state = #state#
+		 WHERE t.state <> #state#
+		   AND t.user_id = #userId#
+		   AND EXISTS(
+		SELECT 1
+		  FROM client_tb_trade p, client_tb_order k
+		 WHERE p.trade_id = k.trade_id
+		   AND k.record_id = t.record_id
+		   AND p.user_id = #userId#
+		   AND p.trade_id = #tradeId#)
+	]]>
+	</update>
+	
 	<select id="getRecordList" parameterClass="record" resultClass="record">
 	<![CDATA[
-		SELECT t.id,
-		  DATE_FORMAT(t.start_time, '%Y-%m-%d %T') AS startTime,
-		  DATE_FORMAT(t.end_time, '%Y-%m-%d %T')   AS endTime
-		FROM client_tb_park_record t
-		WHERE t.state = 'U'
-		ORDER BY t.start_time ASC
+		SELECT t.record_id AS recordId,
+			   t.car_no AS carNo,
+			   DATE_FORMAT(t.start_time, '%Y-%m-%d %T') AS startTime,
+			   DATE_FORMAT(t.end_time, '%Y-%m-%d %T') AS endTime,
+			   t.cost,
+			   q.cost_type AS costType,
+			   k.park_name AS parkName
+		  FROM client_tb_park_record t,
+			   client_tb_park_reserve p,
+			   boss_tb_park_space q,
+			   boss_tb_park k
+		 WHERE t.reserve_id = p.reserve_id
+		   AND p.space_id = q.space_id
+		   AND q.park_id = k.park_id
+		   AND t.state = #state#
+		   AND t.user_id = #userId#
+	]]>
+		<dynamic>
+			<isNotEmpty property="carNo" prepend="and">
+			<![CDATA[ t.car_no = #carNo# ]]>
+			</isNotEmpty>
+		</dynamic>
+	<![CDATA[
+		 ORDER BY t.start_time ASC
 	]]>
 	</select>
 	
 	<select id="getRecord" parameterClass="record" resultClass="record">
 	<![CDATA[
-		SELECT t.id,
-		  DATE_FORMAT(t.start_time, '%Y-%m-%d %T') AS startTime,
-		  DATE_FORMAT(t.end_time, '%Y-%m-%d %T')   AS endTime
-		FROM client_tb_park_record t
-		WHERE t.state = 'U'
-		AND t.record_id = #recordId#
+		SELECT t.record_id AS recordId,
+			   DATE_FORMAT(t.start_time, '%Y-%m-%d %T') AS startTime,
+			   DATE_FORMAT(t.end_time, '%Y-%m-%d %T') AS endTime,
+			   t.reserve_id AS reserveId,
+			   t.cost
+		  FROM client_tb_park_record t
+		 WHERE t.user_id = #userId#
+		   AND t.record_id = #recordId#
 	]]>
+		<dynamic>
+			<isNotEmpty property="state" prepend="and">
+			<![CDATA[ t.state = #state# ]]>
+			</isNotEmpty>
+		</dynamic>
 	</select>
 	
 </sqlMap>

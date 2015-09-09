@@ -1,6 +1,7 @@
 package com.papa2.client.api.trade.bo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.papa2.client.framework.bo.SearchInfo;
 
@@ -17,17 +18,17 @@ public class Trade extends SearchInfo {
 	/**
 	 * 交易ID.
 	 */
-	private String tradeId;
+	private Long tradeId;
 
 	/**
 	 * 用户ID.
 	 */
-	private String userId;
+	private Long userId;
 
 	/**
-	 * 停车场ID.
+	 * 交易订单号.
 	 */
-	private String parkingId;
+	private String tradeNo;
 
 	/**
 	 * 交易价格（不含折扣）.
@@ -35,25 +36,19 @@ public class Trade extends SearchInfo {
 	private BigDecimal tradePrice;
 
 	/**
-	 * 交易积分（积分兑换）.
-	 */
-	private BigDecimal tradePoints;
-
-	/**
 	 * 优惠券使用价格.
 	 */
 	private BigDecimal couponPrice;
 
 	/**
-	 * check: 临时订单; topay: 待付款; tosend: 待发货; send: 已发货; sign: 标记签收; cancel: 已关闭; feedback:
-	 * 维权订单; feedbacked: 已处理维权订单.
+	 * 交易积分（积分兑换）.
 	 */
-	private String type;
+	private int points;
 
 	/**
-	 * 交易订单号.
+	 * topay: 待付款; pay: 已付款; cancel: 已关闭; feedback: 维权订单; feedbacked: 已处理维权订单.
 	 */
-	private String tradeNo;
+	private String type;
 
 	/**
 	 * 状态 D:删除 U:正常.
@@ -71,7 +66,7 @@ public class Trade extends SearchInfo {
 	private String modifyDate;
 
 	/**
-	 * 买家付款时间.
+	 * 付款时间.
 	 */
 	private String payDate;
 
@@ -85,28 +80,32 @@ public class Trade extends SearchInfo {
 	 */
 	private String payType;
 
-	public String getTradeId() {
+	// >>>>>>>>>>以下是辅助属性<<<<<<<<<<
+
+	private List<Order> orderList;
+
+	public Long getTradeId() {
 		return tradeId;
 	}
 
-	public void setTradeId(String tradeId) {
+	public void setTradeId(Long tradeId) {
 		this.tradeId = tradeId;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public String getParkingId() {
-		return parkingId;
+	public String getTradeNo() {
+		return tradeNo;
 	}
 
-	public void setParkingId(String parkingId) {
-		this.parkingId = parkingId;
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo;
 	}
 
 	public BigDecimal getTradePrice() {
@@ -115,14 +114,6 @@ public class Trade extends SearchInfo {
 
 	public void setTradePrice(BigDecimal tradePrice) {
 		this.tradePrice = tradePrice;
-	}
-
-	public BigDecimal getTradePoints() {
-		return tradePoints;
-	}
-
-	public void setTradePoints(BigDecimal tradePoints) {
-		this.tradePoints = tradePoints;
 	}
 
 	public BigDecimal getCouponPrice() {
@@ -139,11 +130,19 @@ public class Trade extends SearchInfo {
 	 * @return
 	 */
 	public BigDecimal getPrice() {
-		if (this.tradePrice != null) {
+		if (this.tradePrice != null && this.couponPrice != null) {
 			return this.tradePrice.add(this.couponPrice.negate());
 		}
 
 		return BigDecimal.ZERO;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	public String getType() {
@@ -152,14 +151,6 @@ public class Trade extends SearchInfo {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public String getTradeNo() {
-		return tradeNo;
-	}
-
-	public void setTradeNo(String tradeNo) {
-		this.tradeNo = tradeNo;
 	}
 
 	public String getState() {
@@ -208,6 +199,14 @@ public class Trade extends SearchInfo {
 
 	public void setPayType(String payType) {
 		this.payType = payType;
+	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
 	}
 
 }

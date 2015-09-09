@@ -73,6 +73,14 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 
 	int CACHE_KEY_ACTION_LOG_DEFAULT_EXP = 0;
 
+	// >>>>>>>>>>以下是车位相关<<<<<<<<<<
+
+	String CACHE_KEY_SPACE = "key_space_";
+
+	// >>>>>>>>>>以下是预约相关<<<<<<<<<<
+
+	String CACHE_KEY_RESERVE = "key_reserve_";
+
 	// >>>>>>>>>>以下是二维码相关<<<<<<<<<<
 
 	String CACHE_KEY_QR_CODE = "key_qr_code_";

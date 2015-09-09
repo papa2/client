@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.papa2.client.api.cache.IMemcachedCacheService;
 import com.papa2.client.api.park.IParkService;
 import com.papa2.client.api.park.bo.Park;
 import com.papa2.client.api.space.ISpaceService;
 import com.papa2.client.api.space.bo.Space;
 import com.papa2.client.framework.bo.BooleanResult;
+import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
 import com.papa2.client.framework.util.LogUtil;
@@ -22,6 +24,8 @@ import com.papa2.client.space.dao.ISpaceDao;
 public class SpaceServiceImpl implements ISpaceService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(SpaceServiceImpl.class);
+
+	private IMemcachedCacheService memcachedCacheService;
 
 	private IParkService parkService;
 
@@ -108,7 +112,7 @@ public class SpaceServiceImpl implements ISpaceService {
 		result.setResult(false);
 
 		if (userId == null) {
-			result.setCode("车位出租人信息不能为空。");
+			result.setCode("用户信息不能为空。");
 			return result;
 		}
 		space.setUserId(userId);
@@ -195,7 +199,7 @@ public class SpaceServiceImpl implements ISpaceService {
 		}
 
 		if (userId == null) {
-			result.setCode("车位出租人信息不能为空。");
+			result.setCode("用户信息不能为空。");
 			return result;
 		}
 		space.setUserId(userId);
@@ -210,6 +214,8 @@ public class SpaceServiceImpl implements ISpaceService {
 			int c = spaceDao.updateSpace(space);
 			if (c == 1) {
 				result.setResult(true);
+				// remove cache
+				remove(space.getSpaceId());
 			}
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(space), e);
@@ -248,7 +254,7 @@ public class SpaceServiceImpl implements ISpaceService {
 		}
 
 		if (userId == null) {
-			result.setCode("车位出租人信息不能为空。");
+			result.setCode("用户信息不能为空。");
 			return result;
 		}
 
@@ -261,6 +267,8 @@ public class SpaceServiceImpl implements ISpaceService {
 			int c = spaceDao.updateSpace(userId, space.getSpaceId(), state, modifyUser);
 			if (c == 1) {
 				result.setResult(true);
+				// remove cache
+				remove(space.getSpaceId());
 			} else {
 				result.setCode("更新车位信息失败！");
 			}
@@ -321,16 +329,61 @@ public class SpaceServiceImpl implements ISpaceService {
 			return null;
 		}
 
-		Space space = new Space();
+		Space space = null;
+		String key = spaceId.toString();
+
+		try {
+			space = (Space) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_SPACE + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_SPACE + key, e);
+		}
+
+		if (space != null) {
+			return space;
+		}
+
+		space = new Space();
 		space.setSpaceId(spaceId);
 
 		try {
-			return spaceDao.getSpace(space);
+			space = spaceDao.getSpace(space);
 		} catch (Exception e) {
 			logger.error(LogUtil.parserBean(space), e);
+			return null;
 		}
 
-		return null;
+		if (space != null) {
+			try {
+				memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_SPACE + key, space);
+			} catch (ServiceException e) {
+				logger.error(IMemcachedCacheService.CACHE_KEY_SPACE + key, e);
+			}
+		}
+
+		return space;
+	}
+
+	/**
+	 * 清除车位缓存.
+	 * 
+	 * @param spaceId
+	 */
+	private void remove(Long spaceId) {
+		String key = spaceId.toString();
+
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_SPACE + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_SPACE + key, e);
+		}
+	}
+
+	public IMemcachedCacheService getMemcachedCacheService() {
+		return memcachedCacheService;
+	}
+
+	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
+		this.memcachedCacheService = memcachedCacheService;
 	}
 
 	public IParkService getParkService() {

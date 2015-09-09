@@ -9,13 +9,41 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class AccessToken extends Error {
 
-	private static final long serialVersionUID = 5377284826332080520L;
-
+	/**
+	 * 基础支持.
+	 */
 	@JSONField(name = "access_token")
 	private String accessToken;
 
+	/**
+	 * 基础支持.
+	 */
 	@JSONField(name = "expires_in")
 	private int expiresIn;
+
+	/**
+	 * 网页授权.
+	 */
+	@JSONField(name = "refresh_token")
+	private String refreshToken;
+
+	/**
+	 * 网页授权.
+	 */
+	@JSONField(name = "openid")
+	private String openId;
+
+	/**
+	 * 网页授权.
+	 */
+	@JSONField(name = "scope")
+	private String scope;
+
+	/**
+	 * 网页授权.
+	 */
+	@JSONField(name = "unionid")
+	private String unionId;
 
 	public String getAccessToken() {
 		return accessToken;
@@ -31,6 +59,38 @@ public class AccessToken extends Error {
 
 	public void setExpiresIn(int expiresIn) {
 		this.expiresIn = expiresIn;
+	}
+
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
+
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
+
+	public String getUnionId() {
+		return unionId;
+	}
+
+	public void setUnionId(String unionId) {
+		this.unionId = unionId;
 	}
 
 }

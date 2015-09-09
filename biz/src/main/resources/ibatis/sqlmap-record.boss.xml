@@ -12,6 +12,7 @@
 		INTO boss_tb_park_record
 		  (
 			USER_ID,
+			CAR_NO,
 			RESERVE_ID,
 			RECORD_DATE,
 			TYPE,
@@ -24,6 +25,7 @@
 		  VALUES
 		  (
 			#userId#,
+			#carNo#,
 			#reserveId#,
 			NOW(),
 			#type#,
@@ -40,5 +42,17 @@
 		]]>
 		</selectKey>
 	</insert>
+	
+	<select id="getRecordList" parameterClass="record" resultClass="record">
+	<![CDATA[
+		SELECT t.record_id AS recordId,
+			   t.car_no AS carNo,
+			   DATE_FORMAT(t.record_date, '%Y-%m-%d %T') AS recordDate,
+			   t.type
+		  FROM boss_tb_park_record t
+		 WHERE t.user_id = #userId#
+		 ORDER BY t.record_date DESC
+	]]>
+	</select>
 	
 </sqlMap>

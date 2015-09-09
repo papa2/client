@@ -17,6 +17,6 @@ public interface IJsapiTicketService {
 	 * @return
 	 * @throws ServiceException
 	 */
-	String getTicket(String accessToken) throws ServiceException;;
+	String getTicket(String accessToken) throws ServiceException;
 
 }

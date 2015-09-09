@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="trade">
+	
+	<typeAlias alias="trade" type="com.papa2.client.api.trade.bo.Trade" />
+	
+	<insert id="createTrade" parameterClass="trade">
+	<![CDATA[
+		INSERT
+		INTO client_tb_trade
+		  (
+			USER_ID,
+			TRADE_NO,
+			TRADE_PRICE,
+			COUPON_PRICE,
+			POINTS,
+			TYPE,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#userId#,
+			#tradeNo#,
+			#tradePrice#,
+			#couponPrice#,
+			#points#,
+			#type#,
+			'U',
+			NOW(),
+			#modifyUser#,
+			NOW(),
+			#modifyUser#
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="tradeId">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
+	</insert>
+	
+	<select id="getTradeList" parameterClass="trade" resultClass="trade">
+	<![CDATA[
+		SELECT t.trade_id AS tradeId,
+			   t.trade_no AS tradeNo,
+			   t.trade_price AS tradePrice,
+			   t.coupon_price AS couponPrice,
+			   t.points,
+			   t.type
+		  FROM client_tb_trade t
+		 WHERE t.user_id = #userId#
+	]]>
+		<dynamic>
+			<isNotEmpty property="type" prepend="and">
+			<![CDATA[ t.type = #type# ]]>
+			</isNotEmpty>
+		</dynamic>
+	<![CDATA[
+		 ORDER BY t.modify_date DESC
+	]]>
+	</select>
+	
+	<select id="getTrade" parameterClass="trade" resultClass="trade">
+	<![CDATA[
+		SELECT t.trade_id AS tradeId,
+			   t.trade_no AS tradeNo,
+			   t.trade_price AS tradePrice,
+			   t.coupon_price AS couponPrice,
+			   t.points,
+			   t.type,
+			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate,
+			   t.pay_type AS payType
+		  FROM client_tb_trade t
+		 WHERE t.user_id = #userId#
+		   AND t.trade_no = #tradeNo#
+	]]>
+	</select>
+	
+</sqlMap>

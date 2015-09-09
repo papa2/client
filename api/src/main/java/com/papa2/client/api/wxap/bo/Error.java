@@ -11,7 +11,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class Error implements Serializable {
 
-	private static final long serialVersionUID = 1235811218621541122L;
+	private static final long serialVersionUID = 5298150005183000384L;
 
 	@JSONField(name = "errcode")
 	private String errCode;

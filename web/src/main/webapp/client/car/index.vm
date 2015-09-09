@@ -19,7 +19,7 @@
 			<div class="navbar-brand pull-right">我的车辆</div>
         </nav>
 		
-		<ul class="list-group">
+		<ul class="list-group" style="margin-top: -20px;">
 			#foreach($car in $carList)
 			<a href="javascript:pay('$!{car.id}');" class="list-group-item list-group-item-success">
 				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>

@@ -25,6 +25,11 @@ function reserve() {
 	top.location.href = appUrl + "/reserve/index.htm";
 }
 
+function record() {
+	loading();
+	top.location.href = appUrl + "/record/index.htm";
+}
+
 function trade() {
 	loading();
 	top.location.href = appUrl + "/trade/index.htm";

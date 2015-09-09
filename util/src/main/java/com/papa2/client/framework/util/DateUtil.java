@@ -33,6 +33,8 @@ public final class DateUtil {
 
 	public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
 
+	public static final String DEFAULT_DATEFULLTIME_FORMAT = "yyyyMMddHHmmss";
+
 	public static final String DEFAULT_DATEFULLDATE_FORMAT = "yyyyMMdd";
 
 	public static final String DEFAULT_YEAR_FORMAT = "yyyy";
@@ -42,8 +44,6 @@ public final class DateUtil {
 	private static final long MILLISECONDS_A_DAY = 24 * 3600 * 1000;
 
 	private static Logger logger = Logger.getLogger(DateUtil.class);
-
-	private static final String DEFAULT_DATEFULLTIME_FORMAT = "yyyyMMddHHmmss";
 
 	/**
 	 * 验证日期字符串，有效日期范围1900-1-1到2099-12-31.

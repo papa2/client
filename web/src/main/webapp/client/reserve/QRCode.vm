@@ -35,7 +35,8 @@
 		<script type="text/javascript">
 		var token = '$!{token}';
 		var reserveId = '$!{reserveId}';
+		var state = '$!{state}';
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/qrCode.js?t=20150907"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/qrCode.js?t=20150910"></script>
     </body>
 </html>

@@ -12,7 +12,12 @@
 	<bean id="bossRecordDao" class="com.papa2.client.record.dao.impl.BossRecordDaoImpl" parent="baseDao" />
 	
 	<!-- CLIENT -->
+	<bean id="clientRecordAction" class="com.papa2.client.record.action.ClientRecordAction" parent="baseAction" scope="request">
+		<property name="clientRecordService" ref="clientRecordService" />
+	</bean>
 	<bean id="clientRecordService" class="com.papa2.client.record.service.impl.ClientRecordServiceImpl">
+		<property name="reserveService" ref="reserveService" />
+		<property name="priceService" ref="priceService" />
 		<property name="clientRecordDao" ref="clientRecordDao" />
 	</bean>
 	<bean id="clientRecordDao" class="com.papa2.client.record.dao.impl.ClientRecordDaoImpl" parent="baseDao" />

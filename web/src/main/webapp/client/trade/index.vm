@@ -6,9 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>我的账单</title>
 		#ICON()
-        #CSSM(["font-awesome", "bootstrap"])
+        #CSSM(["font-awesome", "icheck", "bootstrap"])
 		<style>
-		body { padding-top: 70px; padding-bottom: 70px; background-color: #f5f5f5; }
+		body { padding-top: 70px; background-color: #f5f5f5; }
 		</style>
 		#UA()
 	</head>
@@ -17,52 +17,27 @@
 			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
 			<div class="navbar-brand pull-right">我的账单</div>
         </nav>
-		
-		<div class="input-group" >
-            <input type="text" class="form-control" id="search" value="$!{search}" placeholder="Search for..."></input>
-			<div class="input-group-btn">
-				<a class="btn btn-default" href="javascript:search();"><i class="fa fa-search"></i></a>
-            </div>
-        </div>
 
-		<div class="list-group" style="margin-top: 10px;">
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
-                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
-                <span class="pull-right"><i class="fa fa-clock-o"></i> 13:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
-			</a>
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
-                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
-                <span class="pull-right"><i class="fa fa-clock-o"></i> 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
-			</a>
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
-                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
-                <span class="pull-right"><i class="fa fa-clock-o"></i> 5-20 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
-			</a>
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
-                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
-                <span class="pull-right"><i class="fa fa-clock-o"></i> 5-20 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
-			</a>
-			<a class="list-group-item list-group-item-info" href="javascript:detail();">
-				<span class="fa fa-chevron-right pull-right" style="margin: 3px 0 0 15px;"></span>
-                <i class="fa fa-tag" style="margin-right: 5px;"></i> 黄龙停车场
-                <span class="pull-right"><i class="fa fa-clock-o"></i> 5-20 10:10</span>
-                <strong class="pull-right text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> 10.00</strong>
-			</a>
-			<a class="list-group-item text-center" style="margin-top: 10px;" href="javascript:more();" id="more"><i class="fa fa-spinner" id="spinner"></i> 更 多</a>
-        </div>
-		
-		#parse("/client/framework/footer.vm")
+		<ul class="list-group" style="margin-top: -20px;">
+			#if($tradeList && $tradeList != [])
+				#foreach($trade in $tradeList)
+    			<a class="list-group-item" href="javascript:detail('$!{trade.tradeNo}')">
+					<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
+					
+					#if($!{trade.type} == 'topay')
+					<span class="label label-info pull-right" style="margin-top: 3px;">待付款</span>
+					#elseif($!{trade.type} == 'pay')
+					<span class="label label-success pull-right" style="margin-top: 3px;">已付款</span>
+					#end
+					
+					<span class="fa fa-tag"></span> $!{trade.tradeNo}
+    			</a>
+				#end
+			#end
+        </ul>
 		
 		#JSM(["jquery", "spin"])
 		#JS_ENV_VAL()
-		<script type="text/javascript" src="$!{env.imgUrl}/js/trade/index.js?t=20150811"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/trade/index.js?t=20150925"></script>
     </body>
 </html>

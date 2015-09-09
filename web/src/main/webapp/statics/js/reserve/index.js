@@ -3,9 +3,10 @@ function back() {
 	top.location.href = appUrl + "/home.htm";
 }
 
-function detail(reserveId) {
+function detail(reserveId, expireState) {
 	loading();
-	top.location.href = appUrl + "/reserve/detail.htm?reserveId=" + reserveId;
+	top.location.href = appUrl + "/reserve/detail.htm?reserveId=" + reserveId
+			+ "&expireState=" + expireState;
 }
 
 function reserve() {

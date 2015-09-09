@@ -1,13 +1,16 @@
 package com.papa2.client.reserve.action;
 
-import java.util.UUID;
+import java.util.List;
 
+import com.papa2.client.api.record.IBossRecordService;
+import com.papa2.client.api.record.bo.Record;
 import com.papa2.client.api.reserve.IReserveService;
 import com.papa2.client.api.reserve.bo.Reserve;
 import com.papa2.client.api.user.bo.User;
-import com.papa2.client.api.wxap.ISignatureService;
+import com.papa2.client.api.wxap.ISignService;
 import com.papa2.client.framework.action.BaseAction;
 import com.papa2.client.framework.bo.BooleanResult;
+import com.papa2.client.framework.util.UUIDUtil;
 
 /**
  * 扫一扫.
@@ -19,14 +22,11 @@ public class ScanAction extends BaseAction {
 
 	private static final long serialVersionUID = 133749244927063673L;
 
+	private ISignService signService;
+
 	private IReserveService reserveService;
 
-	private ISignatureService signatureService;
-
-	/**
-	 * 微信参数.
-	 */
-	private String appUrl;
+	private IBossRecordService bossRecordService;
 
 	/**
 	 * 微信参数.
@@ -48,6 +48,8 @@ public class ScanAction extends BaseAction {
 	 */
 	private String signature;
 
+	private List<Record> recordList;
+
 	/**
 	 * 二维码.
 	 */
@@ -67,9 +69,12 @@ public class ScanAction extends BaseAction {
 	 */
 	public String scan() {
 		timestamp = Long.toString(System.currentTimeMillis() / 1000);
-		nonceStr = UUID.randomUUID().toString();
+		nonceStr = UUIDUtil.generate();
 
-		signature = signatureService.signature(nonceStr, timestamp, appUrl + "/reserve/scan.htm");
+		signature = signService.sign(nonceStr, timestamp, env.getProperty("appUrl") + "/reserve/scan.htm");
+
+		// 保安已扫码记录
+		recordList = bossRecordService.getRecordList(this.getUser().getUserId());
 
 		return SUCCESS;
 	}
@@ -110,6 +115,14 @@ public class ScanAction extends BaseAction {
 		return RESULT_MESSAGE;
 	}
 
+	public ISignService getSignService() {
+		return signService;
+	}
+
+	public void setSignService(ISignService signService) {
+		this.signService = signService;
+	}
+
 	public IReserveService getReserveService() {
 		return reserveService;
 	}
@@ -118,20 +131,12 @@ public class ScanAction extends BaseAction {
 		this.reserveService = reserveService;
 	}
 
-	public ISignatureService getSignatureService() {
-		return signatureService;
+	public IBossRecordService getBossRecordService() {
+		return bossRecordService;
 	}
 
-	public void setSignatureService(ISignatureService signatureService) {
-		this.signatureService = signatureService;
-	}
-
-	public String getAppUrl() {
-		return appUrl;
-	}
-
-	public void setAppUrl(String appUrl) {
-		this.appUrl = appUrl;
+	public void setBossRecordService(IBossRecordService bossRecordService) {
+		this.bossRecordService = bossRecordService;
 	}
 
 	public String getAppId() {
@@ -164,6 +169,14 @@ public class ScanAction extends BaseAction {
 
 	public void setSignature(String signature) {
 		this.signature = signature;
+	}
+
+	public List<Record> getRecordList() {
+		return recordList;
+	}
+
+	public void setRecordList(List<Record> recordList) {
+		this.recordList = recordList;
 	}
 
 	public String getToken() {

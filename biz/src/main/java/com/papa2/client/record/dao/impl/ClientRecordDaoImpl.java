@@ -23,6 +23,11 @@ public class ClientRecordDaoImpl extends BaseDaoImpl implements IClientRecordDao
 		return getSqlMapClientTemplate().update("record.client.updateRecord", record);
 	}
 
+	@Override
+	public int updateRecordState(Record record) {
+		return getSqlMapClientTemplate().update("record.client.updateRecordState", record);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Record> getRecordList(Record record) {

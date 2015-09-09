@@ -13,7 +13,7 @@
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 	</bean>
 	
-	<bean id="signatureService" class="com.papa2.client.wxap.service.impl.SignatureServiceImpl">
+	<bean id="signService" class="com.papa2.client.wxap.service.impl.SignServiceImpl">
 		<property name="accessTokenService" ref="accessTokenService" />
 		<property name="jsapiTicketService" ref="jsapiTicketService" />
 		<property name="appId">
@@ -23,5 +23,27 @@
 			<value>${wxap.appSecret}</value>
 		</property>
 	</bean>
+	
+	<bean id="wxapService" class="com.papa2.client.wxap.service.impl.WxapServiceImpl">
+		<property name="oauth2Service" ref="oauth2Service" />
+		<property name="unifiedOrderService" ref="unifiedOrderService" />
+		<property name="appId">
+			<value>${wxap.appId}</value>
+		</property>
+		<property name="appSecret">
+			<value>${wxap.appSecret}</value>
+		</property>
+		<property name="mchId">
+			<value>${wxap.mchId}</value>
+		</property>
+	</bean>
+	
+	<bean id="unifiedOrderService" class="com.papa2.client.wxap.service.impl.UnifiedOrderServiceImpl">
+		<property name="appSecret">
+			<value>${wxap.appSecret}</value>
+		</property>
+	</bean>
+	
+	<bean id="oauth2Service" class="com.papa2.client.wxap.service.impl.OAuth2ServiceImpl" />
 
 </beans>

@@ -4,69 +4,85 @@
         <meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>我要支付</title>
+		<title>我的账单</title>
 		#ICON()
         #CSSM(["font-awesome", "bootstrap"])
 		<style>
-		body { padding-top: 70px; padding-bottom: 70px; background-color: #f5f5f5; }
+		body { padding-top: 70px; background-color: #f5f5f5; }
 		</style>
 		#UA()
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="foo">
 			<a class="navbar-brand glyphicon glyphicon-chevron-left" href="javascript:back();"></a>
-			<div class="navbar-brand pull-right">我要支付</div>
+			<div class="navbar-brand pull-right">我的账单</div>
         </nav>
 		
-		<div class="panel panel-success" style="margin-top: -20px;">
-			<div class="panel-heading">
-				账单<strong class="pull-right">黄龙体育中心停车场</strong>
-			</div>
-			<table class="table table-striped">
-                <tbody>
-					<tr>
-						<td class="text-center"><i class="fa fa-clock-o"></i> 开始时间</td>
-						<td>$!{record.startTime}</td>
-					</tr>
-					<tr>
-						<td class="text-center"><i class="fa fa-clock-o"></i> 结束时间</td>
-						<td>$!{record.endTime}</td>
-					</tr>
-					<tr>
-						<td class="text-center"><i class="fa fa-tachometer"></i> 停车时间</td>
-						<td>1 小时</td>
-					</tr>
-					<tr>
-						<td class="text-center"><i class="fa fa-credit-card"></i> 计时缴费</td>
-						<td><i class="fa fa-cny"></i> 10.00</td>
-					</tr>
-					<tr>
-						<td class="text-center"><i class="fa fa-tags"></i> 优惠</td>
-						<td>
-							<i class="fa fa-cny"></i> -0.00
-							<a class="fa fa-plus fa-fw pull-right" style="margin: 3px 50px 0 0;" href="javascript:promotion();"></a>
-						</td>
-					</tr>
-					<tr class="warning">
-						<th class="text-center">合计需要缴费</th>
-						<th><i class="fa fa-cny"></i> 10.00</th>
-					</tr>
-				</tbody>
-			</table>
-			<div class="panel-footer text-center">
-				<a class="btn btn-primary" href="#" role="button">
-					<i class="fa fa-check fa-fw"></i>确认缴费
-				</a>
-				<a class="btn btn-danger" href="javascript:back();" role="button">
-					<i class="fa fa-repeat fa-fw"></i>暂不缴费
-				</a>
-			</div>
-		</div>
+		#parse("/client/framework/resultMessage.vm")
 		
-		#parse("/client/framework/footer.vm")
+		<div class="modal-body">
+			<div>
+				<label class="control-label">交易编号：</label> $!{trade.tradeNo}
+            </div>
+			<div>
+				<label class="control-label">交易状态：</label> #if($!{trade.type} == 'topay') 待付款 #end
+            </div>
+			<div>
+				<label class="control-label">交易金额：</label> <strong>$!{trade.tradePrice}</strong>
+            </div>
+			<div>
+				<label class="control-label">交易日期：</label> $!{trade.createDate}
+            </div>
+			#if($!{trade.payType})
+			<div>
+				<label class="control-label">交易方式：</label> $!{trade.payType}
+            </div>
+			#end
+        </div>
+			
+		#if($trade.orderList && $trade.orderList != [])
+		<ul class="list-group">
+			#foreach($order in $trade.orderList)
+			<li class="col-xs-12 list-group-item">
+				<div class="col-xs-6" style="padding-left: 10px;">
+					<div>$!{order.carNo}@$!{order.parkName}</div>
+					<div class="small"><i class="fa fa-sign-in"></i> $!{order.startTime}</div>
+					<div class="small"><i class="fa fa-sign-out"></i> $!{order.endTime}</div>
+                </div>
+				<div class="col-xs-5" style="margin-top: 16px;">
+					<a href="javascript:detail('$!{order.recordId}');">
+						<span class="fa fa-chevron-right pull-right" style="margin: 3px -5px 0 10px;"></span>
+						<strong class="text-success" style="margin-right: 15px;"><i class="fa fa-cny"></i> $!{order.price}</strong>
+                    </a>
+                </div>
+			</li>
+			#end
+        </ul>
+		#end
 		
-		#JSM(["jquery", "spin"])
+		<div class="col-xs-12" style="margin-top: 20px;">
+			#if($!{trade.payType} == 'alipay')
+			<a class="btn btn-success btn-block" id="alipay" data-loading-text="正在处理..." href="javascript:pay('alipay');">支付宝付款</a>
+			#elseif($!{trade.payType} == 'wxap')
+			<a class="btn btn-success btn-block" id="wxap" data-loading-text="正在处理..." href="javascript:pay('wxap');">微信支付</a>
+			#else
+			<a class="btn btn-success btn-block" id="alipay" data-loading-text="正在处理..." href="javascript:pay('alipay');">支付宝付款</a>
+			<a class="btn btn-warning btn-block" style="margin-top: 10px;" id="wxap" data-loading-text="正在处理..." href="javascript:pay('wxap');">微信支付</a>
+			#end
+        </div>
+
+		<form class="" role="form" method="post">
+			<input type="hidden" name="openId" value="$!{openId}"></input>
+			<input type="hidden" name="tradeNo" value="$!{trade.tradeNo}"></input>
+        </form>
+		
+		<iframe id="hideFrame" name="hideFrame" style="display:none"></iframe>
+		#JSM(["jquery", "bootstrap", "spin"])
 		#JS_ENV_VAL()
+		<script type="text/javascript">
+		var tradeNo = '$!{trade.tradeNo}';
+		var payType;
+        </script>
 		<script type="text/javascript" src="$!{env.imgUrl}/js/pay/index.js"></script>
     </body>
 </html>

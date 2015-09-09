@@ -30,6 +30,13 @@ public interface IClientRecordDao {
 	 * @param record
 	 * @return
 	 */
+	int updateRecordState(Record record);
+
+	/**
+	 * 
+	 * @param record
+	 * @return
+	 */
 	List<Record> getRecordList(Record record);
 
 	/**

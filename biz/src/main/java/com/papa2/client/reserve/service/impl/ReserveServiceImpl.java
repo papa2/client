@@ -7,7 +7,6 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.papa2.client.api.ca.bo.ValidateResult;
 import com.papa2.client.api.cache.IMemcachedCacheService;
 import com.papa2.client.api.record.IBossRecordService;
 import com.papa2.client.api.record.IClientRecordService;
@@ -164,6 +163,21 @@ public class ReserveServiceImpl implements IReserveService {
 
 	@Override
 	public Reserve getReserve(Long userId, String reserveId) {
+		if (StringUtils.isBlank(reserveId)) {
+			return null;
+		}
+
+		try {
+			return getReserve(userId, Long.valueOf(reserveId));
+		} catch (NumberFormatException e) {
+			logger.error(e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public Reserve getReserve(Long userId, Long reserveId) {
 		Reserve reserve = new Reserve();
 
 		if (userId == null) {
@@ -171,14 +185,22 @@ public class ReserveServiceImpl implements IReserveService {
 		}
 		reserve.setUserId(userId);
 
-		if (StringUtils.isBlank(reserveId)) {
+		if (reserveId == null) {
 			return null;
 		}
+		reserve.setReserveId(reserveId);
+
+		Reserve res = null;
+		String key = userId.toString() + "&" + reserveId.toString();
 
 		try {
-			reserve.setReserveId(Long.valueOf(reserveId));
-		} catch (NumberFormatException e) {
-			logger.error(LogUtil.parserBean(reserve), e);
+			res = (Reserve) memcachedCacheService.get(IMemcachedCacheService.CACHE_KEY_RESERVE + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_RESERVE + key, e);
+		}
+
+		if (res != null) {
+			return res;
 		}
 
 		reserve = getReserve(reserve);
@@ -189,8 +211,16 @@ public class ReserveServiceImpl implements IReserveService {
 
 		reserve.setSpace(spaceService.getSpace(userId, String.valueOf(reserve.getSpaceId())));
 
+		try {
+			memcachedCacheService.set(IMemcachedCacheService.CACHE_KEY_RESERVE + key, reserve);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_RESERVE + key, e);
+		}
+
 		return reserve;
 	}
+
+	// >>>>>>>>>>以下是二维码<<<<<<<<<<
 
 	@Override
 	public String generateToken(Long userId, String reserveId) {
@@ -215,12 +245,6 @@ public class ReserveServiceImpl implements IReserveService {
 		}
 
 		return key;
-	}
-
-	@Override
-	public ValidateResult validateToken(String token) {
-
-		return null;
 	}
 
 	@Override
@@ -294,8 +318,10 @@ public class ReserveServiceImpl implements IReserveService {
 	 * @param parkId
 	 * @param userId
 	 * @param reserveId
+	 * @param state
+	 * @return
 	 */
-	private BooleanResult validate(Long parkId, Long userId, String reserveId) {
+	private BooleanResult validate(Long parkId, Long userId, String reserveId, String state) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
 
@@ -305,7 +331,7 @@ public class ReserveServiceImpl implements IReserveService {
 		}
 
 		if (userId == null) {
-			result.setCode("操作人信息不能为空。");
+			result.setCode("用户信息不能为空。");
 			return result;
 		}
 
@@ -345,23 +371,46 @@ public class ReserveServiceImpl implements IReserveService {
 			return result;
 		}
 
+		if (StringUtils.isBlank(state)) {
+			result.setCode("状态信息不能为空。");
+			return result;
+		}
+
+		if ("I".equals(state) && !"U".equals(reserve.getState())) {
+			result.setCode("车辆已驶入停车场。");
+			return result;
+		}
+
+		// 验证是否超过预约时间
+		if ("I".equals(state) && "Y".equals(reserve.getExpireState())) {
+			result.setCode("预约车位已超时过期，请重新预约。");
+			return result;
+		}
+
+		if ("O".equals(state) && !"I".equals(reserve.getState())) {
+			result.setCode("车辆已离开停车场。");
+			return result;
+		}
+
 		// 租车位人信息
-		result.setCode(reserve.getUserId().toString());
+		result.setCode(reserve.getUserId().toString() + "&" + reserve.getCarNo());
 		result.setResult(true);
 		return result;
 	}
 
 	@Override
 	public BooleanResult enter(Long parkId, final Long userId, final String reserveId) {
-		BooleanResult result = validate(parkId, userId, reserveId);
+		BooleanResult result = validate(parkId, userId, reserveId, "I");
 
 		if (!result.getResult()) {
 			return result;
 		}
 
-		final Long clientUserId = Long.valueOf(result.getCode());
+		String res[] = result.getCode().split("&");
+		final Long clientUserId = Long.valueOf(res[0]);
+		final String carNo = res[1];
 
-		return transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+		result = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
 				// 1. 更新 client_tb_park_reserve STATE U -> I
 				BooleanResult result = updateReserve(reserveId, "I", userId.toString());
@@ -372,10 +421,11 @@ public class ReserveServiceImpl implements IReserveService {
 
 				// 2. 更新 boss_tb_park_record
 				Record bossRecord = new Record();
-				bossRecord.setUserId(userId);
+				bossRecord.setCarNo(carNo);
 				bossRecord.setReserveId(Long.valueOf(reserveId));
+				bossRecord.setType("I");
 
-				result = bossRecordService.createRecord(bossRecord, userId.toString());
+				result = bossRecordService.createRecord(userId, bossRecord, userId.toString());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 					return result;
@@ -383,10 +433,10 @@ public class ReserveServiceImpl implements IReserveService {
 
 				// 3. 更新 client_tb_park_record
 				Record clientRecord = new Record();
-				clientRecord.setUserId(clientUserId);
+				clientRecord.setCarNo(carNo);
 				clientRecord.setReserveId(Long.valueOf(reserveId));
 
-				result = clientRecordService.createRecord(clientRecord, userId.toString());
+				result = clientRecordService.createRecord(clientUserId, clientRecord, userId.toString());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 					return result;
@@ -395,19 +445,27 @@ public class ReserveServiceImpl implements IReserveService {
 				return result;
 			}
 		});
+
+		if (result.getResult()) {
+			remove(userId, reserveId);
+		}
+
+		return result;
 	}
 
 	@Override
 	public BooleanResult leave(Long parkId, final Long userId, final String reserveId) {
-		BooleanResult result = validate(parkId, userId, reserveId);
+		BooleanResult result = validate(parkId, userId, reserveId, "O");
 
 		if (!result.getResult()) {
 			return result;
 		}
 
-		final Long clientUserId = Long.valueOf(result.getCode());
+		String res[] = result.getCode().split("&");
+		final Long clientUserId = Long.valueOf(res[0]);
+		final String carNo = res[1];
 
-		return transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+		result = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
 				// 1. 更新 client_tb_park_reserve STATE I -> O
 				BooleanResult result = updateReserve(reserveId, "O", userId.toString());
@@ -418,21 +476,18 @@ public class ReserveServiceImpl implements IReserveService {
 
 				// 2. 更新 boss_tb_park_record
 				Record bossRecord = new Record();
-				bossRecord.setUserId(userId);
+				bossRecord.setCarNo(carNo);
 				bossRecord.setReserveId(Long.valueOf(reserveId));
+				bossRecord.setType("O");
 
-				result = bossRecordService.createRecord(bossRecord, userId.toString());
+				result = bossRecordService.createRecord(userId, bossRecord, userId.toString());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 					return result;
 				}
 
 				// 3. 更新 client_tb_park_record
-				Record clientRecord = new Record();
-				clientRecord.setUserId(clientUserId);
-				clientRecord.setReserveId(Long.valueOf(reserveId));
-
-				result = clientRecordService.updateRecord(clientRecord, userId.toString());
+				result = clientRecordService.updateRecord(clientUserId, Long.valueOf(reserveId), userId.toString());
 				if (!result.getResult()) {
 					ts.setRollbackOnly();
 					return result;
@@ -441,6 +496,12 @@ public class ReserveServiceImpl implements IReserveService {
 				return result;
 			}
 		});
+
+		if (result.getResult()) {
+			remove(userId, reserveId);
+		}
+
+		return result;
 	}
 
 	private BooleanResult updateReserve(String reserveId, String state, String modifyUser) {
@@ -466,6 +527,22 @@ public class ReserveServiceImpl implements IReserveService {
 		}
 
 		return result;
+	}
+
+	/**
+	 * 清除预约缓存.
+	 * 
+	 * @param userId
+	 * @param reserveId
+	 */
+	private void remove(Long userId, String reserveId) {
+		String key = userId.toString() + "&" + reserveId.trim();
+
+		try {
+			memcachedCacheService.remove(IMemcachedCacheService.CACHE_KEY_RESERVE + key);
+		} catch (ServiceException e) {
+			logger.error(IMemcachedCacheService.CACHE_KEY_RESERVE + key, e);
+		}
 	}
 
 	public TransactionTemplate getTransactionTemplate() {

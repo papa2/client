@@ -62,6 +62,16 @@ public class ReserveAction extends BaseAction {
 	 */
 	private String token;
 
+	/**
+	 * 预约状态.
+	 */
+	private String state;
+
+	/**
+	 * 预定是否过期.
+	 */
+	private String expireState;
+
 	@JsonResult(field = "count")
 	public String getReserveCount() {
 		count = reserveService.getReserveCount(this.getUser().getUserId());
@@ -129,7 +139,9 @@ public class ReserveAction extends BaseAction {
 	}
 
 	public String qrCode() {
-		token = reserveService.generateToken(this.getUser().getUserId(), reserveId);
+		token =
+			env.getProperty("appUrl") + "/reserve/result.htm?token="
+				+ reserveService.generateToken(this.getUser().getUserId(), reserveId);
 
 		return SUCCESS;
 	}
@@ -137,6 +149,17 @@ public class ReserveAction extends BaseAction {
 	@JsonResult(field = "token")
 	public String getQRCode() {
 		qrCode();
+
+		return JSON_RESULT;
+	}
+
+	@JsonResult(field = "state")
+	public String trigger() {
+		reserve = reserveService.getReserve(this.getUser().getUserId(), reserveId);
+
+		if (reserve != null) {
+			state = reserve.getState();
+		}
 
 		return JSON_RESULT;
 	}
@@ -259,6 +282,22 @@ public class ReserveAction extends BaseAction {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getExpireState() {
+		return expireState;
+	}
+
+	public void setExpireState(String expireState) {
+		this.expireState = expireState;
 	}
 
 }

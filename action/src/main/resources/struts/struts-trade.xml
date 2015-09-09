@@ -11,10 +11,15 @@
 			<result name="success">/client/trade/index.vm</result>
 		</action>
 		
-		<!-- 账单明细 -->
+		<action name="create" class="tradeAction" method="create">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success" type="redirect">${env.appUrl}/pay/authorize.htm?tradeNo=${tradeNo}</result>
+		</action>
+		
 		<action name="detail" class="tradeAction" method="detail">
 			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/trade/detail.vm</result>
+			<result name="redirect" type="redirect">${env.appUrl}/pay/authorize.htm?tradeNo=${tradeNo}</result>
 		</action>
 		
 	</package>

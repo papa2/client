@@ -3,9 +3,10 @@ function back() {
 	top.location.href = appUrl + "/home.htm";
 }
 
-function detail() {
+function detail(tradeNo) {
 	loading();
-	top.location.href = appUrl + "/trade/detail.htm";
+	top.location.href = appUrl + "/trade/detail.htm?showwxpaytitle=1&tradeNo="
+			+ tradeNo;
 }
 
 function loading() {

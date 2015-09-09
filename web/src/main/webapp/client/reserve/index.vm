@@ -18,37 +18,39 @@
 			<div class="navbar-brand pull-right">我的预约</div>
         </nav>
 		
-		<div>
-    		<div class="modal-body">
-    			<ul class="list-group" style="margin-top: -16px; margin-bottom: -16px;">
-    				#if($reserveList && $reserveList != [])
-    					#foreach($reserve in $reserveList)
-						#if($!{reserve.state} == 'D')
-						<a class="list-group-item list-group-item-danger" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.reserveId}')">
-						#elseif($!{reserve.expireState} == 'Y')
-						<a class="list-group-item list-group-item-warning" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.reserveId}')">
-						#else
-						<a class="list-group-item list-group-item-success" style="margin-left: -16px; margin-right: -16px;" href="javascript:detail('$!{reserve.reserveId}')">
-						#end
-    						<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
-							#if($!{reserve.state} == 'D')
-							<span class="label label-info pull-right" style="margin-top: 3px;">预约作废</span>
-							#elseif($!{reserve.expireState} == 'Y')
-							<span class="label label-info pull-right" style="margin-top: 3px;">预约过期</span>
-							#else
-							<span class="label label-success pull-right" style="margin-top: 3px;">预约中</span>
-							#end
-    						<span class="fa fa-building-o"></span> $!{reserve.carNo} @ $!{reserve.parkName}
-            			</a>
-    					#end
-    				#else
-					<li class="list-group-item" style="margin-left: -16px; margin-right: -16px;">
-						<i class="fa fa-cog fa-spin"></i> 趴趴兔正在努力的搜集数据哦。
-					</li>
+		<ul class="list-group" style="margin-top: -20px;">
+			#if($reserveList && $reserveList != [])
+				#foreach($reserve in $reserveList)
+				#if($!{reserve.state} == 'D')
+				<a class="list-group-item list-group-item-danger" href="javascript:detail('$!{reserve.reserveId}', 'Y')">
+				#elseif($!{reserve.state} == 'U' && $!{reserve.expireState} == 'Y')
+				<a class="list-group-item list-group-item-warning" href="javascript:detail('$!{reserve.reserveId}', 'Y')">
+				#else
+				<a class="list-group-item list-group-item-success" href="javascript:detail('$!{reserve.reserveId}', 'N')">
+				#end
+					<span class="fa fa-chevron-right pull-right" style="margin: 4px -5px 0 10px;"></span>
+					
+					#if($!{reserve.state} == 'D')
+					<span class="label label-danger pull-right" style="margin-top: 3px;">预约作废</span>
+					#elseif($!{reserve.state} == 'U' && $!{reserve.expireState} == 'Y')
+					<span class="label label-danger pull-right" style="margin-top: 3px;">预约过期</span>
+					#elseif($!{reserve.state} == 'I')
+					<span class="label label-info pull-right" style="margin-top: 3px;">正在停车</span>
+					#elseif($!{reserve.state} == 'O')
+					<span class="label label-success pull-right" style="margin-top: 3px;">停车结束</span>
+					#else
+					<span class="label label-success pull-right" style="margin-top: 3px;">预约中</span>
 					#end
-                </ul>
-            </div>
-        </div>
+					
+					<span class="fa fa-building-o"></span> $!{reserve.carNo} @ $!{reserve.parkName}
+    			</a>
+				#end
+			#else
+			<li class="list-group-item" style="margin-left: -16px; margin-right: -16px;">
+				<i class="fa fa-cog fa-spin"></i> 趴趴兔正在努力的搜集数据哦。
+			</li>
+			#end
+        </ul>
 		
 		<nav class="navbar navbar-default navbar-fixed-bottom text-center">
 			<div style="margin: 10px;">
@@ -62,6 +64,6 @@
 		#JS_ENV_VAL()
 		<script type="text/javascript">
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/index.js?t=20150826"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/index.js?t=20150910"></script>
     </body>
 </html>

@@ -19,9 +19,10 @@
         </nav>
 		
 		<div>
+			#parse("/client/framework/resultMessage.vm")
 			<div class="modal-body">
 				<form class="" role="form" method="post">
-					<input type="hidden" name="reserve.spaceId" value="$!{reserve.space.spaceId}"></input>
+					<input type="hidden" name="reserveId" value="$!{reserve.reserveId}"></input>
 					<div style="margin-bottom: 5px;">
 						<label class="control-label">租用方式：</label>
 						#if($!{reserve.space.costType} == 'H')

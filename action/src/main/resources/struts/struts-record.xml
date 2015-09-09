@@ -1,0 +1,19 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="{http://client}client$record"
+		extends="{http://client}client$framework" namespace="/record">
+		
+		<action name="index" class="clientRecordAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/record/index.vm</result>
+		</action>
+
+		<action name="detail" class="clientRecordAction" method="detail">
+			<interceptor-ref name="clientAuthStack" />
+			<result name="success">/client/record/detail.vm</result>
+		</action>
+		
+	</package>
+</struts>

@@ -9,8 +9,6 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class JsapiTicket extends Error {
 
-	private static final long serialVersionUID = -9091940590416502617L;
-
 	private String ticket;
 
 	@JSONField(name = "expires_in")

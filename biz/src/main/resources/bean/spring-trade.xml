@@ -7,6 +7,20 @@
 	
 	<!-- 账单 -->
 	<bean id="tradeAction" class="com.papa2.client.trade.action.TradeAction" parent="baseAction" scope="request">
+		<property name="tradeService" ref="tradeService" />
 	</bean>
+	
+	<bean id="tradeService" class="com.papa2.client.trade.service.impl.TradeServiceImpl">
+		<property name="transactionTemplate" ref="transactionTemplate" />
+		<property name="memcachedCacheService" ref="memcachedCacheService" />
+		<property name="clientRecordService" ref="clientRecordService" />
+		<property name="priceService" ref="priceService" />
+		<property name="tradeDao" ref="tradeDao" />
+		<property name="orderDao" ref="orderDao" />
+	</bean>
+	
+	<bean id="tradeDao" class="com.papa2.client.trade.dao.impl.TradeDaoImpl" parent="baseDao" />
+	
+	<bean id="orderDao" class="com.papa2.client.trade.dao.impl.OrderDaoImpl" parent="baseDao" />
 
 </beans>

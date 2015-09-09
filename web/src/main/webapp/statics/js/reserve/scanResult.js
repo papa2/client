@@ -33,6 +33,10 @@ function promgtMsg() {
 		error(failResult);
 	} else if (successResult != undefined) {
 		success(successResult);
+
+		setTimeout(function() {
+					back();
+				}, 3000);
 	}
 
 	if (state == 'U') {

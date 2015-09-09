@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="trade.order">
+	
+	<typeAlias alias="order" type="com.papa2.client.api.trade.bo.Order" />
+	
+	<insert id="createOrder" parameterClass="order">
+	<![CDATA[
+		INSERT
+		INTO client_tb_order
+		  (
+			TRADE_ID,
+			PARK_ID,
+			PARK_NAME,
+			RECORD_ID,
+			START_TIME,
+			END_TIME,
+			PRICE,
+			STATE,
+			CREATE_DATE,
+			CREATE_USER,
+			MODIFY_DATE,
+			MODIFY_USER
+		  )
+		  VALUES
+		  (
+			#tradeId#,
+			#parkId#,
+			#parkName#,
+			#recordId#,
+			#startTime#,
+			#endTime#,
+			#price#,
+			'U',
+			NOW(),
+			#modifyUser#,
+			NOW(),
+			#modifyUser#
+		  )
+	]]>
+		<selectKey resultClass="java.lang.Long" keyProperty="orderId">
+		<![CDATA[
+			SELECT LAST_INSERT_ID()
+		]]>
+		</selectKey>
+	</insert>
+	
+	<select id="getOrderList" parameterClass="order" resultClass="order">
+	<![CDATA[
+		SELECT t.order_id AS orderId,
+			   t.park_name AS parkName,
+			   t.record_id AS recordId,
+			   DATE_FORMAT(t.start_time, '%Y-%m-%d %T') AS startTime,
+			   DATE_FORMAT(t.end_time, '%Y-%m-%d %T') AS endTime,
+			   t.price
+		  FROM client_tb_order t
+		 WHERE t.trade_id = #tradeId#
+		 ORDER BY t.order_id ASC
+	]]>
+	</select>
+	
+</sqlMap>

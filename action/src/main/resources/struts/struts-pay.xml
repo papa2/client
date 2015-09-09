@@ -4,10 +4,20 @@
 <struts>
 	<package name="{http://client}client$pay"
 		extends="{http://client}client$framework" namespace="/pay">
+		
+		<action name="authorize" class="payAction" method="authorize">
+			<result name="success" type="redirect">${redirectUrl}</result>
+		</action>
 
 		<!-- 支付首页 -->
 		<action name="index" class="payAction" method="index">
+			<interceptor-ref name="clientAuthStack" />
 			<result name="success">/client/pay/index.vm</result>
+		</action>
+		
+		<!-- 支付 -->
+		<action name="/" class="payAction" method="pay">
+			<interceptor-ref name="clientAuthStack" />
 		</action>
 		
 	</package>

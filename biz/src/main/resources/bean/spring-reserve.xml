@@ -25,11 +25,9 @@
 	
 	<!-- 扫一扫 -->
 	<bean id="scanAction" class="com.papa2.client.reserve.action.ScanAction" parent="baseAction" scope="request">
+		<property name="signService" ref="signService" />
 		<property name="reserveService" ref="reserveService" />
-		<property name="signatureService" ref="signatureService" />
-		<property name="appUrl">
-			<value>${appUrl}</value>
-		</property>
+		<property name="bossRecordService" ref="bossRecordService" />
 		<property name="appId">
 			<value>${wxap.appId}</value>
 		</property>

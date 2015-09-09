@@ -8,10 +8,12 @@
 	<!-- 支付 -->
 	<bean id="payAction" class="com.papa2.client.pay.action.PayAction" parent="baseAction" scope="request">
 		<property name="payService" ref="payService" />
+		<property name="tradeService" ref="tradeService" />
 	</bean>
 	
 	<bean id="payService" class="com.papa2.client.pay.service.impl.PayServiceImpl">
-		<property name="clientRecordService" ref="clientRecordService" />
+		<property name="wxapService" ref="wxapService" />
+		<property name="tradeService" ref="tradeService" />
 	</bean>
 
 </beans>

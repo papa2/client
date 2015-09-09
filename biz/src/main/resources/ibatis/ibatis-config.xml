@@ -41,6 +41,8 @@
 	<sqlMap resource="ibatis/sqlmap-reserve.xml" />
 	<sqlMap resource="ibatis/sqlmap-sms.xml" />
 	<sqlMap resource="ibatis/sqlmap-space.xml" />
+	<sqlMap resource="ibatis/sqlmap-trade.order.xml" />
+	<sqlMap resource="ibatis/sqlmap-trade.xml" />
 	<sqlMap resource="ibatis/sqlmap-user.boss.xml" />
 	<sqlMap resource="ibatis/sqlmap-user.client.xml" />
     

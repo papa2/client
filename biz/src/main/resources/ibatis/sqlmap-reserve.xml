@@ -79,6 +79,7 @@
 	<select id="getReserve" parameterClass="reserve" resultClass="reserve">
 	<![CDATA[
 		SELECT t.reserve_id AS reserveId,
+			   t.user_id AS userId,
 			   t.car_id AS carId,
 			   t.space_id AS spaceId,
 			   DATE_FORMAT(t.reserve_date, '%Y-%m-%d %T') AS reserveDate,
@@ -99,5 +100,28 @@
 		   AND t.reserve_id = #reserveId#
 	]]>
 	</select>
+	
+	<update id="updateReserve" parameterClass="reserve">
+	<![CDATA[
+		UPDATE client_tb_park_reserve t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.state = #state#
+		 WHERE t.reserve_id = #reserveId#
+	]]>
+		<dynamic>
+			<isNotEmpty property="state">
+				<isEqual property="state" compareValue="I" prepend="and">
+				<![CDATA[ t.state = 'U' ]]>
+				</isEqual>
+				<isEqual property="state" compareValue="O" prepend="and">
+				<![CDATA[ t.state = 'I' ]]>
+				</isEqual>
+			</isNotEmpty>
+			<isEmpty property="state" prepend="and">
+			<![CDATA[ t.state = 'U' ]]>
+			</isEmpty>
+		</dynamic>
+	</update>
 	
 </sqlMap>

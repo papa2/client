@@ -36,6 +36,16 @@
 			<artifactId>joda-time</artifactId>
 		</dependency>
 
+		<!-- dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+		</dependency>
+
 		<!-- json -->
 		<dependency>
 			<groupId>org.json</groupId>

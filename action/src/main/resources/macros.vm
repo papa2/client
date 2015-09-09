@@ -49,6 +49,8 @@
 			<script src="$!{env.imgUrl}/flexpaper/js/flexpaper_handlers.js"></script>
 		#elseif($key == 'hammer')
 			<script src="$!{env.imgUrl}/hammer/hammer.min.js"></script>
+		#elseif($key == 'icheck')
+			<script src="$!{env.imgUrl}/icheck/icheck.min.js"></script>
 		#elseif($key == 'iosbadge')
 			<script src="$!{env.imgUrl}/iosbadge/iosbadge.min.js"></script>
 		#elseif($key == 'iscroll')
@@ -97,6 +99,8 @@
 			<link rel="stylesheet" href="$!{env.imgUrl}/flexpaper/css/flexpaper.css" />
 		#elseif($key == 'font-awesome')
 			<link rel="stylesheet" href="$!{env.imgUrl}/font-awesome/css/font-awesome.min.css" />
+		#elseif($key == 'icheck')
+			<link rel="stylesheet" href="$!{env.imgUrl}/icheck/skins/square/blue.css" />
 		#elseif($key == 'iosbadge')
 			<link rel="stylesheet" href="$!{env.imgUrl}/iosbadge/iosbadge.css" />
 		#elseif($key == 'jquery.mobile')
