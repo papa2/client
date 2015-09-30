@@ -19,7 +19,12 @@ function pay(pt) {
 	$('#' + payType).button('loading');
 
 	var form = window.document.forms[0];
-	form.action = appUrl + "/pay/pay.htm?payType=" + payType;
+	if (payType == 'alipay') {
+		form.action = appUrl + "/alipay/pay.htm?payType=" + payType;
+	} else {
+		form.action = appUrl + "/wxap/pay.htm?payType=" + payType;
+	}
+
 	form.target = "hideFrame";
 	form.submit();
 }

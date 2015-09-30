@@ -15,10 +15,22 @@
 			<result name="success">/client/pay/index.vm</result>
 		</action>
 		
-		<!-- 支付 -->
-		<action name="/" class="payAction" method="pay">
+	</package>
+	
+	<!-- alipay 支付 -->
+	<package name="{http://client}client$alipay"
+		extends="{http://client}client$framework" namespace="/alipay">
+		<action name="pay" class="payAction" method="pay">
 			<interceptor-ref name="clientAuthStack" />
 		</action>
-		
 	</package>
+	
+	<!-- wx 支付 -->
+	<package name="{http://client}client$wxap"
+		extends="{http://client}client$framework" namespace="/wxap">
+		<action name="pay" class="payAction" method="pay">
+			<interceptor-ref name="clientAuthStack" />
+		</action>
+	</package>
+
 </struts>
