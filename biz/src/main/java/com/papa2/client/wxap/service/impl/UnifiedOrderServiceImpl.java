@@ -1,6 +1,7 @@
 package com.papa2.client.wxap.service.impl;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,7 +25,7 @@ public class UnifiedOrderServiceImpl implements IUnifiedOrderService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(UnifiedOrderServiceImpl.class);
 
-	private String appSecret;
+	private String key;
 
 	@Override
 	public String unifiedOrder(UnifiedOrder unifiedOrder, String modifyUser) {
@@ -76,7 +77,7 @@ public class UnifiedOrderServiceImpl implements IUnifiedOrderService {
 		sign.append("&total_fee=").append(unifiedOrder.getTotalFee());
 		sign.append("&trade_type=").append(unifiedOrder.getTradeType());
 
-		sign.append("&key=").append(appSecret);
+		sign.append("&key=").append(key);
 
 		try {
 			unifiedOrder.setSign(EncryptUtil.encryptMD5(sign.toString()).toUpperCase());
@@ -140,6 +141,14 @@ public class UnifiedOrderServiceImpl implements IUnifiedOrderService {
 			throw new ServiceException("统一下单失败.");
 		}
 
+		try {
+			result = new String(result.getBytes("GBK"), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			logger.error(result, e);
+
+			throw new ServiceException("统一下单失败.");
+		}
+
 		UnifiedOrderReturn ret = (UnifiedOrderReturn) XmlUtil.parse(result, new UnifiedOrderReturn());
 
 		if (ret == null) {
@@ -158,12 +167,12 @@ public class UnifiedOrderServiceImpl implements IUnifiedOrderService {
 		return ret.getUnifiedOrder().getPrePayId();
 	}
 
-	public String getAppSecret() {
-		return appSecret;
+	public String getKey() {
+		return key;
 	}
 
-	public void setAppSecret(String appSecret) {
-		this.appSecret = appSecret;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 }

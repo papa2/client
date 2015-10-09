@@ -32,6 +32,8 @@ public class WxapServiceImpl implements IWxapService {
 
 	private String notifyUrl;
 
+	private String key;
+
 	@Override
 	public String authorize(String redirectUrl, String scope, String state) {
 		return oauth2Service.authorize(appId, redirectUrl, scope, state);
@@ -67,6 +69,8 @@ public class WxapServiceImpl implements IWxapService {
 		sign.append("&package=").append(wxap.getPackageValue());
 		sign.append("&signType=").append(wxap.getSignType());
 		sign.append("&timeStamp=").append(wxap.getTimeStamp());
+
+		sign.append("&key=").append(key);
 
 		try {
 			wxap.setPaySign(EncryptUtil.encryptMD5(sign.toString()).toUpperCase());
@@ -151,6 +155,14 @@ public class WxapServiceImpl implements IWxapService {
 
 	public void setNotifyUrl(String notifyUrl) {
 		this.notifyUrl = notifyUrl;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 }

@@ -52,6 +52,7 @@ function promgtMsg() {
 }
 
 function getBrandWCPayRequest(data) {
+	data = data.replace(/&quot;/g, "\"");
 	var obj = JSON.parse(data);
 
 	try {

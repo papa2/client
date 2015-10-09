@@ -9,6 +9,8 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class AccessToken extends Error {
 
+	private static final long serialVersionUID = -2503242169338259649L;
+
 	/**
 	 * 基础支持.
 	 */

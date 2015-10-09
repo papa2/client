@@ -83,6 +83,6 @@
 		var tradeNo = '$!{trade.tradeNo}';
 		var payType;
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/pay/index.js"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/pay/index.js?t=20151009"></script>
     </body>
 </html>

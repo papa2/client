@@ -36,11 +36,14 @@
 		<property name="mchId">
 			<value>${wxap.mchId}</value>
 		</property>
+		<property name="key">
+			<value>${wxap.key}</value>
+		</property>
 	</bean>
 	
 	<bean id="unifiedOrderService" class="com.papa2.client.wxap.service.impl.UnifiedOrderServiceImpl">
-		<property name="appSecret">
-			<value>${wxap.appSecret}</value>
+		<property name="key">
+			<value>${wxap.key}</value>
 		</property>
 	</bean>
 	
