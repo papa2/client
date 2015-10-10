@@ -63,11 +63,13 @@
 		<div class="col-xs-12" style="margin-top: 20px;">
 			#if($!{trade.payType} == 'alipay')
 			<a class="btn btn-success btn-block" id="alipay" data-loading-text="正在处理..." href="javascript:pay('alipay');">支付宝付款</a>
-			#elseif($!{trade.payType} == 'wxap')
-			<a class="btn btn-success btn-block" id="wxap" data-loading-text="正在处理..." href="javascript:pay('wxap');">微信支付</a>
+			#elseif($!{trade.payType} == 'wxpay')
+			<a class="btn btn-success btn-block" id="wxpay" data-loading-text="正在处理..." href="javascript:pay('wxpay');">微信支付</a>
 			#else
+			<!--	
 			<a class="btn btn-success btn-block" id="alipay" data-loading-text="正在处理..." href="javascript:pay('alipay');">支付宝付款</a>
-			<a class="btn btn-warning btn-block" style="margin-top: 10px;" id="wxap" data-loading-text="正在处理..." href="javascript:pay('wxap');">微信支付</a>
+			-->
+			<a class="btn btn-warning btn-block" style="margin-top: 10px;" id="wxpay" data-loading-text="正在处理..." href="javascript:pay('wxpay');">微信支付</a>
 			#end
         </div>
 
@@ -83,6 +85,6 @@
 		var tradeNo = '$!{trade.tradeNo}';
 		var payType;
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/pay/index.js?t=20151009"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/pay/index.js?t=20151010"></script>
     </body>
 </html>

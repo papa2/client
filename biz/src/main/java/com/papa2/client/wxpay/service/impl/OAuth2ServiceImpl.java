@@ -1,10 +1,10 @@
-package com.papa2.client.wxap.service.impl;
+package com.papa2.client.wxpay.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.papa2.client.api.wxap.IOAuth2Service;
-import com.papa2.client.api.wxap.bo.AccessToken;
+import com.papa2.client.api.wxpay.IOAuth2Service;
+import com.papa2.client.api.wxpay.bo.AccessToken;
 import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;

@@ -1,4 +1,4 @@
-package com.papa2.client.api.wxap;
+package com.papa2.client.api.wxpay;
 
 import com.papa2.client.framework.exception.ServiceException;
 

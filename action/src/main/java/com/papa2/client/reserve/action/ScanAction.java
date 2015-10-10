@@ -7,7 +7,7 @@ import com.papa2.client.api.record.bo.Record;
 import com.papa2.client.api.reserve.IReserveService;
 import com.papa2.client.api.reserve.bo.Reserve;
 import com.papa2.client.api.user.bo.User;
-import com.papa2.client.api.wxap.ISignService;
+import com.papa2.client.api.wxpay.ISignService;
 import com.papa2.client.framework.action.BaseAction;
 import com.papa2.client.framework.bo.BooleanResult;
 import com.papa2.client.framework.util.UUIDUtil;

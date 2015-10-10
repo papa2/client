@@ -1,13 +1,13 @@
-package com.papa2.client.wxap.service.impl;
+package com.papa2.client.wxpay.service.impl;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.papa2.client.api.wxap.IUnifiedOrderService;
-import com.papa2.client.api.wxap.bo.UnifiedOrder;
-import com.papa2.client.api.wxap.bo.UnifiedOrderReturn;
+import com.papa2.client.api.wxpay.IUnifiedOrderService;
+import com.papa2.client.api.wxpay.bo.UnifiedOrder;
+import com.papa2.client.api.wxpay.bo.UnifiedOrderReturn;
 import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
@@ -160,11 +160,71 @@ public class UnifiedOrderServiceImpl implements IUnifiedOrderService {
 			throw new ServiceException(ret.getReturnMsg());
 		}
 
+		// 验证返回签名
+		if (!validate(ret)) {
+			throw new ServiceException("接口返回签名验证失败.");
+		}
+
 		if ("FAIL".equals(ret.getResultCode())) {
 			throw new ServiceException(ret.getErrCode() + "|" + ret.getErrCodeDes());
 		}
 
 		return ret.getUnifiedOrder().getPrePayId();
+	}
+
+	private boolean validate(UnifiedOrderReturn ret) {
+		UnifiedOrder unifiedOrder = ret.getUnifiedOrder();
+
+		StringBuilder sign = new StringBuilder();
+
+		if (StringUtils.isNotBlank(unifiedOrder.getAppId())) {
+			sign.append("&appid=").append(unifiedOrder.getAppId());
+		}
+		if (StringUtils.isNotBlank(unifiedOrder.getCodeUrl())) {
+			sign.append("&code_url=").append(unifiedOrder.getCodeUrl());
+		}
+		if (StringUtils.isNotBlank(unifiedOrder.getDeviceInfo())) {
+			sign.append("&device_info=").append(unifiedOrder.getDeviceInfo());
+		}
+		if (StringUtils.isNotBlank(ret.getErrCode())) {
+			sign.append("&err_code=").append(ret.getErrCode());
+		}
+		if (StringUtils.isNotBlank(ret.getErrCodeDes())) {
+			sign.append("&err_code_des=").append(ret.getErrCodeDes());
+		}
+		if (StringUtils.isNotBlank(unifiedOrder.getMchId())) {
+			sign.append("&mch_id=").append(unifiedOrder.getMchId());
+		}
+		if (StringUtils.isNotBlank(unifiedOrder.getNonceStr())) {
+			sign.append("&nonce_str=").append(unifiedOrder.getNonceStr());
+		}
+		if (StringUtils.isNotBlank(unifiedOrder.getPrePayId())) {
+			sign.append("&prepay_id=").append(unifiedOrder.getPrePayId());
+		}
+		if (StringUtils.isNotBlank(ret.getResultCode())) {
+			sign.append("&result_code=").append(ret.getResultCode());
+		}
+		if (StringUtils.isNotBlank(ret.getReturnCode())) {
+			sign.append("&return_code=").append(ret.getReturnCode());
+		}
+		if (StringUtils.isNotBlank(ret.getReturnMsg())) {
+			sign.append("&return_msg=").append(ret.getReturnMsg());
+		}
+		if (StringUtils.isNotBlank(unifiedOrder.getTradeType())) {
+			sign.append("&trade_type=").append(unifiedOrder.getTradeType());
+		}
+
+		sign.append("&key=").append(key);
+
+		try {
+			if (unifiedOrder.getSign().equals(EncryptUtil.encryptMD5(sign.substring(1).toString()).toUpperCase())) {
+				return true;
+			}
+		} catch (IOException e) {
+			logger.error(e);
+		}
+
+		return false;
 	}
 
 	public String getKey() {

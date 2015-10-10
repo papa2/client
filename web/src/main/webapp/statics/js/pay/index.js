@@ -22,7 +22,7 @@ function pay(pt) {
 	if (payType == 'alipay') {
 		form.action = appUrl + "/alipay/pay.htm?payType=" + payType;
 	} else {
-		form.action = appUrl + "/wxap/pay.htm?payType=" + payType;
+		form.action = appUrl + "/wxpay/pay.htm?payType=" + payType;
 	}
 
 	form.target = "hideFrame";
@@ -40,7 +40,7 @@ function promgtMsg() {
 
 		if (payType == 'alipay') {
 			$("#3rd_pay").html(successResult);
-		} else if (payType == 'wxap') {
+		} else if (payType == 'wxpay') {
 			getBrandWCPayRequest(successResult);
 		} else {
 
@@ -48,7 +48,7 @@ function promgtMsg() {
 	}
 
 	$('#alipay').button('reset');
-	$('#wxap').button('reset');
+	$('#wxpay').button('reset');
 }
 
 function getBrandWCPayRequest(data) {

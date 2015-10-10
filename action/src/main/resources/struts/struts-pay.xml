@@ -26,10 +26,12 @@
 	</package>
 	
 	<!-- wx 支付 -->
-	<package name="{http://client}client$wxap"
-		extends="{http://client}client$framework" namespace="/wxap">
+	<package name="{http://client}client$wxpay"
+		extends="{http://client}client$framework" namespace="/wxpay">
 		<action name="pay" class="payAction" method="pay">
 			<interceptor-ref name="clientAuthStack" />
+		</action>
+		<action name="notify" class="payAction" method="wxNotify">
 		</action>
 	</package>
 

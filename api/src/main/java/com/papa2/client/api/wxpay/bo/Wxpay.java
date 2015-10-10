@@ -1,4 +1,4 @@
-package com.papa2.client.api.wxap.bo;
+package com.papa2.client.api.wxpay.bo;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author xujiakun
  * 
  */
-public class Wxap implements Serializable {
+public class Wxpay implements Serializable {
 
 	private static final long serialVersionUID = -8637186720873751933L;
 

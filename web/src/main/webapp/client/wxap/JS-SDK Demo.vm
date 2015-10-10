@@ -367,6 +367,6 @@ h3:before {
       ]
   });
 </script>
-<script type="text/javascript" src="$!{env.imgUrl}/js/wxap/zepto.min.js"></script>
-<script type="text/javascript" src="$!{env.imgUrl}/js/wxap/demo.js"></script>
+<script type="text/javascript" src="$!{env.imgUrl}/js/wxpay/zepto.min.js"></script>
+<script type="text/javascript" src="$!{env.imgUrl}/js/wxpay/demo.js"></script>
 </html>

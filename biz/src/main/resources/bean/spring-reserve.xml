@@ -29,7 +29,7 @@
 		<property name="reserveService" ref="reserveService" />
 		<property name="bossRecordService" ref="bossRecordService" />
 		<property name="appId">
-			<value>${wxap.appId}</value>
+			<value>${wxpay.appId}</value>
 		</property>
 	</bean>
 

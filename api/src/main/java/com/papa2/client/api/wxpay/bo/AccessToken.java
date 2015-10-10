@@ -1,4 +1,4 @@
-package com.papa2.client.api.wxap.bo;
+package com.papa2.client.api.wxpay.bo;
 
 import com.alibaba.fastjson.annotation.JSONField;
 

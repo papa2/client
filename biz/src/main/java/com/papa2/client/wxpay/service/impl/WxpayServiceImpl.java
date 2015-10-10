@@ -1,14 +1,14 @@
-package com.papa2.client.wxap.service.impl;
+package com.papa2.client.wxpay.service.impl;
 
 import java.io.IOException;
 
 import com.alibaba.fastjson.JSON;
-import com.papa2.client.api.wxap.IOAuth2Service;
-import com.papa2.client.api.wxap.IUnifiedOrderService;
-import com.papa2.client.api.wxap.IWxapService;
-import com.papa2.client.api.wxap.bo.AccessToken;
-import com.papa2.client.api.wxap.bo.UnifiedOrder;
-import com.papa2.client.api.wxap.bo.Wxap;
+import com.papa2.client.api.wxpay.IOAuth2Service;
+import com.papa2.client.api.wxpay.IUnifiedOrderService;
+import com.papa2.client.api.wxpay.IWxpayService;
+import com.papa2.client.api.wxpay.bo.AccessToken;
+import com.papa2.client.api.wxpay.bo.UnifiedOrder;
+import com.papa2.client.api.wxpay.bo.Wxpay;
 import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.util.EncryptUtil;
 import com.papa2.client.framework.util.UUIDUtil;
@@ -18,7 +18,7 @@ import com.papa2.client.framework.util.UUIDUtil;
  * @author JiakunXu
  * 
  */
-public class WxapServiceImpl implements IWxapService {
+public class WxpayServiceImpl implements IWxpayService {
 
 	private IOAuth2Service oauth2Service;
 
@@ -52,33 +52,33 @@ public class WxapServiceImpl implements IWxapService {
 
 	@Override
 	public String getBrandWCPayRequest(String tradeNo, String body, String detail, String attach, int totalFee,
-		String ip, String timeStart, String timeExpire, String notifyUrl, String openId, String modifyUser) {
-		Wxap wxap = new Wxap();
+		String ip, String timeStart, String timeExpire, String openId, String modifyUser) {
+		Wxpay wxpay = new Wxpay();
 
-		wxap.setAppId(appId);
-		wxap.setTimeStamp(Long.toString(System.currentTimeMillis() / 1000));
-		wxap.setNonceStr(UUIDUtil.generate());
-		wxap.setPackageValue("prepay_id="
+		wxpay.setAppId(appId);
+		wxpay.setTimeStamp(Long.toString(System.currentTimeMillis() / 1000));
+		wxpay.setNonceStr(UUIDUtil.generate());
+		wxpay.setPackageValue("prepay_id="
 			+ getPrePayId(appId, mchId, body, detail, attach, tradeNo, totalFee, ip, timeStart, timeExpire, notifyUrl,
 				openId, modifyUser));
-		wxap.setSignType("MD5");
+		wxpay.setSignType("MD5");
 
 		StringBuilder sign = new StringBuilder();
-		sign.append("appId=").append(wxap.getAppId());
-		sign.append("&nonceStr=").append(wxap.getNonceStr());
-		sign.append("&package=").append(wxap.getPackageValue());
-		sign.append("&signType=").append(wxap.getSignType());
-		sign.append("&timeStamp=").append(wxap.getTimeStamp());
+		sign.append("appId=").append(wxpay.getAppId());
+		sign.append("&nonceStr=").append(wxpay.getNonceStr());
+		sign.append("&package=").append(wxpay.getPackageValue());
+		sign.append("&signType=").append(wxpay.getSignType());
+		sign.append("&timeStamp=").append(wxpay.getTimeStamp());
 
 		sign.append("&key=").append(key);
 
 		try {
-			wxap.setPaySign(EncryptUtil.encryptMD5(sign.toString()).toUpperCase());
+			wxpay.setPaySign(EncryptUtil.encryptMD5(sign.toString()).toUpperCase());
 		} catch (IOException e) {
 			throw new ServiceException(e.getMessage());
 		}
 
-		return JSON.toJSONString(wxap);
+		return JSON.toJSONString(wxpay);
 	}
 
 	private String getPrePayId(String appId, String mchId, String body, String detail, String attach, String tradeNo,

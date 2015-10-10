@@ -1,12 +1,12 @@
-package com.papa2.client.wxap.service.impl;
+package com.papa2.client.wxpay.service.impl;
 
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.papa2.client.api.wxap.IAccessTokenService;
-import com.papa2.client.api.wxap.IJsapiTicketService;
-import com.papa2.client.api.wxap.ISignService;
+import com.papa2.client.api.wxpay.IAccessTokenService;
+import com.papa2.client.api.wxpay.IJsapiTicketService;
+import com.papa2.client.api.wxpay.ISignService;
 import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;

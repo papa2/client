@@ -115,6 +115,15 @@ public class PayAction extends BaseAction {
 		return RESULT_MESSAGE;
 	}
 
+	public String wxNotify() {
+		@SuppressWarnings("unchecked")
+		BooleanResult result = payService.notify(this.getServletRequest().getParameterMap());
+
+		this.setResourceResult(result.getCode());
+
+		return RESOURCE_RESULT;
+	}
+
 	public IPayService getPayService() {
 		return payService;
 	}

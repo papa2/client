@@ -15,7 +15,7 @@ public interface IPayService {
 
 	String PAY_TYPE_ALIPAY = "alipay";
 
-	String PAY_TYPE_WXAP = "wxap";
+	String PAY_TYPE_WXPAY = "wxpay";
 
 	/**
 	 * 
@@ -66,10 +66,9 @@ public interface IPayService {
 	/**
 	 * 支付通知.
 	 * 
-	 * @param tradeNo
-	 * @param resHandler
+	 * @param params
 	 * @return
 	 */
-	boolean notify(String tradeNo);
+	BooleanResult notify(Map<String, Object> params);
 
 }

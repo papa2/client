@@ -1,7 +1,7 @@
 package com.papa2.client.api.pay;
 
 import com.papa2.client.api.alipay.bo.AliNotify;
-import com.papa2.client.api.wxap.bo.WxNotify;
+import com.papa2.client.api.wxpay.bo.WxNotify;
 import com.papa2.client.framework.bo.BooleanResult;
 
 /**

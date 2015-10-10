@@ -1,6 +1,6 @@
-package com.papa2.client.api.wxap;
+package com.papa2.client.api.wxpay;
 
-import com.papa2.client.api.wxap.bo.UnifiedOrder;
+import com.papa2.client.api.wxpay.bo.UnifiedOrder;
 import com.papa2.client.framework.exception.ServiceException;
 
 /**

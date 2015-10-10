@@ -99,6 +99,12 @@ public interface IMemcachedCacheService extends ICacheService<String, Object> {
 	 */
 	String CACHE_KEY_WX_ACCESS_TOKEN = "key_wx_access_token_";
 
+	// >>>>>>>>>>以下是交易相关<<<<<<<<<<
+
+	String CACHE_KEY_TRADE_NO = "key_trade_no_";
+
+	int CACHE_KEY_TRADE_NO_DEFAULT_EXP = 15;
+
 	// >>>>>>>>>>end<<<<<<<<<<
 
 	/**

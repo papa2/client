@@ -1,4 +1,4 @@
-package com.papa2.client.api.wxap;
+package com.papa2.client.api.wxpay;
 
 /**
  * JS SDK 签名.

@@ -1,4 +1,4 @@
-package com.papa2.client.api.wxap;
+package com.papa2.client.api.wxpay;
 
 import com.papa2.client.framework.exception.ServiceException;
 
@@ -8,7 +8,7 @@ import com.papa2.client.framework.exception.ServiceException;
  * @author xujiakun
  * 
  */
-public interface IWxapService {
+public interface IWxpayService {
 
 	String ERROR_MESSAGE = "微信支付接口调用失败！";
 
@@ -40,14 +40,12 @@ public interface IWxapService {
 	 * @param ip
 	 * @param timeStart
 	 * @param timeExpire
-	 * @param notifyUrl
 	 * @param openId
 	 * @param modifyUser
 	 * @return
 	 * @throws ServiceException
 	 */
 	String getBrandWCPayRequest(String tradeNo, String body, String detail, String attach, int totalFee, String ip,
-		String timeStart, String timeExpire, String notifyUrl, String openId, String modifyUser)
-		throws ServiceException;
+		String timeStart, String timeExpire, String openId, String modifyUser) throws ServiceException;
 
 }

@@ -76,7 +76,7 @@ public class Trade extends SearchInfo {
 	private String modifyUser;
 
 	/**
-	 * 支付方式(alipay wxap).
+	 * 支付方式(alipay wxpay).
 	 */
 	private String payType;
 

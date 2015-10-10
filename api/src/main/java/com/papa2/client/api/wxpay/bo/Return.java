@@ -1,4 +1,4 @@
-package com.papa2.client.api.wxap.bo;
+package com.papa2.client.api.wxpay.bo;
 
 import org.dom4j.Element;
 import org.dom4j.VisitorSupport;

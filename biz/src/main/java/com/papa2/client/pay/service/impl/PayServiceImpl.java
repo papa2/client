@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.papa2.client.api.cache.IMemcachedCacheService;
 import com.papa2.client.api.pay.IPayService;
 import com.papa2.client.api.trade.ITradeService;
 import com.papa2.client.api.trade.bo.Trade;
-import com.papa2.client.api.wxap.IWxapService;
+import com.papa2.client.api.wxpay.IWxpayService;
 import com.papa2.client.framework.bo.BooleanResult;
 import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
@@ -27,7 +28,9 @@ public class PayServiceImpl implements IPayService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(PayServiceImpl.class);
 
-	private IWxapService wxapService;
+	private IMemcachedCacheService memcachedCacheService;
+
+	private IWxpayService wxpayService;
 
 	private ITradeService tradeService;
 
@@ -42,7 +45,7 @@ public class PayServiceImpl implements IPayService {
 		}
 
 		try {
-			result.setCode(wxapService.authorize(redirectUrl, "snsapi_base", state));
+			result.setCode(wxpayService.authorize(redirectUrl, "snsapi_base", state));
 			result.setResult(true);
 		} catch (ServiceException e) {
 			logger.error(e);
@@ -60,7 +63,7 @@ public class PayServiceImpl implements IPayService {
 		}
 
 		try {
-			return wxapService.getOpenId(code);
+			return wxpayService.getOpenId(code);
 		} catch (ServiceException e) {
 			logger.error(e);
 		}
@@ -95,21 +98,31 @@ public class PayServiceImpl implements IPayService {
 			return result;
 		}
 
+		// 锁定订单
+		String key = tradeNo.trim();
+
+		try {
+			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key,
+				IMemcachedCacheService.CACHE_KEY_TRADE_NO_DEFAULT_EXP);
+		} catch (ServiceException e) {
+			result.setCode("当前订单已被锁定，请稍后再试。");
+			return result;
+		}
+
 		if (IPayService.PAY_TYPE_ALIPAY.equals(payType)) {
 
 			return result;
 		}
 
-		if (IPayService.PAY_TYPE_WXAP.equals(payType)) {
+		if (IPayService.PAY_TYPE_WXPAY.equals(payType)) {
 			BigDecimal price = trade.getPrice().multiply(new BigDecimal("100")).setScale(0, BigDecimal.ROUND_HALF_UP);
 			String timeStart = DateUtil.getNowDateminStr();
 			String timeExpire =
 				DateUtil.datetime(DateUtil.addMinutes(new Date(), 15), DateUtil.DEFAULT_DATEFULLTIME_FORMAT);
 
 			try {
-				result.setCode(wxapService.getBrandWCPayRequest(tradeNo, "停车缴费：" + trade.getTradeNo(), null, null,
-					Integer.parseInt(price.toString()), ip, timeStart, timeExpire, "http://127.0.0.1", openId,
-					userId.toString()));
+				result.setCode(wxpayService.getBrandWCPayRequest(tradeNo, "停车缴费：" + trade.getTradeNo(), null, null,
+					Integer.parseInt(price.toString()), ip, timeStart, timeExpire, openId, userId.toString()));
 				result.setResult(true);
 			} catch (ServiceException e) {
 				logger.error(e);
@@ -139,17 +152,34 @@ public class PayServiceImpl implements IPayService {
 	}
 
 	@Override
-	public boolean notify(String tradeNo) {
-		// TODO Auto-generated method stub
-		return false;
+	public BooleanResult notify(Map<String, Object> params) {
+		BooleanResult result = new BooleanResult();
+		result.setResult(false);
+
+		for (Map.Entry<String, Object> m : params.entrySet()) {
+			System.out.println(m.getKey());
+			System.out.println(m.getValue());
+		}
+
+		result.setCode("<xml><return_code><![CDATA[FAIL]]></return_code></xml>");
+
+		return result;
 	}
 
-	public IWxapService getWxapService() {
-		return wxapService;
+	public IMemcachedCacheService getMemcachedCacheService() {
+		return memcachedCacheService;
 	}
 
-	public void setWxapService(IWxapService wxapService) {
-		this.wxapService = wxapService;
+	public void setMemcachedCacheService(IMemcachedCacheService memcachedCacheService) {
+		this.memcachedCacheService = memcachedCacheService;
+	}
+
+	public IWxpayService getWxpayService() {
+		return wxpayService;
+	}
+
+	public void setWxpayService(IWxpayService wxpayService) {
+		this.wxpayService = wxpayService;
 	}
 
 	public ITradeService getTradeService() {

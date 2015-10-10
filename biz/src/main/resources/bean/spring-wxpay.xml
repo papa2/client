@@ -5,48 +5,51 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="accessTokenService" class="com.papa2.client.wxap.service.impl.AccessTokenServiceImpl">
+	<bean id="accessTokenService" class="com.papa2.client.wxpay.service.impl.AccessTokenServiceImpl">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 	</bean>
 	
-	<bean id="jsapiTicketService" class="com.papa2.client.wxap.service.impl.JsapiTicketServiceImpl">
+	<bean id="jsapiTicketService" class="com.papa2.client.wxpay.service.impl.JsapiTicketServiceImpl">
 		<property name="memcachedCacheService" ref="memcachedCacheService" />
 	</bean>
 	
-	<bean id="signService" class="com.papa2.client.wxap.service.impl.SignServiceImpl">
+	<bean id="signService" class="com.papa2.client.wxpay.service.impl.SignServiceImpl">
 		<property name="accessTokenService" ref="accessTokenService" />
 		<property name="jsapiTicketService" ref="jsapiTicketService" />
 		<property name="appId">
-			<value>${wxap.appId}</value>
+			<value>${wxpay.appId}</value>
 		</property>
 		<property name="appSecret">
-			<value>${wxap.appSecret}</value>
+			<value>${wxpay.appSecret}</value>
 		</property>
 	</bean>
 	
-	<bean id="wxapService" class="com.papa2.client.wxap.service.impl.WxapServiceImpl">
+	<bean id="wxpayService" class="com.papa2.client.wxpay.service.impl.WxpayServiceImpl">
 		<property name="oauth2Service" ref="oauth2Service" />
 		<property name="unifiedOrderService" ref="unifiedOrderService" />
 		<property name="appId">
-			<value>${wxap.appId}</value>
+			<value>${wxpay.appId}</value>
 		</property>
 		<property name="appSecret">
-			<value>${wxap.appSecret}</value>
+			<value>${wxpay.appSecret}</value>
 		</property>
 		<property name="mchId">
-			<value>${wxap.mchId}</value>
+			<value>${wxpay.mchId}</value>
+		</property>
+		<property name="notifyUrl">
+			<value>${wxpay.notify.url}</value>
 		</property>
 		<property name="key">
-			<value>${wxap.key}</value>
+			<value>${wxpay.key}</value>
 		</property>
 	</bean>
 	
-	<bean id="unifiedOrderService" class="com.papa2.client.wxap.service.impl.UnifiedOrderServiceImpl">
+	<bean id="unifiedOrderService" class="com.papa2.client.wxpay.service.impl.UnifiedOrderServiceImpl">
 		<property name="key">
-			<value>${wxap.key}</value>
+			<value>${wxpay.key}</value>
 		</property>
 	</bean>
 	
-	<bean id="oauth2Service" class="com.papa2.client.wxap.service.impl.OAuth2ServiceImpl" />
+	<bean id="oauth2Service" class="com.papa2.client.wxpay.service.impl.OAuth2ServiceImpl" />
 
 </beans>
