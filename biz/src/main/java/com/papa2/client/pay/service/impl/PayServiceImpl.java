@@ -13,6 +13,7 @@ import com.papa2.client.api.pay.IPayService;
 import com.papa2.client.api.trade.ITradeService;
 import com.papa2.client.api.trade.bo.Trade;
 import com.papa2.client.api.wxpay.IWxpayService;
+import com.papa2.client.api.wxpay.bo.WxNotify;
 import com.papa2.client.framework.bo.BooleanResult;
 import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
@@ -152,14 +153,9 @@ public class PayServiceImpl implements IPayService {
 	}
 
 	@Override
-	public BooleanResult notify(Map<String, Object> params) {
+	public BooleanResult notify(WxNotify wxNotify) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
-
-		for (Map.Entry<String, Object> m : params.entrySet()) {
-			System.out.println(m.getKey());
-			System.out.println(m.getValue());
-		}
 
 		result.setCode("<xml><return_code><![CDATA[FAIL]]></return_code></xml>");
 

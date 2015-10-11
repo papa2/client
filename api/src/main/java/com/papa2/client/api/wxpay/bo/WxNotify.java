@@ -3,157 +3,140 @@ package com.papa2.client.api.wxpay.bo;
 /**
  * 支付通知.
  * 
- * @author xujiakun
+ * @author JiakunXu
  * 
  */
-public class WxNotify {
-
-	private String id;
+public class WxNotify extends Result {
 
 	/**
-	 * 签名类型,取值:MD5、RSA,默认:MD5.
-	 */
-	private String signType;
-
-	/**
-	 * 字符编码,取值:GBK、UTF-8,默认:GBK.
-	 */
-	private String inputCharset;
-
-	/**
-	 * 签名.
-	 */
-	private String sign;
-
-	/**
-	 * 1-即时到账 其他保留.
-	 */
-	private int tradeMode;
-
-	/**
-	 * 支付结果: 0—成功 其他保留.
-	 */
-	private int tradeState;
-
-	/**
-	 * 商户号,也即之前步骤的 partnerid,由微信统一分配的 10 位正整数(120XXXXXXX)号.
-	 */
-	private String partner;
-
-	/**
-	 * 银行类型,在微信中使用 WX.
-	 */
-	private String bankType;
-
-	/**
-	 * 银行订单号.
-	 */
-	private String bankBillno;
-
-	/**
-	 * 支付金额,单位为分,如果 discount 有值,通知的 total_fee + discount = 请求的 total_fee.
-	 */
-	private int totalFee;
-
-	/**
-	 * 现金支付币种 ,目前只支持人民币 , 默认值是 1-人民币.
-	 */
-	private int feeType;
-
-	/**
-	 * 支付结果通知 id,对于某些特定商户,只返回通知 id,要求商户据此查询交易结果.
-	 */
-	private String notifyId;
-
-	/**
-	 * 交易号,28 位长的数值,其中前 10 位为商户号,之后 8 位为订单产生的日期,如 20090415,最后 10 位是流水号.
-	 */
-	private String transactionId;
-
-	/**
-	 * 商户系统的订单号,与请求一致.
-	 */
-	private String outTradeNo;
-
-	/**
-	 * 商户数据包,原样返回,空参数不传递.
-	 */
-	private String attach;
-
-	/**
-	 * 支付完成时间,格式为 yyyyMMddhhmmss,如 2009 年 12 月27日9点10分10秒表示为 20091227091010 。时区为 GMT+8 beijing.
-	 */
-	private String timeEnd;
-
-	/**
-	 * 物流费用,单位分,默认 0。如果有值,必须保证 transport_fee + product_fee = total_fee.
-	 */
-	private int transportFee;
-
-	/**
-	 * 物品费用,单位分。如果有值,必证保须 transport_fee + product_fee=total_fee.
-	 */
-	private int productFee;
-
-	/**
-	 * 折扣价格,单位分,如果有值,通知的 total_fee + discount = 请求的 total_fee.
-	 */
-	private int discount;
-
-	private String modifyUser;
-
-	/**
-	 * 字段名称：公众号 id；字段来源：商户注册具有支付权限的公众号成功后即可获得；传入方式：由商户直接传入.
+	 * 微信分配的公众账号ID（企业号corpid即为此appId）.
 	 */
 	private String appId;
 
 	/**
-	 * 字段名称：时间戳；字段来源：商户生成从 1970 年 1 月 1 日 00：00：00 至今的秒数，即当前的时间；由商户生成后传入。取值范围：32字符以下.
+	 * 微信支付分配的商户号.
 	 */
-	private String timeStamp;
+	private String mchId;
 
 	/**
-	 * 字段名称：随机字符串；字段来源：商户生成的随机字符串；取值范围：长度为 32 个字符以下。由商户生成后传入。取值范围：32 字符以下.
+	 * 微信支付分配的终端设备号.
+	 */
+	private String deviceInfo;
+
+	/**
+	 * 随机字符串，不长于32位.
 	 */
 	private String nonceStr;
 
+	private String sign;
+
 	/**
-	 * 支付该笔订单的用户 ID，商户可通过公众号其他接口为付款用户服务.
+	 * 用户在商户appid下的唯一标识.
 	 */
 	private String openId;
 
 	/**
-	 * 字段名称：签名；字段来源：对前面的其他字段与 appKey 按照字典序排序后，使用 SHA1 算法得到的结果。由商户生成后传入.
-	 */
-	private String appSignature;
-
-	/**
-	 * 用户是否关注了公众号。1 为关注，0 为未关注。
+	 * 用户是否关注公众账号，Y-关注，N-未关注，仅在公众账号类型支付有效.
 	 */
 	private String isSubscribe;
 
-	public String getId() {
-		return id;
+	/**
+	 * JSAPI、NATIVE、APP.
+	 */
+	private String tradeType;
+
+	/**
+	 * 银行类型，采用字符串类型的银行标识.
+	 */
+	private String bankType;
+
+	/**
+	 * 订单总金额，单位为分.
+	 */
+	private int totalFee;
+
+	/**
+	 * 货币类型，符合ISO4217标准的三位字母代码，默认人民币.
+	 */
+	private String feeType;
+
+	/**
+	 * 现金支付金额订单现金支付金额.
+	 */
+	private int cashFee;
+
+	/**
+	 * 货币类型，符合ISO4217标准的三位字母代码，默认人民币：CNY.
+	 */
+	private String cashFeeType;
+
+	/**
+	 * 代金券或立减优惠金额<=订单总金额，订单总金额-代金券或立减优惠金额=现金支付金额.
+	 */
+	private int couponFee;
+
+	private int couponCount;
+
+	/**
+	 * 代金券或立减优惠ID,$n为下标，从0开始编号.
+	 */
+	private String[] couponIds;
+
+	/**
+	 * 单个代金券或立减优惠支付金额,$n为下标，从0开始编号.
+	 */
+	private int[] couponFees;
+
+	/**
+	 * 微信支付订单号.
+	 */
+	private String transactionId;
+
+	/**
+	 * 商户系统的订单号，与请求一致.
+	 */
+	private String outTradeNo;
+
+	/**
+	 * 商家数据包，原样返回.
+	 */
+	private String attach;
+
+	/**
+	 * 支付完成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010.
+	 */
+	private String timeEnd;
+
+	public String getAppId() {
+		return appId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setAppId(String appId) {
+		this.appId = appId;
 	}
 
-	public String getSignType() {
-		return signType;
+	public String getMchId() {
+		return mchId;
 	}
 
-	public void setSignType(String signType) {
-		this.signType = signType;
+	public void setMchId(String mchId) {
+		this.mchId = mchId;
 	}
 
-	public String getInputCharset() {
-		return inputCharset;
+	public String getDeviceInfo() {
+		return deviceInfo;
 	}
 
-	public void setInputCharset(String inputCharset) {
-		this.inputCharset = inputCharset;
+	public void setDeviceInfo(String deviceInfo) {
+		this.deviceInfo = deviceInfo;
+	}
+
+	public String getNonceStr() {
+		return nonceStr;
+	}
+
+	public void setNonceStr(String nonceStr) {
+		this.nonceStr = nonceStr;
 	}
 
 	public String getSign() {
@@ -164,28 +147,28 @@ public class WxNotify {
 		this.sign = sign;
 	}
 
-	public int getTradeMode() {
-		return tradeMode;
+	public String getOpenId() {
+		return openId;
 	}
 
-	public void setTradeMode(int tradeMode) {
-		this.tradeMode = tradeMode;
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 
-	public int getTradeState() {
-		return tradeState;
+	public String getIsSubscribe() {
+		return isSubscribe;
 	}
 
-	public void setTradeState(int tradeState) {
-		this.tradeState = tradeState;
+	public void setIsSubscribe(String isSubscribe) {
+		this.isSubscribe = isSubscribe;
 	}
 
-	public String getPartner() {
-		return partner;
+	public String getTradeType() {
+		return tradeType;
 	}
 
-	public void setPartner(String partner) {
-		this.partner = partner;
+	public void setTradeType(String tradeType) {
+		this.tradeType = tradeType;
 	}
 
 	public String getBankType() {
@@ -196,14 +179,6 @@ public class WxNotify {
 		this.bankType = bankType;
 	}
 
-	public String getBankBillno() {
-		return bankBillno;
-	}
-
-	public void setBankBillno(String bankBillno) {
-		this.bankBillno = bankBillno;
-	}
-
 	public int getTotalFee() {
 		return totalFee;
 	}
@@ -212,20 +187,60 @@ public class WxNotify {
 		this.totalFee = totalFee;
 	}
 
-	public int getFeeType() {
+	public String getFeeType() {
 		return feeType;
 	}
 
-	public void setFeeType(int feeType) {
+	public void setFeeType(String feeType) {
 		this.feeType = feeType;
 	}
 
-	public String getNotifyId() {
-		return notifyId;
+	public int getCashFee() {
+		return cashFee;
 	}
 
-	public void setNotifyId(String notifyId) {
-		this.notifyId = notifyId;
+	public void setCashFee(int cashFee) {
+		this.cashFee = cashFee;
+	}
+
+	public String getCashFeeType() {
+		return cashFeeType;
+	}
+
+	public void setCashFeeType(String cashFeeType) {
+		this.cashFeeType = cashFeeType;
+	}
+
+	public int getCouponFee() {
+		return couponFee;
+	}
+
+	public void setCouponFee(int couponFee) {
+		this.couponFee = couponFee;
+	}
+
+	public int getCouponCount() {
+		return couponCount;
+	}
+
+	public void setCouponCount(int couponCount) {
+		this.couponCount = couponCount;
+	}
+
+	public String[] getCouponIds() {
+		return couponIds;
+	}
+
+	public void setCouponIds(String[] couponIds) {
+		this.couponIds = couponIds;
+	}
+
+	public int[] getCouponFees() {
+		return couponFees;
+	}
+
+	public void setCouponFees(int[] couponFees) {
+		this.couponFees = couponFees;
 	}
 
 	public String getTransactionId() {
@@ -258,86 +273,6 @@ public class WxNotify {
 
 	public void setTimeEnd(String timeEnd) {
 		this.timeEnd = timeEnd;
-	}
-
-	public int getTransportFee() {
-		return transportFee;
-	}
-
-	public void setTransportFee(int transportFee) {
-		this.transportFee = transportFee;
-	}
-
-	public int getProductFee() {
-		return productFee;
-	}
-
-	public void setProductFee(int productFee) {
-		this.productFee = productFee;
-	}
-
-	public int getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
-
-	public String getModifyUser() {
-		return modifyUser;
-	}
-
-	public void setModifyUser(String modifyUser) {
-		this.modifyUser = modifyUser;
-	}
-
-	public String getAppId() {
-		return appId;
-	}
-
-	public void setAppId(String appId) {
-		this.appId = appId;
-	}
-
-	public String getTimeStamp() {
-		return timeStamp;
-	}
-
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
-	}
-
-	public String getNonceStr() {
-		return nonceStr;
-	}
-
-	public void setNonceStr(String nonceStr) {
-		this.nonceStr = nonceStr;
-	}
-
-	public String getOpenId() {
-		return openId;
-	}
-
-	public void setOpenId(String openId) {
-		this.openId = openId;
-	}
-
-	public String getAppSignature() {
-		return appSignature;
-	}
-
-	public void setAppSignature(String appSignature) {
-		this.appSignature = appSignature;
-	}
-
-	public String getIsSubscribe() {
-		return isSubscribe;
-	}
-
-	public void setIsSubscribe(String isSubscribe) {
-		this.isSubscribe = isSubscribe;
 	}
 
 }

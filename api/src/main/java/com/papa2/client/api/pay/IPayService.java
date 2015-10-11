@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.papa2.client.api.wxpay.bo.WxNotify;
 import com.papa2.client.framework.bo.BooleanResult;
 
 /**
@@ -66,9 +67,9 @@ public interface IPayService {
 	/**
 	 * 支付通知.
 	 * 
-	 * @param params
+	 * @param wxNotify
 	 * @return
 	 */
-	BooleanResult notify(Map<String, Object> params);
+	BooleanResult notify(WxNotify wxNotify);
 
 }

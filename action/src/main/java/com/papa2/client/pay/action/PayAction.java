@@ -1,5 +1,8 @@
 package com.papa2.client.pay.action;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URLEncoder;
 
 import org.apache.commons.lang3.StringUtils;
@@ -7,11 +10,13 @@ import org.apache.commons.lang3.StringUtils;
 import com.papa2.client.api.pay.IPayService;
 import com.papa2.client.api.trade.ITradeService;
 import com.papa2.client.api.trade.bo.Trade;
+import com.papa2.client.api.wxpay.bo.WxNotify;
 import com.papa2.client.framework.action.BaseAction;
 import com.papa2.client.framework.bo.BooleanResult;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
 import com.papa2.client.framework.util.ClientUtil;
+import com.papa2.client.framework.util.XmlUtil;
 
 /**
  * 支付中心.
@@ -116,8 +121,40 @@ public class PayAction extends BaseAction {
 	}
 
 	public String wxNotify() {
-		@SuppressWarnings("unchecked")
-		BooleanResult result = payService.notify(this.getServletRequest().getParameterMap());
+		StringBuilder fileContent = new StringBuilder();
+
+		InputStreamReader in = null;
+		BufferedReader reader = null;
+		try {
+			in = new InputStreamReader(this.getServletRequest().getInputStream(), "UTF-8");
+			reader = new BufferedReader(in);
+
+			String tempStr = reader.readLine();
+			while (tempStr != null) {
+				fileContent.append(tempStr);
+				tempStr = reader.readLine();
+			}
+		} catch (Exception e) {
+			logger.error(e);
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					logger.error(e);
+				}
+			}
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					logger.error(e);
+				}
+			}
+		}
+
+		WxNotify wxNotify = (WxNotify) XmlUtil.parse(fileContent.toString(), new WxNotify());
+		BooleanResult result = payService.notify(wxNotify);
 
 		this.setResourceResult(result.getCode());
 
