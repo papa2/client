@@ -7,8 +7,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.papa2.client.api.cache.IMemcachedCacheService;
+import com.papa2.client.api.pay.INotifyService;
 import com.papa2.client.api.pay.IPayService;
 import com.papa2.client.api.trade.ITradeService;
 import com.papa2.client.api.trade.bo.Trade;
@@ -19,6 +23,7 @@ import com.papa2.client.framework.exception.ServiceException;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
 import com.papa2.client.framework.util.DateUtil;
+import com.papa2.client.framework.util.XmlUtil;
 
 /**
  * 
@@ -29,11 +34,15 @@ public class PayServiceImpl implements IPayService {
 
 	private Logger4jExtend logger = Logger4jCollection.getLogger(PayServiceImpl.class);
 
+	private TransactionTemplate transactionTemplate;
+
 	private IMemcachedCacheService memcachedCacheService;
 
 	private IWxpayService wxpayService;
 
 	private ITradeService tradeService;
+
+	private INotifyService notifyService;
 
 	@Override
 	public BooleanResult authorize(String redirectUrl, String state) {
@@ -153,13 +162,82 @@ public class PayServiceImpl implements IPayService {
 	}
 
 	@Override
-	public BooleanResult notify(WxNotify wxNotify) {
+	public BooleanResult notify(String wxNotify) {
 		BooleanResult result = new BooleanResult();
 		result.setResult(false);
+		result.setCode(IWxpayService.RETURN_CODE_FAIL);
 
-		result.setCode("<xml><return_code><![CDATA[FAIL]]></return_code></xml>");
+		if (StringUtils.isBlank(wxNotify)) {
+			return result;
+		}
+
+		final WxNotify notify = (WxNotify) XmlUtil.parse(wxNotify.toString(), new WxNotify());
+
+		// 1. 判断回调信息
+		BooleanResult res = wxpayService.notify(notify);
+		if (!res.getResult()) {
+			return result;
+		}
+
+		// 锁定订单
+		String key = notify.getOutTradeNo();
+
+		try {
+			memcachedCacheService.add(IMemcachedCacheService.CACHE_KEY_TRADE_NO + key, key,
+				IMemcachedCacheService.CACHE_KEY_TRADE_NO_DEFAULT_EXP);
+		} catch (ServiceException e) {
+			return result;
+		}
+
+		// 2. 判断订单状态
+		final Trade trade = tradeService.getTrade(notify.getOutTradeNo());
+
+		if (trade == null) {
+			return result;
+		}
+
+		// 已付款.
+		if (ITradeService.PAY.equals(trade.getType())) {
+			result.setResult(true);
+			result.setCode(IWxpayService.RETURN_CODE_SUCCESS);
+			return result;
+		}
+
+		res = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
+			public BooleanResult doInTransaction(TransactionStatus ts) {
+				// 3. 修改订单信息 tradeService.
+				BooleanResult result =
+					tradeService.payTrade(trade.getTradeNo(), IPayService.PAY_TYPE_WXPAY, notify.getTimeEnd());
+				if (!result.getResult()) {
+					ts.setRollbackOnly();
+					return result;
+				}
+
+				// 4. 记录回调信息 notifyService;
+				// result = wxpayService.notify(notify);
+				if (!result.getResult()) {
+					ts.setRollbackOnly();
+					return result;
+				}
+
+				return result;
+			}
+		});
+
+		if (res.getResult()) {
+			result.setResult(true);
+			result.setCode(IWxpayService.RETURN_CODE_SUCCESS);
+		}
 
 		return result;
+	}
+
+	public TransactionTemplate getTransactionTemplate() {
+		return transactionTemplate;
+	}
+
+	public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
+		this.transactionTemplate = transactionTemplate;
 	}
 
 	public IMemcachedCacheService getMemcachedCacheService() {
@@ -184,6 +262,14 @@ public class PayServiceImpl implements IPayService {
 
 	public void setTradeService(ITradeService tradeService) {
 		this.tradeService = tradeService;
+	}
+
+	public INotifyService getNotifyService() {
+		return notifyService;
+	}
+
+	public void setNotifyService(INotifyService notifyService) {
+		this.notifyService = notifyService;
 	}
 
 }

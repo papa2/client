@@ -1,5 +1,7 @@
 package com.papa2.client.api.wxpay.bo;
 
+import org.dom4j.Element;
+
 /**
  * 支付通知.
  * 
@@ -53,7 +55,7 @@ public class WxNotify extends Result {
 	/**
 	 * 订单总金额，单位为分.
 	 */
-	private int totalFee;
+	private Integer totalFee;
 
 	/**
 	 * 货币类型，符合ISO4217标准的三位字母代码，默认人民币.
@@ -63,7 +65,7 @@ public class WxNotify extends Result {
 	/**
 	 * 现金支付金额订单现金支付金额.
 	 */
-	private int cashFee;
+	private Integer cashFee;
 
 	/**
 	 * 货币类型，符合ISO4217标准的三位字母代码，默认人民币：CNY.
@@ -73,19 +75,19 @@ public class WxNotify extends Result {
 	/**
 	 * 代金券或立减优惠金额<=订单总金额，订单总金额-代金券或立减优惠金额=现金支付金额.
 	 */
-	private int couponFee;
+	private Integer couponFee;
 
-	private int couponCount;
+	private Integer couponCount;
 
 	/**
 	 * 代金券或立减优惠ID,$n为下标，从0开始编号.
 	 */
-	private String[] couponIds;
+	private String[] couponIds = new String[10];
 
 	/**
 	 * 单个代金券或立减优惠支付金额,$n为下标，从0开始编号.
 	 */
-	private int[] couponFees;
+	private Integer[] couponFees = new Integer[10];
 
 	/**
 	 * 微信支付订单号.
@@ -106,6 +108,57 @@ public class WxNotify extends Result {
 	 * 支付完成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010.
 	 */
 	private String timeEnd;
+
+	public void visit(Element node) {
+		super.visit(node);
+
+		String name = node.getName();
+		String text = node.getText();
+
+		if ("appid".equals(name)) {
+			appId = text;
+		} else if ("mch_id".equals(name)) {
+			mchId = text;
+		} else if ("device_info".equals(name)) {
+			deviceInfo = text;
+		} else if ("nonce_str".equals(name)) {
+			nonceStr = text;
+		} else if ("sign".equals(name)) {
+			sign = text;
+		} else if ("openid".equals(name)) {
+			openId = text;
+		} else if ("is_subscribe".equals(name)) {
+			isSubscribe = text;
+		} else if ("trade_type".equals(name)) {
+			tradeType = text;
+		} else if ("bank_type".equals(name)) {
+			bankType = text;
+		} else if ("total_fee".equals(name)) {
+			totalFee = Integer.valueOf(text);
+		} else if ("fee_type".equals(name)) {
+			feeType = text;
+		} else if ("cash_fee".equals(name)) {
+			cashFee = Integer.valueOf(text);
+		} else if ("cash_fee_type".equals(name)) {
+			cashFeeType = text;
+		} else if ("coupon_fee".equals(name)) {
+			couponFee = Integer.valueOf(text);
+		} else if ("coupon_count".equals(name)) {
+			couponCount = Integer.valueOf(text);
+		} else if (name.contains("coupon_id_")) {
+			couponIds[Integer.parseInt(name.substring(10))] = text;
+		} else if (name.contains("coupon_fee_")) {
+			couponFees[Integer.parseInt(name.substring(11))] = Integer.valueOf(text);
+		} else if ("transaction_id".equals(name)) {
+			transactionId = text;
+		} else if ("out_trade_no".equals(name)) {
+			outTradeNo = text;
+		} else if ("attach".equals(name)) {
+			attach = text;
+		} else if ("time_end".equals(name)) {
+			timeEnd = text;
+		}
+	}
 
 	public String getAppId() {
 		return appId;
@@ -179,11 +232,11 @@ public class WxNotify extends Result {
 		this.bankType = bankType;
 	}
 
-	public int getTotalFee() {
+	public Integer getTotalFee() {
 		return totalFee;
 	}
 
-	public void setTotalFee(int totalFee) {
+	public void setTotalFee(Integer totalFee) {
 		this.totalFee = totalFee;
 	}
 
@@ -195,11 +248,11 @@ public class WxNotify extends Result {
 		this.feeType = feeType;
 	}
 
-	public int getCashFee() {
+	public Integer getCashFee() {
 		return cashFee;
 	}
 
-	public void setCashFee(int cashFee) {
+	public void setCashFee(Integer cashFee) {
 		this.cashFee = cashFee;
 	}
 
@@ -211,19 +264,19 @@ public class WxNotify extends Result {
 		this.cashFeeType = cashFeeType;
 	}
 
-	public int getCouponFee() {
+	public Integer getCouponFee() {
 		return couponFee;
 	}
 
-	public void setCouponFee(int couponFee) {
+	public void setCouponFee(Integer couponFee) {
 		this.couponFee = couponFee;
 	}
 
-	public int getCouponCount() {
+	public Integer getCouponCount() {
 		return couponCount;
 	}
 
-	public void setCouponCount(int couponCount) {
+	public void setCouponCount(Integer couponCount) {
 		this.couponCount = couponCount;
 	}
 
@@ -235,11 +288,11 @@ public class WxNotify extends Result {
 		this.couponIds = couponIds;
 	}
 
-	public int[] getCouponFees() {
+	public Integer[] getCouponFees() {
 		return couponFees;
 	}
 
-	public void setCouponFees(int[] couponFees) {
+	public void setCouponFees(Integer[] couponFees) {
 		this.couponFees = couponFees;
 	}
 

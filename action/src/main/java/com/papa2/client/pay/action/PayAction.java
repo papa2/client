@@ -10,13 +10,11 @@ import org.apache.commons.lang3.StringUtils;
 import com.papa2.client.api.pay.IPayService;
 import com.papa2.client.api.trade.ITradeService;
 import com.papa2.client.api.trade.bo.Trade;
-import com.papa2.client.api.wxpay.bo.WxNotify;
 import com.papa2.client.framework.action.BaseAction;
 import com.papa2.client.framework.bo.BooleanResult;
 import com.papa2.client.framework.log.Logger4jCollection;
 import com.papa2.client.framework.log.Logger4jExtend;
 import com.papa2.client.framework.util.ClientUtil;
-import com.papa2.client.framework.util.XmlUtil;
 
 /**
  * 支付中心.
@@ -153,8 +151,7 @@ public class PayAction extends BaseAction {
 			}
 		}
 
-		WxNotify wxNotify = (WxNotify) XmlUtil.parse(fileContent.toString(), new WxNotify());
-		BooleanResult result = payService.notify(wxNotify);
+		BooleanResult result = payService.notify(fileContent.toString());
 
 		this.setResourceResult(result.getCode());
 

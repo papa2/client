@@ -77,9 +77,26 @@
 			   DATE_FORMAT(t.create_date, '%Y-%m-%d %T') AS createDate,
 			   t.pay_type AS payType
 		  FROM client_tb_trade t
-		 WHERE t.user_id = #userId#
+		 WHERE t.trade_no = #tradeNo#
+	]]>
+		<dynamic>
+			<isNotEmpty property="userId" prepend="and">
+			<![CDATA[ t.user_id = #userId# ]]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<update id="updateTrade" parameterClass="trade">
+	<![CDATA[
+		UPDATE client_tb_trade t
+		   SET t.modify_date = NOW(),
+			   t.modify_user = #modifyUser#,
+			   t.type = #type#,
+			   t.pay_type = #payType#,
+			   t.pay_date = STR_TO_DATE( #payDate#, '%Y%m%d%H%i%s')
+		 WHERE t.type <> #type#
 		   AND t.trade_no = #tradeNo#
 	]]>
-	</select>
+	</update>
 	
 </sqlMap>

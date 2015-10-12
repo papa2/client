@@ -32,4 +32,11 @@ public interface ITradeDao {
 	 */
 	Trade getTrade(Trade trade);
 
+	/**
+	 * 
+	 * @param trade
+	 * @return
+	 */
+	int updateTrade(Trade trade);
+
 }

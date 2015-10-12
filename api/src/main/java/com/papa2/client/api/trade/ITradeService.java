@@ -41,4 +41,22 @@ public interface ITradeService {
 	 */
 	Trade getTrade(Long userId, String tradeNo);
 
+	// >>>>>>>>>>以下是第三方交易平台<<<<<<<<<<
+
+	/**
+	 * 
+	 * @param tradeNo
+	 * @return
+	 */
+	Trade getTrade(String tradeNo);
+
+	/**
+	 * 
+	 * @param tradeNo
+	 * @param payType
+	 * @param payDate
+	 * @return
+	 */
+	BooleanResult payTrade(String tradeNo, String payType, String payDate);
+
 }
