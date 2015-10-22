@@ -37,6 +37,6 @@
 		var reserveId = '$!{reserveId}';
 		var state = '$!{state}';
         </script>
-		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/qrCode.js?t=20150910"></script>
+		<script type="text/javascript" src="$!{env.imgUrl}/js/reserve/qrCode.js?t=20151023"></script>
     </body>
 </html>

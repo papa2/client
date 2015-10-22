@@ -1,5 +1,6 @@
 package com.papa2.client.reserve.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -393,7 +394,7 @@ public class ReserveServiceImpl implements IReserveService {
 		}
 
 		// 租车位人信息
-		result.setCode(reserve.getUserId().toString() + "&" + reserve.getCarNo());
+		result.setCode(reserve.getUserId().toString() + "&" + reserve.getCarNo() + "&" + space.getCost());
 		result.setResult(true);
 		return result;
 	}
@@ -409,6 +410,7 @@ public class ReserveServiceImpl implements IReserveService {
 		String res[] = result.getCode().split("&");
 		final Long clientUserId = Long.valueOf(res[0]);
 		final String carNo = res[1];
+		final String cost = res[2];
 
 		result = transactionTemplate.execute(new TransactionCallback<BooleanResult>() {
 			public BooleanResult doInTransaction(TransactionStatus ts) {
@@ -435,6 +437,7 @@ public class ReserveServiceImpl implements IReserveService {
 				Record clientRecord = new Record();
 				clientRecord.setCarNo(carNo);
 				clientRecord.setReserveId(Long.valueOf(reserveId));
+				clientRecord.setCost(new BigDecimal(cost));
 
 				result = clientRecordService.createRecord(clientUserId, clientRecord, userId.toString());
 				if (!result.getResult()) {
@@ -447,7 +450,7 @@ public class ReserveServiceImpl implements IReserveService {
 		});
 
 		if (result.getResult()) {
-			remove(userId, reserveId);
+			remove(clientUserId, reserveId);
 		}
 
 		return result;
@@ -498,7 +501,7 @@ public class ReserveServiceImpl implements IReserveService {
 		});
 
 		if (result.getResult()) {
-			remove(userId, reserveId);
+			remove(clientUserId, reserveId);
 		}
 
 		return result;

@@ -36,14 +36,14 @@ $(document).ready(function() {
 								if (state == 'U' && data == 'I') {
 									success('欢迎您。');
 									setTimeout(function() {
-												back();
+												reserve();
 											}, 3000);
 								}
 
 								if (state == 'I' && data == 'O') {
 									success('欢迎下次再来。');
 									setTimeout(function() {
-												back();
+												record();
 											}, 3000);
 								}
 
@@ -62,6 +62,16 @@ $(document).ready(function() {
 function back() {
 	loading();
 	top.location.href = appUrl + "/reserve/detail.htm?reserveId=" + reserveId;
+}
+
+function reserve() {
+	loading();
+	top.location.href = appUrl + "/reserve/index.htm";
+}
+
+function record() {
+	loading();
+	top.location.href = appUrl + "/record/index.htm";
 }
 
 function success(message) {

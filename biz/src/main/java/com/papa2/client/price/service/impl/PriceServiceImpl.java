@@ -42,7 +42,7 @@ public class PriceServiceImpl implements IPriceService {
 			double m = ArithUtil.div(Double.parseDouble(String.valueOf(s)), 60d, 0);
 			// 15分钟内免费
 			if (m < 15) {
-				return BigDecimal.ZERO;
+				return BigDecimal.ONE;
 			}
 			// 1小时内收费
 			if (m < 60) {
