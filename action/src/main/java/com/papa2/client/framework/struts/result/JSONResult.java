@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +81,8 @@ public class JSONResult implements Result, StrutsStatics {
 			Object value = field.get(action);
 
 			OgnlUtil ognlUtil = ActionContext.getContext().getContainer().getInstance(OgnlUtil.class);
-			Map<String, Object> map = ognlUtil.getBeanMap(value);
+			Map<String, Object> map =
+				ognlUtil.getBeanMap(List.class.isAssignableFrom(field.getType()) ? ((List<?>) value).get(0) : value);
 			if (map != null) {
 				if (result != null) {
 					String[] include = result.include();
@@ -89,7 +91,7 @@ public class JSONResult implements Result, StrutsStatics {
 					if (include.length > 0) {
 						Map<String, Object> elements = new HashMap<String, Object>();
 						for (int i = 0; i < include.length; i++) {
-							elements.put(include[i], map.get(include[i]));
+							elements.put(include[i], true);
 						}
 						map = elements;
 					} else if (exclude.length > 0) {
