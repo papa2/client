@@ -86,7 +86,7 @@ public class JSONResult implements Result, StrutsStatics {
 
 			if (List.class.isAssignableFrom(field.getType())) {
 				List<?> list = ((List<?>) value);
-				if (list.size() > 0) {
+				if (list != null && list.size() > 0) {
 					map = ognlUtil.getBeanMap(list.get(0));
 				} else {
 					json.append("[]");
