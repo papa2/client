@@ -81,8 +81,20 @@ public class JSONResult implements Result, StrutsStatics {
 			Object value = field.get(action);
 
 			OgnlUtil ognlUtil = ActionContext.getContext().getContainer().getInstance(OgnlUtil.class);
-			Map<String, Object> map =
-				ognlUtil.getBeanMap(List.class.isAssignableFrom(field.getType()) ? ((List<?>) value).get(0) : value);
+
+			Map<String, Object> map = null;
+
+			if (List.class.isAssignableFrom(field.getType())) {
+				List<?> list = ((List<?>) value);
+				if (list.size() > 0) {
+					map = ognlUtil.getBeanMap(list.get(0));
+				} else {
+					json.append("[]");
+				}
+			} else {
+				map = ognlUtil.getBeanMap(value);
+			}
+
 			if (map != null) {
 				if (result != null) {
 					String[] include = result.include();
